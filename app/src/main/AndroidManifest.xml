@@ -20,7 +20,8 @@
         <activity android:name=".PreCadastroActivity" />
         <activity android:name=".CadastroActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".ListaActivity"></activity>
+        <activity android:name=".ListaActivity" />
+        <activity android:name=".PremioActivity"></activity>
     </application>
 
 </manifest>

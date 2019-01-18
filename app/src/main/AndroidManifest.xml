@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".PreCadastroActivity" />
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".ListaActivity"></activity>
     </application>
 
 </manifest>

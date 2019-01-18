@@ -1,0 +1,70 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/id_menu_dicas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:text="DICAS"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/id_menu_meusarcos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="MEUS ARCOS"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/id_menu_arcoscompartilhados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="ARCOS COMPARTILHADOS"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/id_menu_ranking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="RANKING"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/id_menu_novatematica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="CRIAR NOVA TEMÁTICA"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/id_menu_premium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="TORNA-SE PREMIUM"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+    </LinearLayout>
+
+</ScrollView>

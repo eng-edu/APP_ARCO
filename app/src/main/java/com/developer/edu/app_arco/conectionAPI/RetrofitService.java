@@ -15,6 +15,40 @@ import retrofit2.http.Path;
 
 public interface RetrofitService {
 
+
+    @Multipart
+    @POST("/usuario/inserir/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}/{EMAIL}/{SENHA}/{TIPO}")
+    Call<String> inserirUsuario(@Path("NOME") String NOME,
+                                @Path("IDADE") String IDADE,
+                                @Path("SEXO") String SEXO,
+                                @Path("ESCOLARIDADE") String ESCOLARIDAE,
+                                @Path("EMAIL") String EMAIL,
+                                @Path("SENHA") String SENHA,
+                                @Path("TIPO") String TIPO,
+                                @Part MultipartBody.Part file,
+                                @Part("file") RequestBody name);
+
+    @GET("usuario/buscarUsuarioEmailSenha/{EMAIL}/{SENHA}")
+    Call<String> buscarUsuarioEmailSenha(@Path("EMAIL") String EMAIL,
+                              @Path("SENHA") String SENHA);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //login--------------------------------------------------------------------
 
     @GET("/loginDocente/{EMAIL}/{SENHA}")
@@ -28,15 +62,6 @@ public interface RetrofitService {
 
     //user-----------------------------------------------------------------------
 
-    @Multipart
-    @POST("discente/{NOME}/{INSTITUICAO}/{EMAIL}/{SENHA}")
-    Call<String> cadastarDiscente(@Header("token") String TOKIENAPI,
-                                  @Path("NOME") String NOME,
-                                  @Path("INSTITUICAO") String INSTITUICAO,
-                                  @Path("EMAIL") String EMAIL,
-                                  @Path("SENHA") String SENHA,
-                                  @Part MultipartBody.Part file,
-                                  @Part("file") RequestBody name);
 
     @Multipart
     @POST("docente/{NOME}/{FORMACAO}/{EMAIL}/{SENHA}")

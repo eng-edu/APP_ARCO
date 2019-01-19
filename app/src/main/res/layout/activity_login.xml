@@ -14,31 +14,39 @@
         android:src="@mipmap/ic_launcher_round" />
 
     <EditText
-        android:hint="EMAIL:"
-        android:layout_margin="5dp"
+        android:id="@+id/id_login_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="EMAIL:"
+        android:textSize="10sp" />
 
     <EditText
+        android:id="@+id/id_login_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:hint="SENHA:"
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="10sp" />
 
     <Button
-        android:layout_marginTop="20dp"
+        android:id="@+id/id_login_entrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="5dp"
-        android:textColor="@color/colorPrimary"
         android:text="ENTRAR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp" />
 
     <Button
-        android:layout_margin="5dp"
-        android:textColor="@color/colorPrimary"
-        android:text="CADASTRA-SE"
+        android:id="@+id/id_login_cadastro"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="CADASTRA-SE"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp" />
 
 </LinearLayout>

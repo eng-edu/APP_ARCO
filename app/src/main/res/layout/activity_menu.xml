@@ -10,11 +10,20 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/id_menu_dicas"
+            android:id="@+id/id_menu_perfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:text="MEU PERFIL"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/id_menu_dicas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="DICAS"
             android:textColor="@color/colorPrimaryDark" />
@@ -71,6 +80,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="TORNA-SE PREMIUM"
+            android:textColor="@color/colorPrimaryDark" />
+        <Button
+            android:id="@+id/id_menu_sair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="SAIR"
             android:textColor="@color/colorPrimaryDark" />
 
 

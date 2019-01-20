@@ -1,6 +1,8 @@
 package com.developer.edu.app_arco;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,6 +22,13 @@ public class LoginActivity extends AppCompatActivity {
         final EditText senha = findViewById(R.id.id_login_senha);
         Button entrar = findViewById(R.id.id_login_entrar);
         Button cadstrar = findViewById(R.id.id_login_cadastro);
+        SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
+        final String result = sharedPreferences.getString("ID", "");
+
+        if (result != null && !result.equals("") && result != "") {
+            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+            finish();
+        }
 
 
         entrar.setOnClickListener(new View.OnClickListener() {
@@ -27,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (email.getText().length() > 0 && senha.getText().length() > 0) {
-                    ControllerLogin.logar(getApplicationContext(), email.getText().toString(), senha.getText().toString());
+                    ControllerLogin.logar(LoginActivity.this, email.getText().toString(), senha.getText().toString());
                 }
 
             }
@@ -36,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         cadstrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PreCadastroActivity.class));
+                startActivity(new Intent(LoginActivity.this, PreCadastroActivity.class));
                 finish();
             }
         });

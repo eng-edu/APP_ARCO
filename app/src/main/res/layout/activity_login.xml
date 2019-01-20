@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:hint="EMAIL:"
+        android:inputType="textEmailAddress"
         android:textSize="10sp" />
 
     <EditText
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:hint="SENHA:"
+        android:inputType="textPassword"
         android:textSize="10sp" />
 
     <Button

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.developer.edu.app_arco.controller.ControllerCadastro;
 
@@ -41,6 +42,7 @@ public class CadastroActivity extends AppCompatActivity {
         final EditText email = findViewById(R.id.id_email_cadastro);
         final EditText senha = findViewById(R.id.id_senha_castro);
         final Button cadastrar = findViewById(R.id.id_cadastro_cadastrar);
+        final String tipo = getIntent().getStringExtra("tipo");
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,20 +62,22 @@ public class CadastroActivity extends AppCompatActivity {
                         && email.getText().length() > 0
                         && senha.getText().length() > 0) {
 
-                    ControllerCadastro.cadastrar(getApplicationContext(), nome.getText().toString(),
+                    ControllerCadastro.cadastrar(CadastroActivity.this, nome.getText().toString(),
                             idade.getText().toString(),
                             sexo,
                             escolaridade.getText().toString(),
                             email.getText().toString(),
                             senha.getText().toString(),
                             pathfoto,
-                            "tipo");
+                            tipo);
 
+                }else {
+                    Toast.makeText(CadastroActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        fotoPerfil = (ImageView) findViewById(R.id.image_perfil);
+        fotoPerfil = (ImageView) findViewById(R.id.Id_cadastro_image_perfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,11 +92,11 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void pedirPermisssaoParaAcessarArmazenamento() {
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+        if (ActivityCompat.checkSelfPermission(CadastroActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             //e caso ainda não tenha dado, ele solicita...
-            ActivityCompat.requestPermissions((Activity) getApplicationContext(),
+            ActivityCompat.requestPermissions((Activity) CadastroActivity.this,
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
     }
@@ -121,5 +125,10 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
+        finish();
+    }
 }

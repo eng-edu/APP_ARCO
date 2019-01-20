@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.view.menu.MenuAdapter;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.MenuActivity;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ControllerLogin {
 
@@ -28,6 +33,22 @@ public class ControllerLogin {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
+
+                    try {
+
+                        JSONObject usuario = new JSONObject(response.body());
+
+                        final SharedPreferences.Editor editor = context.getSharedPreferences("MY_PREF", MODE_PRIVATE).edit();
+                        editor.putString("ID", usuario.getString("ID"));
+                        editor.putString("TIPO", usuario.getString("TIPO"));
+                        editor.apply();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
 
                     //chama menu principal
                     context.startActivity(new Intent(context, MenuActivity.class));

@@ -29,6 +29,15 @@
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
+            android:id="@+id/id_menu_novoarco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="NOVO ARCO"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
             android:id="@+id/id_menu_meusarcos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

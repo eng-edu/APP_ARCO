@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, PerfilActivity.class));
+                startActivity(new Intent(MenuActivity.this, PerfilActivity.class).putExtra("meu_perfil", "S"));
             }
         });
         sair.setOnClickListener(new View.OnClickListener() {

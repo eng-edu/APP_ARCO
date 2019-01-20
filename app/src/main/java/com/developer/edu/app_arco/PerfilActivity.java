@@ -44,7 +44,9 @@ public class PerfilActivity extends AppCompatActivity {
         final EditText email = findViewById(R.id.id_email_perfil);
         final Button alterar = findViewById(R.id.id_perfil_alterar);
 
-
+        if (getIntent().getStringExtra("meu_perfil") == null || !getIntent().getStringExtra("meu_perfil").equals("S")) {
+            alterar.setVisibility(View.INVISIBLE);
+        }
 
 
         //BUSCA NO SERVER O PERFIL .........

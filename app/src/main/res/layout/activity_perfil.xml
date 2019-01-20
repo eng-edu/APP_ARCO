@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="153 pontos"
+            android:text="pontos"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="30sp"
@@ -34,7 +34,7 @@
             android:cropToPadding="false"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_user"
-            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_color="@color/colorAccent"
             app:civ_border_width="1dp" />
 
 

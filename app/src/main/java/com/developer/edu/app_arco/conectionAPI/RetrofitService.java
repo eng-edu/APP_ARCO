@@ -32,9 +32,26 @@ public interface RetrofitService {
     Call<String> buscarUsuarioEmailSenha(@Path("EMAIL") String EMAIL,
                               @Path("SENHA") String SENHA);
 
+    @GET("usuario/buscar/{ID}")
+    Call<String> buscarUsuario(@Path("ID") String ID);
+
+    @Multipart
+    @PUT("usuario/alterarComFoto/{ID}/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}")
+    Call<String> alterarComFotoUsuario(@Path("ID") String ID,
+                                       @Path("NOME") String NOME,
+                                       @Path("IDADE") String IDADE,
+                                       @Path("SEXO") String SEXO,
+                                       @Path("ESCOLARIDADE") String ESCOLARIDAE,
+                                       @Part MultipartBody.Part file,
+                                       @Part("file") RequestBody name);
 
 
-
+    @PUT("usuario/alterar/{ID}/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}")
+    Call<String> alterarUsuario(@Path("ID") String ID,
+                                       @Path("NOME") String NOME,
+                                       @Path("IDADE") String IDADE,
+                                       @Path("SEXO") String SEXO,
+                                       @Path("ESCOLARIDADE") String ESCOLARIDAE);
 
 
 

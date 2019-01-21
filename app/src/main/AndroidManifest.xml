@@ -24,7 +24,8 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".ListaActivity" />
         <activity android:name=".PremioActivity" />
-        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".PerfilActivity" />
+        <activity android:name=".ArcoActivity"></activity>
     </application>
 
 </manifest>

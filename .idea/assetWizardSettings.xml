@@ -61,13 +61,18 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\User\Downloads\Blank-profile.png" />
-                                      <entry key="outputName" value="ic_user" />
+                                      <entry key="imageAsset" value="C:\Users\User\Downloads\ideia.png" />
+                                      <entry key="outputName" value="ic_ideia" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>

@@ -60,6 +60,8 @@ public interface RetrofitService {
     Call<String> novoArco(@Path("ID_TEMATICA") String ID,
                           @Path("ID_LIDER") String NOME);
 
+    @GET("arco/busca r/{ID}")
+    Call<String> buscarArco(@Path("ID") String ID);
 
 
 }

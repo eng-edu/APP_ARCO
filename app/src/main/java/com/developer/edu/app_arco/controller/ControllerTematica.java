@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.ArcoActivity;
-import com.developer.edu.app_arco.MenuActivity;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.model.Tematica;
@@ -128,6 +127,7 @@ public class ControllerTematica {
         dialog.setCancelable(true);
         dialog.show();
 
+
         Call<String> stringCall = ConfigRetrofit.getService().novoArco(idLider, idTematica);
         stringCall.enqueue(new Callback<String>() {
             @Override
@@ -135,7 +135,6 @@ public class ControllerTematica {
                 if (response.code() == 200) {
 
                     context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", response.body()));
-                    ((Activity) context).finish();
                     dialog.dismiss();
 
                 } else if (response.code() == 405) {

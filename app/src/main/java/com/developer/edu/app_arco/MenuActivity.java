@@ -8,14 +8,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
+import com.developer.edu.app_arco.controller.ControllerArco;
 import com.developer.edu.app_arco.controller.ControllerTematica;
 
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+
 public class MenuActivity extends AppCompatActivity {
+
+    public Socket socket;
+
+    {
+        try {
+            socket = IO.socket(ConfigRetrofit.URL_BASE);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        SocketStatic.setSocket(socket);
 
         Button perfil = findViewById(R.id.id_menu_perfil);
         Button dicas = findViewById(R.id.id_menu_dicas);
@@ -39,6 +59,13 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
                 ControllerTematica.bucarTematicas(MenuActivity.this, inflater);
+            }
+        });
+        meusArcos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerArco.bucarMeusArco(MenuActivity.this, inflater);
             }
         });
 

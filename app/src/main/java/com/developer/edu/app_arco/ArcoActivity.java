@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,8 +35,8 @@ public class ArcoActivity extends AppCompatActivity {
     ImageView denuncia;
 
     Socket socket = SocketStatic.getSocket();
-
     String id_lider = "";
+    int click = 0;
 
 
     @Override
@@ -46,7 +48,7 @@ public class ArcoActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
 
-        JSONObject object = new JSONObject();
+        final JSONObject object = new JSONObject();
         try {
             object.put("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
             object.put("ID_USUARIO", ID_USUARIO);
@@ -69,8 +71,36 @@ public class ArcoActivity extends AppCompatActivity {
         gostei = findViewById(R.id.id_arco_gostei);
         denuncia = findViewById(R.id.id_arco_denuncia);
 
-
         edtitulo.setEnabled(false);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        btntitulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (click == 0) {
+                    edtitulo.setEnabled(true);
+                    btntitulo.setText("SALVAR");
+
+                    click = 1;
+                } else if (click == 1) {
+                    edtitulo.setEnabled(false);
+                    btntitulo.setText("EDITAR");
+                    click = 0;
+                    socket.emit("TITULO", edtitulo.getText().toString());
+                    socket.emit("ARCO", object);
+
+                }
+            }
+        });
+
+
+        gostei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                socket.emit("GOSTEI", object);
+                socket.emit("ARCO", object);
+            }
+        });
 
         //quando ouver uam alteração o server vai atulizar
         socket.on("ARCO".concat(getIntent().getStringExtra("ID_ARCO")), new Emitter.Listener() {
@@ -86,26 +116,24 @@ public class ArcoActivity extends AppCompatActivity {
                             tematica.setText("Tematica: "+object.getString("TITULO_TEMATICA"));
                             pontos.setText(object.getString("PONTO")+" pontos");
                             curtidas.setText(object.getString("GOSTEI") + " pessoas gostaram deste arco!");
-                            edtitulo.setText("Titulo: "+object.getString("TITULO_ARCO"));
+                            edtitulo.setText(object.getString("TITULO_ARCO"));
+                            edtitulo.setSelection(edtitulo.getText().length());
                             id_lider = object.getString("ID_LIDER");
 
                             if (object.getString("EU_GOSTEI").equals("S")) {
+                                gostei.setEnabled(false);
                                 gostei.setImageResource(R.mipmap.ic_gostei);
                             } else if (object.getString("EU_GOSTEI").equals("N")) {
                                 gostei.setImageResource(R.mipmap.ic_ngostei);
                             }
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
                     }
                 });
             }
         });
-
 
     }
 
@@ -115,4 +143,5 @@ public class ArcoActivity extends AppCompatActivity {
         startActivity(new Intent(ArcoActivity.this, MenuActivity.class));
         finish();
     }
+
 }

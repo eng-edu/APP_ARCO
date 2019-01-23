@@ -1,6 +1,8 @@
 package com.developer.edu.app_arco;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,7 +38,8 @@ public class ArcoActivity extends AppCompatActivity {
 
     Socket socket = SocketStatic.getSocket();
     String id_lider = "";
-    int click = 0;
+    int clickEditar = 0;
+    int clickGostei = 0;
 
 
     @Override
@@ -58,7 +61,6 @@ public class ArcoActivity extends AppCompatActivity {
 
         socket.emit("ARCO", object);
 
-
         tematica = findViewById(R.id.id_arco_tematica);
         pontos = findViewById(R.id.id_arco_ponto);
         curtidas = findViewById(R.id.id_arco_curtidas);
@@ -77,15 +79,15 @@ public class ArcoActivity extends AppCompatActivity {
         btntitulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (click == 0) {
+                if (clickEditar == 0) {
                     edtitulo.setEnabled(true);
                     btntitulo.setText("SALVAR");
 
-                    click = 1;
-                } else if (click == 1) {
+                    clickEditar = 1;
+                } else if (clickEditar == 1) {
                     edtitulo.setEnabled(false);
                     btntitulo.setText("EDITAR");
-                    click = 0;
+                    clickEditar = 0;
                     socket.emit("TITULO", edtitulo.getText().toString());
                     socket.emit("ARCO", object);
 
@@ -97,8 +99,29 @@ public class ArcoActivity extends AppCompatActivity {
         gostei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                socket.emit("GOSTEI", object);
-                socket.emit("ARCO", object);
+
+                if (clickGostei == 1) {
+                    socket.emit("NGOSTEI", object);
+                    socket.emit("ARCO", object);
+                } else if (clickGostei == 2){
+                    socket.emit("GOSTEI", object);
+                    socket.emit("ARCO", object);
+                }
+
+            }
+        });
+
+        lider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ArcoActivity.this, PerfilActivity.class));
+            }
+        });
+
+        denuncia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exibiralertdenuncia("Denúncia", "Qual motivo da sua denúncia?", ArcoActivity.this);
             }
         });
 
@@ -121,10 +144,11 @@ public class ArcoActivity extends AppCompatActivity {
                             id_lider = object.getString("ID_LIDER");
 
                             if (object.getString("EU_GOSTEI").equals("S")) {
-                                gostei.setEnabled(false);
                                 gostei.setImageResource(R.mipmap.ic_gostei);
+                                clickGostei = 1;
                             } else if (object.getString("EU_GOSTEI").equals("N")) {
                                 gostei.setImageResource(R.mipmap.ic_ngostei);
+                                clickGostei = 2;
                             }
 
                         } catch (JSONException e) {
@@ -144,4 +168,29 @@ public class ArcoActivity extends AppCompatActivity {
         finish();
     }
 
+
+    public void exibiralertdenuncia(String titulo, String texto, Context context) {
+
+        final AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
+        mensagem.setTitle(titulo);
+        mensagem.setMessage(texto);
+        // DECLARACAO DO EDITTEXT
+        final EditText input = new EditText(this);
+        mensagem.setView(input);
+        mensagem.setPositiveButton("ENVIAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        mensagem.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        mensagem.show();
+    }
 }

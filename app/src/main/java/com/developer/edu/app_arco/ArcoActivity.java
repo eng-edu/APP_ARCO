@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
+import com.developer.edu.app_arco.controller.ControllerArco;
+import com.developer.edu.app_arco.model.Arco;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,14 +44,16 @@ public class ArcoActivity extends AppCompatActivity {
     int clickGostei = 0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arco);
 
-        socket.connect();
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
+
+        socket.connect();
 
         final JSONObject object = new JSONObject();
         try {
@@ -90,7 +94,6 @@ public class ArcoActivity extends AppCompatActivity {
                     clickEditar = 0;
                     socket.emit("TITULO", edtitulo.getText().toString());
                     socket.emit("ARCO", object);
-
                 }
             }
         });
@@ -121,7 +124,26 @@ public class ArcoActivity extends AppCompatActivity {
         denuncia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                exibiralertdenuncia("Denúncia", "Qual motivo da sua denúncia?", ArcoActivity.this);
+                final AlertDialog.Builder mensagem = new AlertDialog.Builder(ArcoActivity.this);
+                mensagem.setTitle("Denúncia");
+                mensagem.setMessage("Descreva o motivo...");
+                // DECLARACAO DO EDITTEXT
+                final EditText input = new EditText(ArcoActivity.this);
+                mensagem.setView(input);
+                mensagem.setPositiveButton("ENVIAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ControllerArco.denunciarArco(ArcoActivity.this, ID_USUARIO, getIntent().getStringExtra("ID_ARCO"),input.getText().toString());
+                    }
+                });
+
+                mensagem.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                mensagem.show();
             }
         });
 
@@ -169,28 +191,4 @@ public class ArcoActivity extends AppCompatActivity {
     }
 
 
-    public void exibiralertdenuncia(String titulo, String texto, Context context) {
-
-        final AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
-        mensagem.setTitle(titulo);
-        mensagem.setMessage(texto);
-        // DECLARACAO DO EDITTEXT
-        final EditText input = new EditText(this);
-        mensagem.setView(input);
-        mensagem.setPositiveButton("ENVIAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        mensagem.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        mensagem.show();
-    }
 }

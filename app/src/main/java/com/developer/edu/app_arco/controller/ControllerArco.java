@@ -2,6 +2,7 @@ package com.developer.edu.app_arco.controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -107,6 +108,37 @@ public class ControllerArco {
 
         alert = builder.create();
         alert.show();
+
+    }
+
+
+    public static void denunciarArco(final Context context, final String id_usuario, final String id_arco, final String descricao) {
+
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setTitle("Aguarde...");
+        dialog.show();
+
+        Call<String> stringCall = ConfigRetrofit.getService().denunciarArco(id_usuario, id_arco, descricao);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+                    Toast.makeText(context, "Enviado com sucesso!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+
+                } else if (response.code() == 405) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
 
     }
 

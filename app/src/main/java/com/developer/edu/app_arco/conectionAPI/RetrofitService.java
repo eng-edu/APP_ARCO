@@ -2,11 +2,8 @@ package com.developer.edu.app_arco.conectionAPI;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -63,6 +60,10 @@ public interface RetrofitService {
     @GET("arco/buscarMeusArcos/{ID_USUARIO}")
     Call<String> buscarMeusArcos(@Path("ID_USUARIO") String ID_USUARIO);
 
+    @POST("arco/denunciarArco/{ID_USUARIO}/{ID_ARCO}/{DESCRICAO}")
+    Call<String> denunciarArco(@Path("ID_USUARIO") String ID_USUARIO,
+                               @Path("ID_ARCO") String ID_ARCO,
+                               @Path("DESCRICAO") String DESCRICAO);
 
 
 }

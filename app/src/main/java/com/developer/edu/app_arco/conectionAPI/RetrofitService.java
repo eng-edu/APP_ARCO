@@ -65,5 +65,12 @@ public interface RetrofitService {
                                @Path("ID_ARCO") String ID_ARCO,
                                @Path("DESCRICAO") String DESCRICAO);
 
+    @GET("usuario/listar/")
+    Call<String> buscarUsuarios();
+
+    @POST("usuario/novoMenbro/{ID_USUARIO}/{ID_ARCO}")
+    Call<String> novoMenbro(@Path("ID_USUARIO") String ID_USUARIO,
+                          @Path("ID_ARCO") String ARCO);
+
 
 }

@@ -16,7 +16,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,7 +25,8 @@
         <activity android:name=".ListaActivity" />
         <activity android:name=".PremioActivity" />
         <activity android:name=".PerfilActivity" />
-        <activity android:name=".ArcoActivity"></activity>
+        <activity android:name=".ArcoActivity" />
+        <activity android:name=".EquipeActivity"></activity>
     </application>
 
 </manifest>

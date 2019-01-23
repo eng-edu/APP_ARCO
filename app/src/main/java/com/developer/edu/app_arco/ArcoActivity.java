@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerArco;
-import com.developer.edu.app_arco.model.Arco;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -118,6 +117,20 @@ public class ArcoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ArcoActivity.this, PerfilActivity.class));
+            }
+        });
+
+        equipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ArcoActivity.this, EquipeActivity.class).putExtra("ID_ARCO",getIntent().getStringExtra("ID_ARCO")));
+            }
+        });
+
+        etapas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

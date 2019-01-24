@@ -44,7 +44,7 @@ public class ControllerEquipe {
         final AdapterUsuario arrayAdapter = new AdapterUsuario(context, new ArrayList<Usuario>());
 
 
-        Call<String> stringCall = ConfigRetrofit.getService().buscarUsuarios();
+        Call<String> stringCall = ConfigRetrofit.getService().buscarUsuarios(ID_ARCO);
         stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -112,10 +112,7 @@ public class ControllerEquipe {
                                 dialog.show();
 
 
-                                SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
-                                final String ID = sharedPreferences.getString("ID", "");
-
-                                Call<String> stringCall = ConfigRetrofit.getService().novoMenbro(ID, ID_ARCO);
+                                Call<String> stringCall = ConfigRetrofit.getService().novoMenbro(arrayAdapter.getItem(position).getId(), ID_ARCO);
                                 stringCall.enqueue(new Callback<String>() {
                                     @Override
                                     public void onResponse(Call<String> call, Response<String> response) {

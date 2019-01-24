@@ -1,12 +1,14 @@
 package com.developer.edu.app_arco;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
@@ -83,6 +85,12 @@ public class EquipeActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(EquipeActivity.this, PerfilActivity.class));
+            }
+        });
 
     }
 }

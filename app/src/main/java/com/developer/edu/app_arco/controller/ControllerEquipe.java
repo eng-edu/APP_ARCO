@@ -23,13 +23,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControllerEquipe {
 
-    public static void bucarUsuarios(final Context context, final LayoutInflater inflater, final String ID_ARCO) {
+    public static void bucarUsuarios(final Context context, final LayoutInflater inflater, final String ID_ARCO, final Socket socket) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
@@ -59,10 +60,14 @@ public class ControllerEquipe {
                             usuarios.add(new Usuario(object.getString("ID"), object.getString("NOME"), object.getString("EMAIL")));
                         }
 
+
                         arrayAdapter.clear();
                         arrayAdapter.addAll(usuarios);
                         listView.setAdapter(arrayAdapter);
                         dialog.dismiss();
+
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -117,9 +122,10 @@ public class ControllerEquipe {
 
                                         if (response.code() == 200) {
                                             Toast.makeText(context, "Inserido com sucesso!", Toast.LENGTH_SHORT).show();
+                                            socket.emit("EQUIPE",ID_ARCO);
                                             dialog.dismiss();
                                         } else if (response.code() == 405) {
-                                            Toast.makeText(context, "O número de mebros chegou ao limite!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "O número de membros chegou ao limite!", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                         }
                                     }

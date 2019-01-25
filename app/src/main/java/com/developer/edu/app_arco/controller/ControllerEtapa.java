@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 public class ControllerEtapa {
 
-    public static void bucarEtapas(final Context context, final LayoutInflater inflater, String ID_ARCO) {
+    public static void bucarEtapas(final Context context, final LayoutInflater inflater, final String ID_ARCO) {
 
         final AlertDialog alert;
         final View view = inflater.inflate(R.layout.list_dados, null);
@@ -97,7 +97,10 @@ public class ControllerEtapa {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                context.startActivity(new Intent(context, EtapaActivity.class).putExtra("ID_ETAPA", arrayAdapter.getItem(position).getId()));
+                Intent intent = new Intent(context, EtapaActivity.class);
+                intent.putExtra("ID_ETAPA", arrayAdapter.getItem(position).getId());
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                context.startActivity(intent);
             }
         });
 

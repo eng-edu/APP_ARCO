@@ -72,5 +72,7 @@ public interface RetrofitService {
     Call<String> novoMenbro(@Path("ID_USUARIO") String ID_USUARIO,
                           @Path("ID_ARCO") String ARCO);
 
+    @GET("etapa/buscar/{ID_ARCO}")
+    Call<String> buscarEtapas(@Path("ID_ARCO") String ID_ARCO);
 
 }

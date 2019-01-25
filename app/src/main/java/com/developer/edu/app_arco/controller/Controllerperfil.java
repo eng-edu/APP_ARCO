@@ -25,7 +25,7 @@ import static com.developer.edu.app_arco.conectionAPI.ConfigRetrofit.URL_BASE;
 
 public class Controllerperfil {
 
-    public static void buscarUsuario(final Context context, final TextView pontos, final ImageView fotoperfil, final EditText nome, final EditText idade, final RadioButton sexoM, final RadioButton sexoF, final EditText escolaridade, final EditText email) {
+    public static void buscarUsuario(final Context context, final TextView pontos, final ImageView fotoperfil, final EditText nome, final EditText idade, final RadioButton sexoM, final RadioButton sexoF, final EditText escolaridade, final EditText email, String ID_USUARIO) {
 
 
         final ProgressDialog dialog = new ProgressDialog(context);
@@ -33,12 +33,9 @@ public class Controllerperfil {
         dialog.setCancelable(true);
         dialog.show();
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
-        final String ID = sharedPreferences.getString("ID", "");
+        Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoperfil);
 
-        Picasso.get().load(URL_BASE + "/IMG/" + ID + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoperfil);
-
-        Call<String> stringCall = ConfigRetrofit.getService().buscarUsuario(ID);
+        Call<String> stringCall = ConfigRetrofit.getService().buscarUsuario(ID_USUARIO);
         stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

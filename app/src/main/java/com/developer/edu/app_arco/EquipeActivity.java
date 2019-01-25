@@ -88,7 +88,7 @@ public class EquipeActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(EquipeActivity.this, PerfilActivity.class));
+                startActivity(new Intent(EquipeActivity.this, PerfilActivity.class).putExtra("ID_USUARIO", arrayAdapter.getItem(position).getId()));
             }
         });
 

@@ -26,7 +26,8 @@
         <activity android:name=".PremioActivity" />
         <activity android:name=".PerfilActivity" />
         <activity android:name=".ArcoActivity" />
-        <activity android:name=".EquipeActivity"></activity>
+        <activity android:name=".EquipeActivity" />
+        <activity android:name=".EtapaActivity" />
     </application>
 
 </manifest>

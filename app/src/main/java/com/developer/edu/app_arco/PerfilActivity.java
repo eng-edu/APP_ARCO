@@ -52,7 +52,7 @@ public class PerfilActivity extends AppCompatActivity {
 
 
         //BUSCA NO SERVER O PERFIL .........
-        Controllerperfil.buscarUsuario(PerfilActivity.this, pontos, fotoPerfil, nome, idade, sexoM, sexoF, escolaridade, email);
+        Controllerperfil.buscarUsuario(PerfilActivity.this, pontos, fotoPerfil, nome, idade, sexoM, sexoF, escolaridade, email, getIntent().getStringExtra("ID_USUARIO"));
 
         fotoPerfil.setEnabled(false);
         nome.setEnabled(false);

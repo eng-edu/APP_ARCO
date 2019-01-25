@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerArco;
+import com.developer.edu.app_arco.controller.ControllerEtapa;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,7 +118,9 @@ public class ArcoActivity extends AppCompatActivity {
         lider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ArcoActivity.this, PerfilActivity.class));
+                Intent intent = new Intent(ArcoActivity.this, PerfilActivity.class);
+                intent.putExtra("ID_USUARIO", id_lider);
+                startActivity(intent);
             }
         });
 
@@ -130,7 +134,8 @@ public class ArcoActivity extends AppCompatActivity {
         etapas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerEtapa.bucarEtapas(ArcoActivity.this, inflater, getIntent().getStringExtra("ID_ARCO"));
             }
         });
 

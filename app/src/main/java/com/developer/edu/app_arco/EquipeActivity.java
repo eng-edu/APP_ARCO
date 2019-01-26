@@ -28,6 +28,8 @@ import io.socket.emitter.Emitter;
 public class EquipeActivity extends AppCompatActivity {
 
     Socket socket = SocketStatic.getSocket();
+    String soulider = "";
+    String soumenbro = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class EquipeActivity extends AppCompatActivity {
 
         ;
 
-        FloatingActionButton novoMenbro = findViewById(R.id.id_equipe_novomenbro);
+
+        final FloatingActionButton novoMenbro = findViewById(R.id.id_equipe_novomenbro);
         novoMenbro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,10 +54,20 @@ public class EquipeActivity extends AppCompatActivity {
         });
 
 
+
+
         final ListView listView = findViewById(R.id.id_lista_menbros);
         final AdapterUsuario arrayAdapter = new AdapterUsuario(EquipeActivity.this, new ArrayList<Usuario>());
 
-        socket.emit("EQUIPE",getIntent().getStringExtra("ID_ARCO"));
+        final JSONObject object = new JSONObject();
+        try {
+            object.put("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+            object.put("ID_USUARIO", ID_USUARIO);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        socket.emit("EQUIPE", object);
         socket.on("EQUIPE".concat(getIntent().getStringExtra("ID_ARCO")), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
@@ -65,11 +78,23 @@ public class EquipeActivity extends AppCompatActivity {
 
                         try {
                             JSONArray array = new JSONArray(result);
+
+                            String soulider = array.getJSONObject(0).getString("SOULIDER");
+                            String soumenbro = array.getJSONObject(0).getString("SOUMENBRO");
+
+                            if (soulider.equals("S") || soumenbro.equals("S")) {
+                                novoMenbro.setClickable(true);
+                            }else {
+                                novoMenbro.setClickable(false);
+                            }
+
                             int size = array.length();
                             List<Usuario> usuarios = new ArrayList<>();
                             for (int i = 0; i < size; i++) {
                                 JSONObject object = array.getJSONObject(i);
                                 usuarios.add(new Usuario(object.getString("ID"), object.getString("NOME"), object.getString("EMAIL")));
+
+
                             }
 
                             arrayAdapter.clear();

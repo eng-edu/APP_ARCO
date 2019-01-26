@@ -36,7 +36,7 @@ public class ArcoActivity extends AppCompatActivity {
     TextView curtidas;
     ImageView imtitulo;
     EditText edtitulo;
-    Button btntitulo;
+    public static Button btntitulo;
     ImageView lider;
     ImageView equipe;
     ImageView etapa1;
@@ -364,8 +364,9 @@ public class ArcoActivity extends AppCompatActivity {
                 imageView.setImageResource(R.mipmap.ic_etapa4);
                 imageView.setClickable(true);
             }
-        }
 
+            btntitulo.setVisibility(View.GONE);
+        }
 
     }
 

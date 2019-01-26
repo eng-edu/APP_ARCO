@@ -91,15 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="LIBERAR PARA PRÓXIMA FASE" />
-
-        <Button
-            android:id="@+id/id_etapa_proxima_aprovar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="APROVAR" />
+            android:text="FINALIZAR ETAPA" />
 
     </LinearLayout>
 

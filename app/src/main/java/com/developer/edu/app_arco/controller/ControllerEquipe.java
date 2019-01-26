@@ -30,6 +30,9 @@ import retrofit2.Response;
 
 public class ControllerEquipe {
 
+
+    static AlertDialog alert;
+
     public static void bucarUsuarios(final Context context, final LayoutInflater inflater, final String ID_ARCO, final Socket socket) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
@@ -37,7 +40,6 @@ public class ControllerEquipe {
         dialog.show();
 
 
-        final AlertDialog alert;
         final View view = inflater.inflate(R.layout.list_dados, null);
 
         final ListView listView = view.findViewById(R.id.list_alert_list);
@@ -121,9 +123,11 @@ public class ControllerEquipe {
                                             Toast.makeText(context, "Inserido com sucesso!", Toast.LENGTH_SHORT).show();
                                             socket.emit("EQUIPE",ID_ARCO);
                                             dialog.dismiss();
+                                            alert.dismiss();
                                         } else if (response.code() == 405) {
                                             Toast.makeText(context, "O número de membros chegou ao limite!", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
+
                                         }
                                     }
 

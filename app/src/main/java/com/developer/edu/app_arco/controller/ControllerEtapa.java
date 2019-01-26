@@ -30,14 +30,20 @@ import retrofit2.Response;
 
 public class ControllerEtapa {
 
+    static AlertDialog alert;
+
     public static void bucarEtapas(final Context context, final LayoutInflater inflater, final String ID_ARCO) {
 
-        final AlertDialog alert;
+
         final View view = inflater.inflate(R.layout.list_dados, null);
         final ListView listView = view.findViewById(R.id.list_alert_list);
         final ArrayAdapter<Etapa> arrayAdapter = new ArrayAdapter<Etapa>(context, R.layout.support_simple_spinner_dropdown_item);
 
-        Call<String> stringCall = ConfigRetrofit.getService().buscarEtapas(ID_ARCO);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
+        final String ID_USUARIO = sharedPreferences.getString("ID", "");
+
+
+        Call<String> stringCall = ConfigRetrofit.getService().buscarEtapas(ID_ARCO, ID_USUARIO);
         stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -97,6 +103,8 @@ public class ControllerEtapa {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                alert.dismiss();
                 Intent intent = new Intent(context, EtapaActivity.class);
                 intent.putExtra("ID_ETAPA", arrayAdapter.getItem(position).getId());
                 intent.putExtra("ID_ARCO", ID_ARCO);

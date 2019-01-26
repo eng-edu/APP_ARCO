@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,10 +16,15 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerArco;
-import com.developer.edu.app_arco.controller.ControllerEtapa;
+import com.developer.edu.app_arco.model.Arco;
+import com.developer.edu.app_arco.model.Etapa;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -35,7 +39,11 @@ public class ArcoActivity extends AppCompatActivity {
     Button btntitulo;
     ImageView lider;
     ImageView equipe;
-    ImageView etapas;
+    ImageView etapa1;
+    ImageView etapa2;
+    ImageView etapa3;
+    ImageView etapa4;
+    ImageView etapa5;
     ImageView gostei;
     ImageView denuncia;
 
@@ -43,7 +51,8 @@ public class ArcoActivity extends AppCompatActivity {
     String id_lider = "";
     int clickEditar = 0;
     int clickGostei = 0;
-
+    String soulider = "";
+    String soumenbro = "";
 
 
     @Override
@@ -65,6 +74,7 @@ public class ArcoActivity extends AppCompatActivity {
         }
 
         socket.emit("ARCO", object);
+        socket.emit("ETAPA", object);
 
         tematica = findViewById(R.id.id_arco_tematica);
         pontos = findViewById(R.id.id_arco_ponto);
@@ -74,7 +84,11 @@ public class ArcoActivity extends AppCompatActivity {
         btntitulo = findViewById(R.id.id_arco_alterar_salvar_titulo);
         lider = findViewById(R.id.id_arco_lider);
         equipe = findViewById(R.id.id_arco_equipe);
-        etapas = findViewById(R.id.id_arco_etapas);
+        etapa1 = findViewById(R.id.id_arco_etapa1);
+        etapa2 = findViewById(R.id.id_arco_etapa2);
+        etapa3 = findViewById(R.id.id_arco_etapa3);
+        etapa4 = findViewById(R.id.id_arco_etapa4);
+        etapa5 = findViewById(R.id.id_arco_etapa5);
         gostei = findViewById(R.id.id_arco_gostei);
         denuncia = findViewById(R.id.id_arco_denuncia);
 
@@ -95,10 +109,10 @@ public class ArcoActivity extends AppCompatActivity {
                     clickEditar = 0;
                     socket.emit("TITULO", edtitulo.getText().toString());
                     socket.emit("ARCO", object);
+                    socket.emit("ETAPA", object);
                 }
             }
         });
-
 
         gostei.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +121,11 @@ public class ArcoActivity extends AppCompatActivity {
                 if (clickGostei == 1) {
                     socket.emit("NGOSTEI", object);
                     socket.emit("ARCO", object);
+                    socket.emit("ETAPA", object);
                 } else if (clickGostei == 2){
                     socket.emit("GOSTEI", object);
                     socket.emit("ARCO", object);
+                    socket.emit("ETAPA", object);
                 }
 
             }
@@ -131,13 +147,6 @@ public class ArcoActivity extends AppCompatActivity {
             }
         });
 
-        etapas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LayoutInflater inflater = getLayoutInflater();
-                ControllerEtapa.bucarEtapas(ArcoActivity.this, inflater, getIntent().getStringExtra("ID_ARCO"));
-            }
-        });
 
         denuncia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +173,59 @@ public class ArcoActivity extends AppCompatActivity {
                 mensagem.show();
             }
         });
+
+
+        etapa1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                startActivity(intent);
+            }
+        });
+        etapa2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                startActivity(intent);
+            }
+        });
+        etapa3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                startActivity(intent);
+            }
+        });
+        etapa4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                startActivity(intent);
+            }
+        });
+        etapa5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                startActivity(intent);
+            }
+        });
+
 
         //quando ouver uam alteração o server vai atulizar
         socket.on("ARCO".concat(getIntent().getStringExtra("ID_ARCO")), new Emitter.Listener() {
@@ -199,6 +261,56 @@ public class ArcoActivity extends AppCompatActivity {
             }
         });
 
+
+        socket.on("ETAPA".concat(getIntent().getStringExtra("ID_ARCO")), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                ArcoActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        String result = args[0].toString(); //aqui recebo o json do arco
+
+                        try {
+
+                            JSONArray array = new JSONArray(result);
+                            List<Etapa> etapaList = new ArrayList<>();
+
+                            int size = array.length();
+                            for (int i = 0; i < size; i++) {
+
+                                JSONObject object = array.getJSONObject(i);
+
+                                String codigo = object.getString("CODIGO");
+                                String situacao = object.getString("SITUACAO");
+                                soulider = object.getString("SOULIDER");
+                                soumenbro = object.getString("SOUMENBRO");
+
+
+
+                                if (codigo.equals("1")) {
+                                    definirIconImageView(etapa1, situacao, soulider, soumenbro);
+                                } else if (codigo.equals("2")) {
+                                    definirIconImageView(etapa2, situacao, soulider, soumenbro);
+                                } else if (codigo.equals("3")) {
+                                    definirIconImageView(etapa3, situacao, soulider, soumenbro);
+                                } else if (codigo.equals("4")) {
+                                    definirIconImageView(etapa4, situacao, soulider, soumenbro);
+                                } else if (codigo.equals("5")) {
+                                    definirIconImageView(etapa5, situacao, soulider, soumenbro);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+            }
+        });
+
+
     }
 
     @Override
@@ -206,6 +318,55 @@ public class ArcoActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(ArcoActivity.this, MenuActivity.class));
         finish();
+    }
+
+    public static void definirIconImageView(ImageView imageView, String status, String soulider, String soumenbro) {
+
+        if (soulider.equals("S")) {
+            if (status.equals("0")) {
+                imageView.setImageResource(R.mipmap.ic_etapa1);
+                imageView.setClickable(false);
+            } else if (status.equals("1")) {
+                imageView.setImageResource(R.mipmap.ic_etapa2);
+                imageView.setClickable(false);
+            } else if (status.equals("2")) {
+                imageView.setImageResource(R.mipmap.ic_etapa3);
+                imageView.setClickable(true);
+            } else if (status.equals("3")) {
+                imageView.setImageResource(R.mipmap.ic_etapa4);
+                imageView.setClickable(true);
+            }
+        } else if (soulider.equals("N") && soumenbro.equals("S")) {
+            if (status.equals("0")) {
+                imageView.setImageResource(R.mipmap.ic_etapa1);
+                imageView.setClickable(false);
+            } else if (status.equals("1")) {
+                imageView.setImageResource(R.mipmap.ic_etapa2);
+                imageView.setClickable(true);
+            } else if (status.equals("2")) {
+                imageView.setImageResource(R.mipmap.ic_etapa3);
+                imageView.setClickable(false);
+            } else if (status.equals("3")) {
+                imageView.setImageResource(R.mipmap.ic_etapa4);
+                imageView.setClickable(true);
+            }
+        } else if (soulider.equals("N") && soumenbro.equals("N")) {
+            if (status.equals("0")) {
+                imageView.setImageResource(R.mipmap.ic_etapa1);
+                imageView.setClickable(false);
+            } else if (status.equals("1")) {
+                imageView.setImageResource(R.mipmap.ic_etapa2);
+                imageView.setClickable(false);
+            } else if (status.equals("2")) {
+                imageView.setImageResource(R.mipmap.ic_etapa3);
+                imageView.setClickable(false);
+            } else if (status.equals("3")) {
+                imageView.setImageResource(R.mipmap.ic_etapa4);
+                imageView.setClickable(true);
+            }
+        }
+
+
     }
 
 

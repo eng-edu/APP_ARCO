@@ -32,9 +32,11 @@ import retrofit2.Response;
 
 public class ControllerArco {
 
+    static AlertDialog alert;
+
     public static void bucarMeusArco(final Context context, final LayoutInflater inflater) {
 
-        final AlertDialog alert;
+
         final View view = inflater.inflate(R.layout.list_dados, null);
 
         final ListView listView = view.findViewById(R.id.list_alert_list);
@@ -100,6 +102,7 @@ public class ControllerArco {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+                alert.dismiss();
                 context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", arrayAdapter.getItem(position).getID()));
                 ((Activity) context).finish();
             }

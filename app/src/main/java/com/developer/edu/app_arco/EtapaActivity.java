@@ -14,6 +14,10 @@ public class EtapaActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
-        
+
+
+
+
+
     }
 }

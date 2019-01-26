@@ -1,6 +1,5 @@
 package com.developer.edu.app_arco.controller;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -32,10 +31,11 @@ import retrofit2.Response;
 
 public class ControllerTematica {
 
+    static AlertDialog alert;
+
     public static void bucarTematicas(final Context context, final LayoutInflater inflater) {
 
 
-        final AlertDialog alert;
         final View view = inflater.inflate(R.layout.list_dados, null);
 
         final ListView listView = view.findViewById(R.id.list_alert_list);
@@ -100,6 +100,7 @@ public class ControllerTematica {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 //criar arco
+                                alert.dismiss();
                                 SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
                                 final String ID = sharedPreferences.getString("ID", "");
                                 criarArco(context, arrayAdapter.getItem(position).getId(),ID);

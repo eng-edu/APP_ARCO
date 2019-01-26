@@ -1,6 +1,7 @@
 package com.developer.edu.app_arco;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -103,19 +104,34 @@ public class EtapaActivity extends AppCompatActivity {
                     try {
                         salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
                         salvar.put("CODIGO",Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"))+1);
-                        salvar.put("PONTO", PerfilActivity);
+                        salvar.put("PONTO", ponto_);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
 
-                    socket.emit("SALVAR", salvar);
+                    socket.emit("FINALIZAR_LIDER", salvar);
                     socket.emit("ETAPA", object);
+                    startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")));
+                    finish();
 
                     //emitir capturar os pontos mudar status...
                 } else if (soumenbro.equals("S") && soulider.equals("N")) {
+
+                    final JSONObject salvar = new JSONObject();
+                    try {
+                        salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
+                        salvar.put("CODIGO", Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA")) + 1);
+                        salvar.put("TEXTO", texto.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    socket.emit("FINALIZAR_MENBRO", salvar);
                     socket.emit("ETAPA", object);
-                    //emitir capturar os pontos mudar status...
+                    startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")));
+                    finish();
                 }
 
             }
@@ -176,8 +192,11 @@ public class EtapaActivity extends AppCompatActivity {
                             soumenbro = object.getString("SOUMENBRO");
                             texto.setText(object.getString("TEXTO"));
 
+                            String situacao = object.getString("SITUACAO");
+
                             if (soulider.equals("S")) {
                                 editar_sarvar.setVisibility(View.GONE);
+
                             } else if (soumenbro.equals("S")) {
                                 estrela1.setClickable(false);
                                 estrela2.setClickable(false);
@@ -193,6 +212,17 @@ public class EtapaActivity extends AppCompatActivity {
                                 finalizar.setVisibility(View.GONE);
                                 editar_sarvar.setVisibility(View.GONE);
                             }
+                            if (situacao.equals("3")) {
+                                finalizar.setVisibility(View.GONE);
+                                editar_sarvar.setVisibility(View.GONE);
+                                estrela1.setClickable(false);
+                                estrela2.setClickable(false);
+                                estrela3.setClickable(false);
+                                estrela4.setClickable(false);
+                                estrela5.setClickable(false);
+                            }
+
+
 
 
                         } catch (JSONException e) {
@@ -249,6 +279,9 @@ public class EtapaActivity extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")));
+    }
 }

@@ -108,8 +108,7 @@ public class ArcoActivity extends AppCompatActivity {
                     btntitulo.setText("EDITAR");
                     clickEditar = 0;
                     socket.emit("TITULO", edtitulo.getText().toString());
-                    socket.emit("ARCO", object);
-                    socket.emit("ETAPA", object);
+
                 }
             }
         });
@@ -120,12 +119,8 @@ public class ArcoActivity extends AppCompatActivity {
 
                 if (clickGostei == 1) {
                     socket.emit("NGOSTEI", object);
-                    socket.emit("ARCO", object);
-                    socket.emit("ETAPA", object);
                 } else if (clickGostei == 2){
                     socket.emit("GOSTEI", object);
-                    socket.emit("ARCO", object);
-                    socket.emit("ETAPA", object);
                 }
 
             }
@@ -183,6 +178,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
+                finish();
             }
         });
         etapa2.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +189,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
+                finish();
             }
         });
         etapa3.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +200,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
+                finish();
             }
         });
         etapa4.setOnClickListener(new View.OnClickListener() {
@@ -213,6 +211,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
+                finish();
             }
         });
         etapa5.setOnClickListener(new View.OnClickListener() {
@@ -223,6 +222,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -244,15 +244,6 @@ public class ArcoActivity extends AppCompatActivity {
                             edtitulo.setText(object.getString("TITULO_ARCO"));
                             edtitulo.setSelection(edtitulo.getText().length());
                             id_lider = object.getString("ID_LIDER");
-
-                            if (object.getString("EU_GOSTEI").equals("S")) {
-                                gostei.setImageResource(R.mipmap.ic_gostei);
-                                clickGostei = 1;
-                            } else if (object.getString("EU_GOSTEI").equals("N")) {
-                                gostei.setImageResource(R.mipmap.ic_ngostei);
-                                clickGostei = 2;
-                            }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

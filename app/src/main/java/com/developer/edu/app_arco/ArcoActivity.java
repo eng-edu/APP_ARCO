@@ -255,6 +255,18 @@ public class ArcoActivity extends AppCompatActivity {
                                 String codigo = object.getString("CODIGO");
                                 String situacao = object.getString("SITUACAO");
 
+                                if (codigo.equals("1")) {
+
+                                } else if (codigo.equals("2")) {
+
+                                } else if (codigo.equals("3")) {
+
+                                } else if (codigo.equals("4")) {
+
+                                } else if (codigo.equals("5")) {
+
+                                }
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -297,10 +309,9 @@ public class ArcoActivity extends AppCompatActivity {
 
     }
 
+    public static void definirIconImageView(ImageView imageView, String status,String ID_USUARIO, String MEUS_ARCOS) {
 
-    public static void definirIconImageView(ImageView imageView, String status, String soulider, String soumenbro) {
 
-        if (soulider.equals("S")) {
             if (status.equals("0")) {
                 imageView.setImageResource(R.mipmap.ic_etapa1);
                 imageView.setClickable(false);
@@ -314,37 +325,7 @@ public class ArcoActivity extends AppCompatActivity {
                 imageView.setImageResource(R.mipmap.ic_etapa4);
                 imageView.setClickable(true);
             }
-        } else if (soulider.equals("N") && soumenbro.equals("S")) {
-            if (status.equals("0")) {
-                imageView.setImageResource(R.mipmap.ic_etapa1);
-                imageView.setClickable(false);
-            } else if (status.equals("1")) {
-                imageView.setImageResource(R.mipmap.ic_etapa2);
-                imageView.setClickable(true);
-            } else if (status.equals("2")) {
-                imageView.setImageResource(R.mipmap.ic_etapa3);
-                imageView.setClickable(false);
-            } else if (status.equals("3")) {
-                imageView.setImageResource(R.mipmap.ic_etapa4);
-                imageView.setClickable(true);
-            }
-        } else if (soulider.equals("N") && soumenbro.equals("N")) {
-            if (status.equals("0")) {
-                imageView.setImageResource(R.mipmap.ic_etapa1);
-                imageView.setClickable(false);
-            } else if (status.equals("1")) {
-                imageView.setImageResource(R.mipmap.ic_etapa2);
-                imageView.setClickable(false);
-            } else if (status.equals("2")) {
-                imageView.setImageResource(R.mipmap.ic_etapa3);
-                imageView.setClickable(false);
-            } else if (status.equals("3")) {
-                imageView.setImageResource(R.mipmap.ic_etapa4);
-                imageView.setClickable(true);
-            }
 
-            btntitulo.setVisibility(View.GONE);
-        }
 
     }
 

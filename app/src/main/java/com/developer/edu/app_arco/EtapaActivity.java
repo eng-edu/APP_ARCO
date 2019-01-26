@@ -65,11 +65,25 @@ public class EtapaActivity extends AppCompatActivity {
                     editar_sarvar.setText("SALVAR");
                     texto.setEnabled(true);
 
-                    socket.emit("ETAPA", object);
+
                     //emitir o texto salvar...
 
                 } else if (click_ediatar_salvar == 1) {
                     click_ediatar_salvar = 0;
+
+                    final JSONObject salvar = new JSONObject();
+                    try {
+                        salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
+                        salvar.put("CODIGO",Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"))+1);
+                        salvar.put("TEXTO", texto.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    socket.emit("SALVAR", salvar);
+                    socket.emit("ETAPA", object);
+
                     texto.setEnabled(false);
                     editar_sarvar.setText("EDITAR");
                     //emitir o texto mudar status...
@@ -83,7 +97,21 @@ public class EtapaActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (soulider.equals("S")) {
+
+
+                    final JSONObject salvar = new JSONObject();
+                    try {
+                        salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
+                        salvar.put("CODIGO",Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"))+1);
+                        salvar.put("PONTO", PerfilActivity);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    socket.emit("SALVAR", salvar);
                     socket.emit("ETAPA", object);
+
                     //emitir capturar os pontos mudar status...
                 } else if (soumenbro.equals("S") && soulider.equals("N")) {
                     socket.emit("ETAPA", object);
@@ -146,6 +174,7 @@ public class EtapaActivity extends AppCompatActivity {
                             definirIconPontos(Integer.parseInt(object.getString("PONTO")), estrela1, estrela2, estrela3, estrela4, estrela5);
                             soulider = object.getString("SOULIDER");
                             soumenbro = object.getString("SOUMENBRO");
+                            texto.setText(object.getString("TEXTO"));
 
                             if (soulider.equals("S")) {
                                 editar_sarvar.setVisibility(View.GONE);

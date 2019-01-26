@@ -86,7 +86,7 @@
             android:text="EDITAR" />
 
         <Button
-            android:id="@+id/id_etapa_proxima_fase"
+            android:id="@+id/id_etapa_finalizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

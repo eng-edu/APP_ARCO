@@ -179,7 +179,7 @@ public class ArcoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
-                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("CODIGO_ETAPA", "0");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
@@ -199,7 +199,7 @@ public class ArcoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
-                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("CODIGO_ETAPA", "2");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
@@ -209,7 +209,7 @@ public class ArcoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
-                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("CODIGO_ETAPA", "3");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);
@@ -219,7 +219,7 @@ public class ArcoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
-                intent.putExtra("CODIGO_ETAPA", "1");
+                intent.putExtra("CODIGO_ETAPA", "4");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 startActivity(intent);

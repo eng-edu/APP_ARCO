@@ -93,8 +93,6 @@ public class EquipeActivity extends AppCompatActivity {
                             for (int i = 0; i < size; i++) {
                                 JSONObject object = array.getJSONObject(i);
                                 usuarios.add(new Usuario(object.getString("ID"), object.getString("NOME"), object.getString("EMAIL")));
-
-
                             }
 
                             arrayAdapter.clear();

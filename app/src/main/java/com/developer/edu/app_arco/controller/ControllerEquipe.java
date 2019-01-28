@@ -33,7 +33,7 @@ public class ControllerEquipe {
 
     static AlertDialog alert;
 
-    public static void bucarUsuarios(final Context context, final LayoutInflater inflater, final String ID_ARCO, final Socket socket) {
+       public static void bucarUsuarios(final Context context, final LayoutInflater inflater, final String ID_ARCO, final Socket socket) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");

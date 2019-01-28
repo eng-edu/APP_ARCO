@@ -79,4 +79,8 @@ public interface RetrofitService {
 
     @GET("arco/buscarArcosComaprtilhados")
     Call<String> buscarArcosComaprtilhados();
+
+
+    @GET("arco/buscarRanking")
+    Call<String> buscarRanking();
 }

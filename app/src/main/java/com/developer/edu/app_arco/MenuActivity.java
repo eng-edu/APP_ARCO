@@ -49,6 +49,44 @@ public class MenuActivity extends AppCompatActivity {
         Button premium = findViewById(R.id.id_menu_premium);
         Button sair = findViewById(R.id.id_menu_sair);
 
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
+        final String tipo = sharedPreferences.getString("TIPO", "");
+
+
+        perfil.setVisibility(View.GONE);
+        novoArco.setVisibility(View.GONE);
+        meusArcos.setVisibility(View.GONE);
+        arcosCompartilhados.setVisibility(View.GONE);
+        ranking.setVisibility(View.GONE);
+        premioMes.setVisibility(View.GONE);
+        novaTematica.setVisibility(View.GONE);
+        premium.setVisibility(View.GONE);
+
+        if (tipo.equals("1")) {
+
+            perfil.setVisibility(View.VISIBLE);
+            novoArco.setVisibility(View.VISIBLE);
+            meusArcos.setVisibility(View.VISIBLE);
+            arcosCompartilhados.setVisibility(View.VISIBLE);
+            ranking.setVisibility(View.VISIBLE);
+            premioMes.setVisibility(View.VISIBLE);
+            novaTematica.setVisibility(View.VISIBLE);
+            premium.setVisibility(View.VISIBLE);
+
+
+        } else if (tipo.equals("2")) {
+
+            perfil.setVisibility(View.VISIBLE);
+            novoArco.setVisibility(View.GONE);
+            meusArcos.setVisibility(View.VISIBLE);
+            arcosCompartilhados.setVisibility(View.VISIBLE);
+            ranking.setVisibility(View.VISIBLE);
+            premioMes.setVisibility(View.VISIBLE);
+            novaTematica.setVisibility(View.GONE);
+            premium.setVisibility(View.GONE);
+        }
+
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +123,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        ranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerArco.bucarRanking(MenuActivity.this, inflater);
+            }
+        });
+
         sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,9 +142,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
-
 
 }

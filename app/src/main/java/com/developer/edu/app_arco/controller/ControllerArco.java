@@ -14,10 +14,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.AdapterArco;
+import com.developer.edu.app_arco.AdapterUsuario;
 import com.developer.edu.app_arco.ArcoActivity;
+import com.developer.edu.app_arco.ComentarioActivity;
+import com.developer.edu.app_arco.PerfilActivity;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.model.Arco;
+import com.developer.edu.app_arco.model.Usuario;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -219,5 +224,80 @@ public class ControllerArco {
 
     }
 
+    public static void bucarRanking(final Context context, final LayoutInflater inflater) {
+
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setTitle("Aguarde...");
+        dialog.show();
+
+        final View view = inflater.inflate(R.layout.list_dados, null);
+
+        final ListView listView = view.findViewById(R.id.list_alert_list);
+        final AdapterUsuario arrayAdapter = new AdapterUsuario(context, new ArrayList<Usuario>());
+
+
+        Call<String> stringCall = ConfigRetrofit.getService().buscarRanking();
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if (response.code() == 200) {
+
+                    try {
+                        JSONArray array = new JSONArray(response.body());
+                        int size = array.length();
+                        List<Usuario> usuarios = new ArrayList<>();
+                        for (int i = 0; i < size; i++) {
+                            JSONObject object = array.getJSONObject(i);
+                            usuarios.add(new Usuario(object.getString("ID"), "PONTUAÇÃO: "+object.getString("PONTO"), object.getString("EMAIL")));
+                        }
+
+                        arrayAdapter.clear();
+                        arrayAdapter.addAll(usuarios);
+                        listView.setAdapter(arrayAdapter);
+                        dialog.dismiss();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        dialog.dismiss();
+                    }
+
+                } else if (response.code() == 405) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("RANKING");
+        builder.setView(view);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                Intent intent = new Intent(context, PerfilActivity.class);
+                intent.putExtra("ID_USUARIO", arrayAdapter.getItem(position).getId());
+                context.startActivity(intent);
+            }
+        });
+
+        alert = builder.create();
+        alert.show();
+
+    }
 
 }

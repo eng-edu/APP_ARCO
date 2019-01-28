@@ -198,6 +198,7 @@ public class ArcoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final Intent intent = new Intent(ArcoActivity.this, ComentarioActivity.class);
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
                 startActivity(intent);
                 finish();
             }

@@ -81,6 +81,13 @@ public class ArcoActivity extends AppCompatActivity {
         gostei = findViewById(R.id.id_arco_gostei);
         denuncia = findViewById(R.id.id_arco_denuncia);
 
+        if(getIntent().getStringExtra("MEUS_ARCOS").equals("S")){
+            btntitulo.setVisibility(View.VISIBLE);
+        }else {
+            btntitulo.setVisibility(View.GONE);
+        }
+
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         edtitulo.setEnabled(false);
         btntitulo.setOnClickListener(new View.OnClickListener() {

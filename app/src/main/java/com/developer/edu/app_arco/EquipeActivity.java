@@ -52,9 +52,9 @@ public class EquipeActivity extends AppCompatActivity {
 
 
         if(getIntent().getStringExtra("MEUS_ARCOS").equals("S")){
-            novoMenbro.setVisibility(View.GONE);
-        }else {
             novoMenbro.setVisibility(View.VISIBLE);
+        }else {
+            novoMenbro.setVisibility(View.GONE);
         }
 
         final ListView listView = findViewById(R.id.id_lista_menbros);
@@ -94,7 +94,6 @@ public class EquipeActivity extends AppCompatActivity {
                 startActivity(new Intent(EquipeActivity.this, PerfilActivity.class).putExtra("ID_USUARIO", arrayAdapter.getItem(position).getId()));
             }
         });
-
     }
 
     @Override
@@ -103,7 +102,6 @@ public class EquipeActivity extends AppCompatActivity {
         socket.disconnect();
         finish();
     }
-
 
     @Override
     protected void onDestroy() {

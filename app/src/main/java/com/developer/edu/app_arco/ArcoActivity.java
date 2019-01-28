@@ -160,7 +160,6 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
                 intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
                 startActivity(intent);
-                finish();
 
             }
         });
@@ -384,6 +383,5 @@ public class ArcoActivity extends AppCompatActivity {
         startActivity(new Intent(ArcoActivity.this, MenuActivity.class));
         finish();
     }
-
 
 }

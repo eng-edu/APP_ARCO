@@ -89,7 +89,7 @@ public class ControllerEquipe {
             }
         });
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("USUARIOS");
+        builder.setTitle("NOVO MENBRO");
         builder.setView(view);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

@@ -11,11 +11,11 @@ import io.socket.client.Socket;
         private static Socket socket;
 
         public static synchronized Socket getSocket(){
-            return socket.connect();
+            return socket;
         }
 
         public static synchronized void setSocket(Socket socket){
-            SocketStatic.socket = socket;
+            SocketStatic.socket = socket.connect();
         }
 
 }

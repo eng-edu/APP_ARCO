@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -122,6 +123,17 @@ public class ComentarioActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+        comentarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ComentarioActivity.this, PerfilActivity.class);
+                intent.putExtra("ID_USUARIO", arrayAdapter.getItem(position).getId());
+                startActivity(intent);
+            }
+        });
+
     }
 
 

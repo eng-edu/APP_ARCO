@@ -96,16 +96,4 @@ public class EquipeActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        socket.disconnect();
-        finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        socket.disconnect();
-    }
 }

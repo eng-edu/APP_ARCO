@@ -45,6 +45,7 @@ public class ArcoActivity extends AppCompatActivity {
     ImageView etapa5;
     ImageView gostei;
     ImageView denuncia;
+    ImageView comentario;
 
     Socket socket = SocketStatic.getSocket();
     int clickEditar = 1;
@@ -80,6 +81,7 @@ public class ArcoActivity extends AppCompatActivity {
         etapa5 = findViewById(R.id.id_arco_etapa5);
         gostei = findViewById(R.id.id_arco_gostei);
         denuncia = findViewById(R.id.id_arco_denuncia);
+        comentario = findViewById(R.id.id_arco_comentario);
 
         if(getIntent().getStringExtra("MEUS_ARCOS").equals("S")){
             btntitulo.setVisibility(View.VISIBLE);
@@ -191,6 +193,15 @@ public class ArcoActivity extends AppCompatActivity {
         });
 
 
+        comentario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(ArcoActivity.this, ComentarioActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         etapa1.setOnClickListener(new View.OnClickListener() {

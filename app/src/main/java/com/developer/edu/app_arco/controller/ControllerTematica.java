@@ -135,7 +135,7 @@ public class ControllerTematica {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
 
-                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", response.body()));
+                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", response.body()).putExtra("MEUS_ARCOS", "S"));
                     dialog.dismiss();
 
                 } else if (response.code() == 405) {

@@ -76,4 +76,7 @@ public interface RetrofitService {
     Call<String> buscarEtapas(@Path("ID_ARCO") String ID_ARCO,
                               @Path("ID_USUARIO") String ID_USUARIO);
 
+
+    @GET("arco/buscarArcosComaprtilhados")
+    Call<String> buscarArcosComaprtilhados();
 }

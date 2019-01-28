@@ -120,7 +120,7 @@ public class EtapaActivity extends AppCompatActivity {
 
                                 }
 
-                            } else if (intent.getStringExtra("MEUS_ARCO").equals("N")) {
+                            } else if (intent.getStringExtra("MEUS_ARCOS").equals("N")) {
                                 editar_sarvar.setVisibility(View.GONE);
                                 finalizar.setVisibility(View.GONE);
                                 estrela1.setClickable(false);

@@ -77,6 +77,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        arcosCompartilhados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerArco.bucarArcosCompartilhados(MenuActivity.this, inflater);
+            }
+        });
+
         sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

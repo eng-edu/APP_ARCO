@@ -47,13 +47,13 @@ public class EtapaActivity extends AppCompatActivity {
         final Button editar_sarvar = findViewById(R.id.id_etapa_editar);
         final Button finalizar = findViewById(R.id.id_etapa_finalizar);
 
-//        editar_sarvar.setVisibility(View.GONE);
-//        finalizar.setVisibility(View.GONE);
-//        estrela1.setClickable(false);
-//        estrela2.setClickable(false);
-//        estrela3.setClickable(false);
-//        estrela4.setClickable(false);
-//        estrela5.setClickable(false);
+        editar_sarvar.setVisibility(View.GONE);
+        finalizar.setVisibility(View.GONE);
+        estrela1.setClickable(false);
+        estrela2.setClickable(false);
+        estrela3.setClickable(false);
+        estrela4.setClickable(false);
+        estrela5.setClickable(false);
 
         final Intent intent = getIntent();
 
@@ -72,20 +72,63 @@ public class EtapaActivity extends AppCompatActivity {
                             ponto_ = Integer.parseInt(object.getString("PONTO"));
                             definirIconPontos(ponto_, estrela1, estrela2, estrela3, estrela4, estrela5);
                             texto.setText(object.getString("TEXTO"));
+                            titulo.setText(object.getString("TITULO"));
+                            String situacao = object.getString("SITUACAO");
                             //É UM DOS MEUS ARCOS?
                             if (intent.getStringExtra("MEUS_ARCOS").equals("S")) {
 
+
                                 //SOU O LIDER?
-                                if (intent.getStringExtra("ID_LIDER").equals("ID_USUARIO")) {
-                                    //habilita as funcções de lider...
+                                if (intent.getStringExtra("ID_LIDER").equals(ID_USUARIO)) {
+
+                                    if (situacao.equals("2")) {
+                                        finalizar.setVisibility(View.VISIBLE);
+                                        estrela1.setClickable(true);
+                                        estrela2.setClickable(true);
+                                        estrela3.setClickable(true);
+                                        estrela4.setClickable(true);
+                                        estrela5.setClickable(true);
+                                    }else {
+                                        editar_sarvar.setVisibility(View.GONE);
+                                        finalizar.setVisibility(View.GONE);
+                                        estrela1.setClickable(false);
+                                        estrela2.setClickable(false);
+                                        estrela3.setClickable(false);
+                                        estrela4.setClickable(false);
+                                        estrela5.setClickable(false);
+                                    }
+
                                 } else {
-                                    //habilita as funções de menbro..
+
+                                    if (situacao.equals("1")) {
+                                        editar_sarvar.setVisibility(View.VISIBLE);
+                                        finalizar.setVisibility(View.VISIBLE);
+                                        estrela1.setClickable(false);
+                                        estrela2.setClickable(false);
+                                        estrela3.setClickable(false);
+                                        estrela4.setClickable(false);
+                                        estrela5.setClickable(false);
+                                    }else {
+                                        editar_sarvar.setVisibility(View.GONE);
+                                        finalizar.setVisibility(View.GONE);
+                                        estrela1.setClickable(false);
+                                        estrela2.setClickable(false);
+                                        estrela3.setClickable(false);
+                                        estrela4.setClickable(false);
+                                        estrela5.setClickable(false);
+                                    }
+
                                 }
 
                             } else if (intent.getStringExtra("MEUS_ARCO").equals("N")) {
-                                //só vizualiza não pode aletarar nada
+                                editar_sarvar.setVisibility(View.GONE);
+                                finalizar.setVisibility(View.GONE);
+                                estrela1.setClickable(false);
+                                estrela2.setClickable(false);
+                                estrela3.setClickable(false);
+                                estrela4.setClickable(false);
+                                estrela5.setClickable(false);
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -150,6 +193,8 @@ public class EtapaActivity extends AppCompatActivity {
                         jsonfinalizarlider.put("PONTO", String.valueOf(ponto_));
                         socket.emit("FINALIZAR_LIDER", jsonfinalizarlider);
                         socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+                        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
+                        finish();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -166,7 +211,8 @@ public class EtapaActivity extends AppCompatActivity {
                         jsonsalvar.put("TEXTO", texto.getText().toString());
                         socket.emit("FINALIZAR_MENBRO", jsonsalvar);
                         socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
-
+                        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
+                        finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

@@ -147,7 +147,12 @@ public class ArcoActivity extends AppCompatActivity {
         equipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(ArcoActivity.this, EquipeActivity.class).putExtra("ID_ARCO",getIntent().getStringExtra("ID_ARCO")));
+                Intent intent = new Intent(ArcoActivity.this, EquipeActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
+                startActivity(intent);
+                finish();
+
             }
         });
 

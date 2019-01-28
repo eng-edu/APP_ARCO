@@ -1,5 +1,6 @@
 package com.developer.edu.app_arco;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ public class EquipeActivity extends AppCompatActivity {
 
     Socket socket = SocketStatic.getSocket();
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,13 @@ public class EquipeActivity extends AppCompatActivity {
                 ControllerEquipe.bucarUsuarios(EquipeActivity.this, inflater, getIntent().getStringExtra("ID_ARCO"), socket);
             }
         });
+
+
+        if(getIntent().getStringExtra("MEUS_ARCOS").equals("S")){
+            novoMenbro.setVisibility(View.GONE);
+        }else {
+            novoMenbro.setVisibility(View.VISIBLE);
+        }
 
         final ListView listView = findViewById(R.id.id_lista_menbros);
         final AdapterUsuario arrayAdapter = new AdapterUsuario(EquipeActivity.this, new ArrayList<Usuario>());

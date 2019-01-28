@@ -47,9 +47,6 @@ public class ControllerLogin {
                         e.printStackTrace();
                     }
 
-
-
-
                     //chama menu principal
                     context.startActivity(new Intent(context, MenuActivity.class));
                     ((Activity) context).finish();

@@ -47,11 +47,9 @@ public class ArcoActivity extends AppCompatActivity {
     ImageView denuncia;
 
     Socket socket = SocketStatic.getSocket();
-    String id_lider = "";
-    int clickEditar = 0;
+    int clickEditar = 1;
     int clickGostei = 1;
-    String soulider = "";
-    String soumenbro = "";
+    String id_lider = "";
 
 
     @Override
@@ -61,10 +59,11 @@ public class ArcoActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
+        getIntent().getStringExtra("MEUS_ARCOS");
 
-        socket.connect();
 
         socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
+        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
 
         tematica = findViewById(R.id.id_arco_tematica);
         pontos = findViewById(R.id.id_arco_ponto);
@@ -87,14 +86,14 @@ public class ArcoActivity extends AppCompatActivity {
         btntitulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickEditar == 0) {
+                if (clickEditar == 1) {
                     edtitulo.setEnabled(true);
                     btntitulo.setText("SALVAR");
-                    clickEditar = 1;
-                } else if (clickEditar == 1) {
+                    clickEditar = 2;
+                } else if (clickEditar == 2) {
                     edtitulo.setEnabled(false);
                     btntitulo.setText("EDITAR");
-                    clickEditar = 0;
+                    clickEditar = 1;
 
                     final JSONObject jsontitulo = new JSONObject();
                     try {
@@ -180,33 +179,66 @@ public class ArcoActivity extends AppCompatActivity {
         });
 
 
+
+
         etapa1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                final Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
+                intent.putExtra("ID_LIDER", id_lider);
+                intent.putExtra("CODIGO_ETAPA", "0");
+                startActivity(intent);
+                finish();
             }
         });
         etapa2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                final Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
+                intent.putExtra("ID_LIDER", id_lider);
+                intent.putExtra("CODIGO_ETAPA", "1");
+                startActivity(intent);
+                finish();
             }
         });
         etapa3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                final Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
+                intent.putExtra("ID_LIDER", id_lider);
+                intent.putExtra("CODIGO_ETAPA", "2");
+                startActivity(intent);
+                finish();
             }
         });
         etapa4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {      final Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
+                intent.putExtra("ID_LIDER", id_lider);
 
+                intent.putExtra("CODIGO_ETAPA", "3");
+                startActivity(intent);
+                finish();
             }
         });
         etapa5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                intent.putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS"));
+                intent.putExtra("ID_LIDER", id_lider);
+                intent.putExtra("CODIGO_ETAPA", "4");
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -256,15 +288,15 @@ public class ArcoActivity extends AppCompatActivity {
                                 String situacao = object.getString("SITUACAO");
 
                                 if (codigo.equals("1")) {
-
+                                    definirIconImageView(etapa1, situacao);
                                 } else if (codigo.equals("2")) {
-
+                                    definirIconImageView(etapa2, situacao);
                                 } else if (codigo.equals("3")) {
-
+                                    definirIconImageView(etapa3, situacao);
                                 } else if (codigo.equals("4")) {
-
+                                    definirIconImageView(etapa4, situacao);
                                 } else if (codigo.equals("5")) {
-
+                                    definirIconImageView(etapa5, situacao);
                                 }
 
                             }
@@ -276,7 +308,6 @@ public class ArcoActivity extends AppCompatActivity {
                 });
             }
         });
-
 
         socket.emit("EU_GOSTEI", jsongostei);
         socket.on("EU_GOSTEI".concat(ID_USUARIO), new Emitter.Listener() {
@@ -309,39 +340,25 @@ public class ArcoActivity extends AppCompatActivity {
 
     }
 
-    public static void definirIconImageView(ImageView imageView, String status,String ID_USUARIO, String MEUS_ARCOS) {
+    public static void definirIconImageView(ImageView imageView, String status) {
 
+        if (status.equals("0")) {
+            imageView.setImageResource(R.mipmap.ic_etapa1);
+        } else if (status.equals("1")) {
+            imageView.setImageResource(R.mipmap.ic_etapa2);
+        } else if (status.equals("2")) {
+            imageView.setImageResource(R.mipmap.ic_etapa3);
+        } else if (status.equals("3")) {
+            imageView.setImageResource(R.mipmap.ic_etapa4);
 
-            if (status.equals("0")) {
-                imageView.setImageResource(R.mipmap.ic_etapa1);
-                imageView.setClickable(false);
-            } else if (status.equals("1")) {
-                imageView.setImageResource(R.mipmap.ic_etapa2);
-                imageView.setClickable(false);
-            } else if (status.equals("2")) {
-                imageView.setImageResource(R.mipmap.ic_etapa3);
-                imageView.setClickable(true);
-            } else if (status.equals("3")) {
-                imageView.setImageResource(R.mipmap.ic_etapa4);
-                imageView.setClickable(true);
-            }
-
-
+        }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        socket.disconnect();
         startActivity(new Intent(ArcoActivity.this, MenuActivity.class));
         finish();
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        socket.disconnect();
     }
 
 

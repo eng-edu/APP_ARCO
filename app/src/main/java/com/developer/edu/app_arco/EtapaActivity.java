@@ -24,28 +24,18 @@ public class EtapaActivity extends AppCompatActivity {
     Socket socket = SocketStatic.getSocket();
 
     public static int ponto_ = 0;
-    int click_ediatar_salvar = 0;
-    String soulider = "";
-    String soumenbro = "";
+    int click_ediatar_salvar = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_etapa);
-        socket.connect();
+
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
 
-        final JSONObject object = new JSONObject();
-        try {
-            object.put("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
-            object.put("ID_USUARIO", ID_USUARIO);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        socket.emit("ETAPA", object);
-
+        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
 
         final ImageView estrela1 = findViewById(R.id.id_etapa_moeda1);
         final ImageView estrela2 = findViewById(R.id.id_etapa_moeda2);
@@ -57,38 +47,88 @@ public class EtapaActivity extends AppCompatActivity {
         final Button editar_sarvar = findViewById(R.id.id_etapa_editar);
         final Button finalizar = findViewById(R.id.id_etapa_finalizar);
 
+//        editar_sarvar.setVisibility(View.GONE);
+//        finalizar.setVisibility(View.GONE);
+//        estrela1.setClickable(false);
+//        estrela2.setClickable(false);
+//        estrela3.setClickable(false);
+//        estrela4.setClickable(false);
+//        estrela5.setClickable(false);
+
+        final Intent intent = getIntent();
+
+
+        socket.on("ETAPA".concat(getIntent().getStringExtra("ID_ARCO")), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                EtapaActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        String result = args[0].toString(); //aqui recebo o json do arco
+                        try {
+
+                            JSONObject object = new JSONArray(result).getJSONObject(Integer.parseInt(intent.getStringExtra("CODIGO_ETAPA")));
+                            ponto_ = Integer.parseInt(object.getString("PONTO"));
+                            definirIconPontos(ponto_, estrela1, estrela2, estrela3, estrela4, estrela5);
+                            texto.setText(object.getString("TEXTO"));
+                            //É UM DOS MEUS ARCOS?
+                            if (intent.getStringExtra("MEUS_ARCOS").equals("S")) {
+
+                                //SOU O LIDER?
+                                if (intent.getStringExtra("ID_LIDER").equals("ID_USUARIO")) {
+                                    //habilita as funcções de lider...
+                                } else {
+                                    //habilita as funções de menbro..
+                                }
+
+                            } else if (intent.getStringExtra("MEUS_ARCO").equals("N")) {
+                                //só vizualiza não pode aletarar nada
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+            }
+        });
+
+
+
         texto.setEnabled(false);
         editar_sarvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (click_ediatar_salvar == 0) {
-                    click_ediatar_salvar = 1;
+                if (click_ediatar_salvar == 1) {
+                    click_ediatar_salvar = 2;
                     editar_sarvar.setText("SALVAR");
                     texto.setEnabled(true);
 
 
-                    //emitir o texto salvar...
+                } else if (click_ediatar_salvar == 2) {
+                    click_ediatar_salvar = 1;
+                    texto.setEnabled(false);
+                    editar_sarvar.setText("EDITAR");
 
-                } else if (click_ediatar_salvar == 1) {
-                    click_ediatar_salvar = 0;
 
-                    final JSONObject salvar = new JSONObject();
+                    JSONObject jsonsalvar = new JSONObject();
                     try {
-                        salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
-                        salvar.put("CODIGO",Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"))+1);
-                        salvar.put("TEXTO", texto.getText().toString());
+
+                        jsonsalvar.put("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                        int cod = Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"));
+                        String codigoetapa = String.valueOf(cod + 1);
+                        jsonsalvar.put("CODIGO", codigoetapa);
+                        jsonsalvar.put("TEXTO", texto.getText().toString());
+                        socket.emit("SALVAR", jsonsalvar);
+                        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-
-                    socket.emit("SALVAR", salvar);
-                    socket.emit("ETAPA", object);
-
-                    texto.setEnabled(false);
-                    editar_sarvar.setText("EDITAR");
-                    //emitir o texto mudar status...
-                    socket.emit("ETAPA", object);
                 }
             }
         });
@@ -97,43 +137,41 @@ public class EtapaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (soulider.equals("S")) {
+                if (intent.getStringExtra("ID_LIDER").equals(ID_USUARIO)) {
 
 
-                    final JSONObject salvar = new JSONObject();
+                    JSONObject jsonfinalizarlider = new JSONObject();
                     try {
-                        salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
-                        salvar.put("CODIGO",Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"))+1);
-                        salvar.put("PONTO", ponto_);
+
+                        jsonfinalizarlider.put("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                        int cod = Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"));
+                        String codigoetapa = String.valueOf(cod + 1);
+                        jsonfinalizarlider.put("CODIGO", codigoetapa);
+                        jsonfinalizarlider.put("PONTO", String.valueOf(ponto_));
+                        socket.emit("FINALIZAR_LIDER", jsonfinalizarlider);
+                        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-
-                    socket.emit("FINALIZAR_LIDER", salvar);
-                    socket.emit("ETAPA", object);
-                    startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")));
-                    finish();
-
-                    //emitir capturar os pontos mudar status...
-                } else if (soumenbro.equals("S") && soulider.equals("N")) {
-
-                    final JSONObject salvar = new JSONObject();
+                } else {
+                    JSONObject jsonsalvar = new JSONObject();
                     try {
-                        salvar.put("ID_ARCO", Integer.parseInt(getIntent().getStringExtra("ID_ARCO")));
-                        salvar.put("CODIGO", Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA")) + 1);
-                        salvar.put("TEXTO", texto.getText().toString());
+
+                        jsonsalvar.put("ID_ARCO", getIntent().getStringExtra("ID_ARCO"));
+                        int cod = Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA"));
+                        String codigoetapa = String.valueOf(cod + 1);
+                        jsonsalvar.put("CODIGO", codigoetapa);
+                        jsonsalvar.put("TEXTO", texto.getText().toString());
+                        socket.emit("FINALIZAR_MENBRO", jsonsalvar);
+                        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-
-                    socket.emit("FINALIZAR_MENBRO", salvar);
-                    socket.emit("ETAPA", object);
-                    startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")));
-                    finish();
                 }
-
             }
         });
 
@@ -171,70 +209,6 @@ public class EtapaActivity extends AppCompatActivity {
                 definirIconPontos(5, estrela1, estrela2, estrela3, estrela4, estrela5);
             }
         });
-
-
-        socket.on("ETAPA".concat(getIntent().getStringExtra("ID_ARCO")), new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-                EtapaActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        String result = args[0].toString(); //aqui recebo o json do arco
-
-                        try {
-
-                            JSONArray array = new JSONArray(result);
-                            JSONObject object = array.getJSONObject(Integer.parseInt(getIntent().getStringExtra("CODIGO_ETAPA")));
-                            titulo.setText(object.getString("TITULO"));
-                            definirIconPontos(Integer.parseInt(object.getString("PONTO")), estrela1, estrela2, estrela3, estrela4, estrela5);
-                            soulider = object.getString("SOULIDER");
-                            soumenbro = object.getString("SOUMENBRO");
-                            texto.setText(object.getString("TEXTO"));
-
-                            String situacao = object.getString("SITUACAO");
-
-                            if (soulider.equals("S")) {
-                                editar_sarvar.setVisibility(View.GONE);
-
-                            } else if (soumenbro.equals("S")) {
-                                estrela1.setClickable(false);
-                                estrela2.setClickable(false);
-                                estrela3.setClickable(false);
-                                estrela4.setClickable(false);
-                                estrela5.setClickable(false);
-                            } else {
-                                estrela1.setClickable(false);
-                                estrela2.setClickable(false);
-                                estrela3.setClickable(false);
-                                estrela4.setClickable(false);
-                                estrela5.setClickable(false);
-                                finalizar.setVisibility(View.GONE);
-                                editar_sarvar.setVisibility(View.GONE);
-                            }
-                            if (situacao.equals("3")) {
-                                finalizar.setVisibility(View.GONE);
-                                editar_sarvar.setVisibility(View.GONE);
-                                estrela1.setClickable(false);
-                                estrela2.setClickable(false);
-                                estrela3.setClickable(false);
-                                estrela4.setClickable(false);
-                                estrela5.setClickable(false);
-                            }
-
-
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                });
-            }
-        });
-
     }
 
 
@@ -282,6 +256,10 @@ public class EtapaActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")));
+        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
+        finish();
     }
+
+
+
 }

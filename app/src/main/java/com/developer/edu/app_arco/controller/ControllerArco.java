@@ -103,7 +103,7 @@ public class ControllerArco {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
                 alert.dismiss();
-                context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", arrayAdapter.getItem(position).getID()).putExtra("MEUS_ARCO","S"));
+                context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", arrayAdapter.getItem(position).getID()).putExtra("MEUS_ARCOS","S"));
                 ((Activity) context).finish();
             }
         });

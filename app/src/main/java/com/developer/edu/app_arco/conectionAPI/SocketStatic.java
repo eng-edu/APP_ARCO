@@ -11,7 +11,7 @@ import io.socket.client.Socket;
         private static Socket socket;
 
         public static synchronized Socket getSocket(){
-            return socket;
+            return socket.connect();
         }
 
         public static synchronized void setSocket(Socket socket){

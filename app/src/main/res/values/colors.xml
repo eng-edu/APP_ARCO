@@ -3,14 +3,20 @@
     resources>
     <color name="colorPrimary">#FFC107</color>
     <color name="colorPrimaryDark">#ffa000</color>
+    <color name="colorAccent">#FF4081</color>
+
     <color name="backgroundcolor">#fcfcfc</color>
     <color name="lightgray">#ededed</color>
-    <color name="deeppurple">#7c4dff</color>
-    <color name="yello">#ffb300</color>
-    <color name="green">#00bfa5</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="darkblue">#23283a</color>
-    <color name="testcolorblue">#152b38</color>
-    <color name="pink">#fe104d</color>
-    <color name="black_overlay">#66000000</color>
+
+    <color name="red">#d50000</color>
+    <color name="pink">#c51162</color>
+    <color name="purple">#6200ea</color>
+    <color name="indigo">#304ffe</color>
+    <color name="grenn">#1b5e20</color>
+    <color name="yellow">#f57f17</color>
+    <color name="brow">#4e342e</color>
+    <color name="teal">#00695c</color>
+
+
+
 </resources>

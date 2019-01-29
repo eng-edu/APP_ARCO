@@ -40,7 +40,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape1"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_user" />
+                            android:src="@mipmap/ic_new" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape6"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_gostei" />
+                            android:src="@mipmap/ic_ranking" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape8"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_gostei" />
+                            android:src="@mipmap/ic_premium" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape7"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_gostei" />
+                            android:src="@mipmap/ic_trofeu" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape1"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_gostei" />
+                            android:src="@mipmap/ic_tematica" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -319,7 +319,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape5"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_gostei" />
+                            android:src="@mipmap/ic_meusarcos" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -363,7 +363,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape6"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_gostei" />
+                            android:src="@mipmap/ic_todosarcos" />
 
                         <TextView
                             android:layout_width="wrap_content"

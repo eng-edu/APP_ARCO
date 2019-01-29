@@ -19,9 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:fontFamily="@font/caveat_brush"
             android:text="TITULO ETAPA"
             android:textAlignment="center"
             android:textAllCaps="true"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -36,35 +38,35 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
-                app:srcCompat="@mipmap/ic_coin2" />
+                app:srcCompat="@mipmap/ic_star1" />
 
             <ImageView
                 android:id="@+id/id_etapa_moeda2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
-                app:srcCompat="@mipmap/ic_coin2" />
+                app:srcCompat="@mipmap/ic_star1" />
 
             <ImageView
                 android:id="@+id/id_etapa_moeda3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
-                app:srcCompat="@mipmap/ic_coin2" />
+                app:srcCompat="@mipmap/ic_star1" />
 
             <ImageView
                 android:id="@+id/id_etapa_moeda4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
-                app:srcCompat="@mipmap/ic_coin2" />
+                app:srcCompat="@mipmap/ic_star1" />
 
             <ImageView
                 android:id="@+id/id_etapa_moeda5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
-                app:srcCompat="@mipmap/ic_coin2" />
+                app:srcCompat="@mipmap/ic_star1" />
 
         </LinearLayout>
 
@@ -89,7 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="EDITAR" />
+            android:background="@color/lightgray"
+            android:text="EDITAR"
+            android:textColor="@color/backgroundcolor" />
 
         <Button
             android:id="@+id/id_etapa_finalizar"
@@ -97,7 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="FINALIZAR ETAPA" />
+            android:background="@color/colorPrimaryDark"
+            android:text="FINALIZAR ETAPA"
+            android:textColor="@color/backgroundcolor" />
 
     </LinearLayout>
 

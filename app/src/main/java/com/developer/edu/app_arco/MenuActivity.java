@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -38,51 +39,23 @@ public class MenuActivity extends AppCompatActivity {
 
         SocketStatic.setSocket(socket);
 
-        Button perfil = findViewById(R.id.id_menu_perfil);
-        Button dicas = findViewById(R.id.id_menu_dicas);
-        Button novoArco = findViewById(R.id.id_menu_novoarco);
-        Button meusArcos = findViewById(R.id.id_menu_meusarcos);
-        Button arcosCompartilhados = findViewById(R.id.id_menu_arcoscompartilhados);
-        Button ranking = findViewById(R.id.id_menu_ranking);
-        Button premioMes = findViewById(R.id.id_menu_premio);
-        Button novaTematica = findViewById(R.id.id_menu_novatematica);
-        Button premium = findViewById(R.id.id_menu_premium);
-        Button sair = findViewById(R.id.id_menu_sair);
+        CardView perfil = findViewById(R.id.card_meuperfil);
 
+        CardView novoArco = findViewById(R.id.card_novoarco);
+        CardView meusArcos = findViewById(R.id.card_meusarcos);
+        CardView arcosCompartilhados = findViewById(R.id.card_compartilhados);
+        CardView ranking = findViewById(R.id.card_ranking);
+        CardView premioMes = findViewById(R.id.card_premiodomes);
+        CardView novaTematica = findViewById(R.id.card_novatematica);
+        CardView premium = findViewById(R.id.card_premium);
+        Button sair = findViewById(R.id.id_menu_sair);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String tipo = sharedPreferences.getString("TIPO", "");
 
 
-        perfil.setVisibility(View.GONE);
-        novoArco.setVisibility(View.GONE);
-        meusArcos.setVisibility(View.GONE);
-        arcosCompartilhados.setVisibility(View.GONE);
-        ranking.setVisibility(View.GONE);
-        premioMes.setVisibility(View.GONE);
-        novaTematica.setVisibility(View.GONE);
-        premium.setVisibility(View.GONE);
-
-        if (tipo.equals("1")) {
-
-            perfil.setVisibility(View.VISIBLE);
-            novoArco.setVisibility(View.VISIBLE);
-            meusArcos.setVisibility(View.VISIBLE);
-            arcosCompartilhados.setVisibility(View.VISIBLE);
-            ranking.setVisibility(View.VISIBLE);
-            premioMes.setVisibility(View.VISIBLE);
-            novaTematica.setVisibility(View.VISIBLE);
-            premium.setVisibility(View.VISIBLE);
-
-
-        } else if (tipo.equals("2")) {
-
-            perfil.setVisibility(View.VISIBLE);
+        if (tipo.equals("2")) {
             novoArco.setVisibility(View.GONE);
-            meusArcos.setVisibility(View.VISIBLE);
-            arcosCompartilhados.setVisibility(View.VISIBLE);
-            ranking.setVisibility(View.VISIBLE);
-            premioMes.setVisibility(View.VISIBLE);
             novaTematica.setVisibility(View.GONE);
             premium.setVisibility(View.GONE);
         }
@@ -94,7 +67,6 @@ public class MenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
                 SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
                 final String ID_USUARIO = sharedPreferences.getString("ID", "");
-
                 intent.putExtra("meu_perfil", "S");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 startActivity(intent);
@@ -128,6 +100,13 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
                 ControllerArco.bucarRanking(MenuActivity.this, inflater);
+            }
+        });
+
+        premioMes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this, PremioActivity.class));
             }
         });
 

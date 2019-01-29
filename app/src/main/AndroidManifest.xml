@@ -28,7 +28,13 @@
         <activity android:name=".ArcoActivity" />
         <activity android:name=".EquipeActivity" />
         <activity android:name=".EtapaActivity" />
-        <activity android:name=".ComentarioActivity"></activity>
+        <activity android:name=".ComentarioActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".TESTE"></activity>
     </application>
 
 </manifest>

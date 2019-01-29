@@ -7,5 +7,13 @@
     tools:context=".PremioActivity">
 
 
+    <ImageView
+        android:id="@+id/id_premio_fotopremio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop" />
+
 
 </LinearLayout>

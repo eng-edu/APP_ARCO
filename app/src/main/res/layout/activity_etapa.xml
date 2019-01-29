@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/folha2"
     tools:context=".EtapaActivity">
 
     <LinearLayout
@@ -71,11 +72,16 @@
         <EditText
             android:id="@+id/id_etapa_texto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:hint="TEXTO"
-            android:text="" />
+            android:fontFamily="@font/caveat_brush"
+            android:padding="5dp"
+            android:text=""
+            android:textAllCaps="false"
+            android:textColor="@color/lightgray"
+            android:textColorHint="@android:color/black"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/id_etapa_editar"

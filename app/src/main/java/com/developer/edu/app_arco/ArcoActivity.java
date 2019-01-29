@@ -34,7 +34,6 @@ public class ArcoActivity extends AppCompatActivity {
     TextView tematica;
     TextView pontos;
     TextView curtidas;
-
     EditText edtitulo;
     public static ImageView btntitulo;
     ImageView lider;
@@ -47,6 +46,14 @@ public class ArcoActivity extends AppCompatActivity {
     ImageView gostei;
     ImageView denuncia;
     ImageView comentario;
+
+
+    ImageView backE1;
+    ImageView backE2;
+    ImageView backE3;
+    ImageView backE4;
+    ImageView backE5;
+
 
     Socket socket = SocketStatic.getSocket();
     int clickEditar = 1;
@@ -84,6 +91,13 @@ public class ArcoActivity extends AppCompatActivity {
         denuncia = findViewById(R.id.id_arco_denuncia);
         comentario = findViewById(R.id.id_arco_comentario);
 
+        backE1 = findViewById(R.id.imageE1);
+        backE2 = findViewById(R.id.imageE2);
+        backE3 = findViewById(R.id.imageE3);
+        backE4 = findViewById(R.id.imageE4);
+        backE5 = findViewById(R.id.imageE5);
+
+
         if(getIntent().getStringExtra("MEUS_ARCOS").equals("S")){
             btntitulo.setVisibility(View.VISIBLE);
         }else {
@@ -98,11 +112,11 @@ public class ArcoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (clickEditar == 1) {
                     edtitulo.setEnabled(true);
-                   // btntitulo.setText("SALVAR");
+                    btntitulo.setImageResource(R.mipmap.ic_save);
                     clickEditar = 2;
                 } else if (clickEditar == 2) {
                     edtitulo.setEnabled(false);
-                   // btntitulo.setText("EDITAR");
+                    btntitulo.setImageResource(R.mipmap.ic_edit);
                     clickEditar = 1;
 
                     final JSONObject jsontitulo = new JSONObject();
@@ -311,17 +325,17 @@ public class ArcoActivity extends AppCompatActivity {
                                 String codigo = object.getString("CODIGO");
                                 String situacao = object.getString("SITUACAO");
 
-//                                if (codigo.equals("1")) {
-//                                    definirIconImageView(etapa1, situacao);
-//                                } else if (codigo.equals("2")) {
-//                                    definirIconImageView(etapa2, situacao);
-//                                } else if (codigo.equals("3")) {
-//                                    definirIconImageView(etapa3, situacao);
-//                                } else if (codigo.equals("4")) {
-//                                    definirIconImageView(etapa4, situacao);
-//                                } else if (codigo.equals("5")) {
-//                                    definirIconImageView(etapa5, situacao);
-//                                }
+                                if (codigo.equals("1")) {
+                                    definirIconImageView(backE1, situacao);
+                                } else if (codigo.equals("2")) {
+                                    definirIconImageView(backE2, situacao);
+                                } else if (codigo.equals("3")) {
+                                    definirIconImageView(backE3, situacao);
+                                } else if (codigo.equals("4")) {
+                                    definirIconImageView(backE4, situacao);
+                                } else if (codigo.equals("5")) {
+                                    definirIconImageView(backE5, situacao);
+                                }
 
                             }
                         } catch (JSONException e) {
@@ -364,19 +378,19 @@ public class ArcoActivity extends AppCompatActivity {
 
     }
 
-//    public static void definirIconImageView(ImageView imageView, String status) {
-//
-//        if (status.equals("0")) {
-//            imageView.setImageResource(R.mipmap.ic_etapa1);
-//        } else if (status.equals("1")) {
-//            imageView.setImageResource(R.mipmap.ic_etapa2);
-//        } else if (status.equals("2")) {
-//            imageView.setImageResource(R.mipmap.ic_etapa3);
-//        } else if (status.equals("3")) {
-//            imageView.setImageResource(R.mipmap.ic_etapa4);
-//
-//        }
-//    }
+    public static void definirIconImageView(ImageView imageView, String status) {
+
+        if (status.equals("0")) {
+            imageView.setImageResource(R.mipmap.ic_blockw);
+        } else if (status.equals("1")) {
+            imageView.setImageResource(R.mipmap.ic_editw);
+        } else if (status.equals("2")) {
+            imageView.setImageResource(R.mipmap.ic_clockw);
+        } else if (status.equals("3")) {
+            imageView.setImageResource(R.mipmap.ic_okw);
+
+        }
+    }
 
     @Override
     public void onBackPressed() {

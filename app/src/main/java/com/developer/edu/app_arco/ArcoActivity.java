@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -33,16 +34,16 @@ public class ArcoActivity extends AppCompatActivity {
     TextView tematica;
     TextView pontos;
     TextView curtidas;
-    ImageView imtitulo;
+
     EditText edtitulo;
-    public static Button btntitulo;
+    public static ImageView btntitulo;
     ImageView lider;
     ImageView equipe;
-    ImageView etapa1;
-    ImageView etapa2;
-    ImageView etapa3;
-    ImageView etapa4;
-    ImageView etapa5;
+    CardView etapa1;
+    CardView etapa2;
+    CardView etapa3;
+    CardView etapa4;
+    CardView etapa5;
     ImageView gostei;
     ImageView denuncia;
     ImageView comentario;
@@ -69,16 +70,16 @@ public class ArcoActivity extends AppCompatActivity {
         tematica = findViewById(R.id.id_arco_tematica);
         pontos = findViewById(R.id.id_arco_ponto);
         curtidas = findViewById(R.id.id_arco_curtidas);
-        imtitulo = findViewById(R.id.id_icon_titulo);
+
         edtitulo = findViewById(R.id.id_arco_titulo);
         btntitulo = findViewById(R.id.id_arco_alterar_salvar_titulo);
         lider = findViewById(R.id.id_arco_lider);
         equipe = findViewById(R.id.id_arco_equipe);
-        etapa1 = findViewById(R.id.id_arco_etapa1);
-        etapa2 = findViewById(R.id.id_arco_etapa2);
-        etapa3 = findViewById(R.id.id_arco_etapa3);
-        etapa4 = findViewById(R.id.id_arco_etapa4);
-        etapa5 = findViewById(R.id.id_arco_etapa5);
+        etapa1 = findViewById(R.id.card_e1);
+        etapa2 = findViewById(R.id.card_e2);
+        etapa3 = findViewById(R.id.card_e3);
+        etapa4 = findViewById(R.id.card_e4);
+        etapa5 = findViewById(R.id.card_e5);
         gostei = findViewById(R.id.id_arco_gostei);
         denuncia = findViewById(R.id.id_arco_denuncia);
         comentario = findViewById(R.id.id_arco_comentario);
@@ -97,11 +98,11 @@ public class ArcoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (clickEditar == 1) {
                     edtitulo.setEnabled(true);
-                    btntitulo.setText("SALVAR");
+                   // btntitulo.setText("SALVAR");
                     clickEditar = 2;
                 } else if (clickEditar == 2) {
                     edtitulo.setEnabled(false);
-                    btntitulo.setText("EDITAR");
+                   // btntitulo.setText("EDITAR");
                     clickEditar = 1;
 
                     final JSONObject jsontitulo = new JSONObject();
@@ -277,9 +278,9 @@ public class ArcoActivity extends AppCompatActivity {
                         String result = args[0].toString(); //aqui recebo o json do arco
                         try {
                             JSONObject object = new JSONObject(result);
-                            tematica.setText("Tematica: "+object.getString("TITULO_TEMATICA"));
+                            tematica.setText(object.getString("TITULO_TEMATICA"));
                             pontos.setText(object.getString("PONTO")+" pontos");
-                            curtidas.setText(object.getString("GOSTEI") + " pessoas gostaram deste arco!");
+                            curtidas.setText(object.getString("GOSTEI") + " curtidas");
                             edtitulo.setText(object.getString("TITULO_ARCO"));
                             edtitulo.setSelection(edtitulo.getText().length());
                             id_lider = object.getString("ID_LIDER");
@@ -310,17 +311,17 @@ public class ArcoActivity extends AppCompatActivity {
                                 String codigo = object.getString("CODIGO");
                                 String situacao = object.getString("SITUACAO");
 
-                                if (codigo.equals("1")) {
-                                    definirIconImageView(etapa1, situacao);
-                                } else if (codigo.equals("2")) {
-                                    definirIconImageView(etapa2, situacao);
-                                } else if (codigo.equals("3")) {
-                                    definirIconImageView(etapa3, situacao);
-                                } else if (codigo.equals("4")) {
-                                    definirIconImageView(etapa4, situacao);
-                                } else if (codigo.equals("5")) {
-                                    definirIconImageView(etapa5, situacao);
-                                }
+//                                if (codigo.equals("1")) {
+//                                    definirIconImageView(etapa1, situacao);
+//                                } else if (codigo.equals("2")) {
+//                                    definirIconImageView(etapa2, situacao);
+//                                } else if (codigo.equals("3")) {
+//                                    definirIconImageView(etapa3, situacao);
+//                                } else if (codigo.equals("4")) {
+//                                    definirIconImageView(etapa4, situacao);
+//                                } else if (codigo.equals("5")) {
+//                                    definirIconImageView(etapa5, situacao);
+//                                }
 
                             }
                         } catch (JSONException e) {
@@ -363,19 +364,19 @@ public class ArcoActivity extends AppCompatActivity {
 
     }
 
-    public static void definirIconImageView(ImageView imageView, String status) {
-
-        if (status.equals("0")) {
-            imageView.setImageResource(R.mipmap.ic_etapa1);
-        } else if (status.equals("1")) {
-            imageView.setImageResource(R.mipmap.ic_etapa2);
-        } else if (status.equals("2")) {
-            imageView.setImageResource(R.mipmap.ic_etapa3);
-        } else if (status.equals("3")) {
-            imageView.setImageResource(R.mipmap.ic_etapa4);
-
-        }
-    }
+//    public static void definirIconImageView(ImageView imageView, String status) {
+//
+//        if (status.equals("0")) {
+//            imageView.setImageResource(R.mipmap.ic_etapa1);
+//        } else if (status.equals("1")) {
+//            imageView.setImageResource(R.mipmap.ic_etapa2);
+//        } else if (status.equals("2")) {
+//            imageView.setImageResource(R.mipmap.ic_etapa3);
+//        } else if (status.equals("3")) {
+//            imageView.setImageResource(R.mipmap.ic_etapa4);
+//
+//        }
+//    }
 
     @Override
     public void onBackPressed() {

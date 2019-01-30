@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +28,8 @@ public class PreCadastroActivity extends AppCompatActivity {
                         "CADASTRE-SE COMO..."};
 
 
-        final ImageView img = findViewById(R.id.id_precadastro_img);
-        final TextView texto = findViewById(R.id.id_precadastro_texto);
+
+        final EditText texto = findViewById(R.id.id_precadastro_texto);
         final Button avancar = findViewById(R.id.id_precadastro_avancar);
         final Button lider = (Button) findViewById(R.id.id_precadastro_lider);
         final Button menbro = (Button) findViewById(R.id.id_precadastro_menbro);

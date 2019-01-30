@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerLogin;
 
 import java.net.URISyntaxException;
@@ -19,12 +20,24 @@ import io.socket.client.Socket;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public Socket socket;
+
+    {
+        try {
+            socket = IO.socket(ConfigRetrofit.URL_BASE);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        SocketStatic.setSocket(socket);
 
         final EditText email = findViewById(R.id.id_login_email);
         final EditText senha = findViewById(R.id.id_login_senha);

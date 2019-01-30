@@ -25,7 +25,7 @@ import static com.developer.edu.app_arco.conectionAPI.ConfigRetrofit.URL_BASE;
 
 public class Controllerperfil {
 
-    public static void buscarUsuario(final Context context, final TextView pontos, final ImageView fotoperfil, final EditText nome, final EditText idade, final RadioButton sexoM, final RadioButton sexoF, final EditText escolaridade, final EditText email, String ID_USUARIO) {
+    public static void buscarUsuario(final Context context, final TextView pontos, final ImageView fotoperfil, final EditText nome, final EditText idade, final RadioButton sexoM, final RadioButton sexoF, final EditText escolaridade, final TextView email, String ID_USUARIO) {
 
 
         final ProgressDialog dialog = new ProgressDialog(context);
@@ -44,7 +44,13 @@ public class Controllerperfil {
                     try {
 
                         JSONObject usuario = new JSONObject(response.body());
-                        pontos.setText(usuario.getString("PONTO") + " pontos");
+
+                        if(usuario.getString("TIPO").equals("2")){
+                            pontos.setText(usuario.getString("PONTO") + " pontos");
+                        }else {
+                            pontos.setText("");
+                        }
+
                         nome.setText(usuario.getString("NOME"));
                         idade.setText(usuario.getString("IDADE"));
 

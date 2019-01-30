@@ -22,22 +22,13 @@ import io.socket.client.Socket;
 
 public class MenuActivity extends AppCompatActivity {
 
-    public Socket socket;
-
-    {
-        try {
-            socket = IO.socket(ConfigRetrofit.URL_BASE);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        SocketStatic.setSocket(socket);
+
 
         CardView perfil = findViewById(R.id.card_meuperfil);
 

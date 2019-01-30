@@ -35,7 +35,10 @@ public class EtapaActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
 
-        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+        if (Util.verificarConexaoSocket(socket, EtapaActivity.this)) {
+            socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+        }
+
 
         final ImageView estrela1 = findViewById(R.id.id_etapa_moeda1);
         final ImageView estrela2 = findViewById(R.id.id_etapa_moeda2);
@@ -165,9 +168,11 @@ public class EtapaActivity extends AppCompatActivity {
                         String codigoetapa = String.valueOf(cod + 1);
                         jsonsalvar.put("CODIGO", codigoetapa);
                         jsonsalvar.put("TEXTO", texto.getText().toString());
-                        socket.emit("SALVAR", jsonsalvar);
-                        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
 
+                        if (Util.verificarConexaoSocket(socket, EtapaActivity.this)) {
+                            socket.emit("SALVAR", jsonsalvar);
+                            socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -191,10 +196,13 @@ public class EtapaActivity extends AppCompatActivity {
                         String codigoetapa = String.valueOf(cod + 1);
                         jsonfinalizarlider.put("CODIGO", codigoetapa);
                         jsonfinalizarlider.put("PONTO", String.valueOf(ponto_));
-                        socket.emit("FINALIZAR_LIDER", jsonfinalizarlider);
-                        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
-                        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
-                        finish();
+
+                        if (Util.verificarConexaoSocket(socket, EtapaActivity.this)) {
+                            socket.emit("FINALIZAR_LIDER", jsonfinalizarlider);
+                            socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+                            startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
+                            finish();
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -209,10 +217,13 @@ public class EtapaActivity extends AppCompatActivity {
                         String codigoetapa = String.valueOf(cod + 1);
                         jsonsalvar.put("CODIGO", codigoetapa);
                         jsonsalvar.put("TEXTO", texto.getText().toString());
-                        socket.emit("FINALIZAR_MENBRO", jsonsalvar);
-                        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
-                        startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
-                        finish();
+
+                        if (Util.verificarConexaoSocket(socket, EtapaActivity.this)) {
+                            socket.emit("FINALIZAR_MENBRO", jsonsalvar);
+                            socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+                            startActivity(new Intent(EtapaActivity.this, ArcoActivity.class).putExtra("ID_ARCO", getIntent().getStringExtra("ID_ARCO")).putExtra("MEUS_ARCOS", getIntent().getStringExtra("MEUS_ARCOS")));
+                            finish();
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

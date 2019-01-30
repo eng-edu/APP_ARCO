@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,7 +53,6 @@ public class ArcoActivity extends AppCompatActivity {
     ImageView backE4;
     ImageView backE5;
 
-
     Socket socket = SocketStatic.getSocket();
     int clickEditar = 1;
     int clickGostei = 1;
@@ -71,8 +69,10 @@ public class ArcoActivity extends AppCompatActivity {
         getIntent().getStringExtra("MEUS_ARCOS");
 
 
-        socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
-        socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+        if (Util.verificarConexaoSocket(socket, ArcoActivity.this)) {
+            socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
+            socket.emit("ETAPA", getIntent().getStringExtra("ID_ARCO"));
+        }
 
         tematica = findViewById(R.id.id_arco_tematica);
         pontos = findViewById(R.id.id_arco_ponto);
@@ -126,9 +126,10 @@ public class ArcoActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-                    socket.emit("TITULO", jsontitulo);
-                    socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
+                    if (Util.verificarConexaoSocket(socket, ArcoActivity.this)) {
+                        socket.emit("TITULO", jsontitulo);
+                        socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
+                    }
                 }
             }
         });
@@ -147,7 +148,12 @@ public class ArcoActivity extends AppCompatActivity {
 
 
                 if (clickGostei == 1) {
-                    socket.emit("GOSTEI", jsongostei);
+
+                    if (Util.verificarConexaoSocket(socket, ArcoActivity.this)) {
+                        socket.emit("GOSTEI", jsongostei);
+                    }
+
+
                     gostei.setImageResource(R.mipmap.ic_gostei);
                     clickGostei = 2;
                 } else if (clickGostei == 2) {
@@ -155,7 +161,12 @@ public class ArcoActivity extends AppCompatActivity {
                     gostei.setImageResource(R.mipmap.ic_ngostei);
                     clickGostei = 1;
                 }
-                socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
+
+                if (Util.verificarConexaoSocket(socket, ArcoActivity.this)) {
+                    socket.emit("ARCO", getIntent().getStringExtra("ID_ARCO"));
+                }
+
+
             }
         });
 

@@ -2,7 +2,9 @@ package com.developer.edu.app_arco;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -43,12 +45,13 @@ public class PerfilActivity extends AppCompatActivity {
         final RadioButton sexoM = findViewById(R.id.id_perfil_sexo_m);
         final RadioButton sexoF = findViewById(R.id.id_perfil_sexo_f);
         final EditText escolaridade = findViewById(R.id.id_perfil_escolaridade);
-        final EditText email = findViewById(R.id.id_email_perfil);
+        final TextView email = findViewById(R.id.id_email_perfil);
         final Button alterar = findViewById(R.id.id_perfil_alterar);
 
         if (getIntent().getStringExtra("meu_perfil") == null || !getIntent().getStringExtra("meu_perfil").equals("S")) {
             alterar.setVisibility(View.INVISIBLE);
         }
+
 
 
         //BUSCA NO SERVER O PERFIL .........
@@ -60,7 +63,7 @@ public class PerfilActivity extends AppCompatActivity {
         sexoM.setEnabled(false);
         sexoF.setEnabled(false);
         escolaridade.setEnabled(false);
-        email.setEnabled(false);
+
 
 
         alterar.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +79,6 @@ public class PerfilActivity extends AppCompatActivity {
                     idade.setEnabled(true);
                     sexoM.setEnabled(true);
                     sexoF.setEnabled(true);
-                    email.setEnabled(false);
                     escolaridade.setEnabled(true);
                     alterar.setText("SALVAR");
 
@@ -92,7 +94,6 @@ public class PerfilActivity extends AppCompatActivity {
                     sexoM.setEnabled(false);
                     sexoF.setEnabled(false);
                     escolaridade.setEnabled(false);
-                    email.setEnabled(false);
                     alterar.setText("EDITAR");
 
                     String sexo = "";

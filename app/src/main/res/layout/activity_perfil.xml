@@ -4,30 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/folha2"
     tools:context=".PerfilActivity">
 
     <LinearLayout
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/id_perfil_pontos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="pontos"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textSize="30sp"
-            android:textStyle="italic" />
-
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/Id_perfil_image_perfil"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:adjustViewBounds="false"
@@ -38,18 +28,69 @@
             app:civ_border_width="1dp" />
 
 
-        <EditText
-            android:id="@+id/id_nome_perfil"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/id_email_perfil"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:autofillHints=""
             android:ems="10"
-            android:hint="NOME:"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
+            android:fontFamily="@font/caveat_brush"
+            android:hint="EMAIL:"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
 
-        <EditText
+        <TextView
+            android:id="@+id/id_perfil_pontos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/caveat_brush"
+            android:text="pontos"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="30sp"
+            android:textStyle="italic" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lider" />
+
+            <EditText
+                android:id="@+id/id_nome_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="NOME:"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_bolo" />
+
+            <EditText
             android:id="@+id/id_idade_perfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,8 +98,32 @@
             android:ems="10"
             android:hint="IDADE:"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_escolaridade" />
+
+            <EditText
+                android:id="@+id/id_perfil_escolaridade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="ESCOLARIDADE:"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/id_cadastro_radiogroup_sexo"
@@ -66,12 +131,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="SEXO:"
-                android:textSize="10sp" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_sexo" />
 
             <RadioButton
                 android:id="@+id/id_perfil_sexo_m"
@@ -97,36 +161,15 @@
 
         </RadioGroup>
 
-        <EditText
-            android:id="@+id/id_perfil_escolaridade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="ESCOLARIDADE:"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
-
-        <EditText
-            android:id="@+id/id_email_perfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="EMAIL:"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
-
 
         <Button
             android:id="@+id/id_perfil_alterar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/colorAccent"
             android:text="EDITAR"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/backgroundcolor"
             android:textSize="12sp" />
     </LinearLayout>
 

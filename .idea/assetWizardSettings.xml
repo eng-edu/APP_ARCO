@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="ffffff" />
+                                                <entry key="color" value="fffadd" />
                                                 <entry key="scalingPercent" value="72" />
                                               </map>
                                             </option>
@@ -47,7 +47,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="004d40" />
+                                      <entry key="backgroundColor" value="ffa000" />
                                       <entry key="foregroundAssetType" value="TEXT" />
                                     </map>
                                   </option>
@@ -61,8 +61,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\User\Downloads\start2.png" />
-                                      <entry key="outputName" value="ic_star2" />
+                                      <entry key="imageAsset" value="C:\Users\User\Downloads\ponto.png" />
+                                      <entry key="outputName" value="ic_ponto" />
                                     </map>
                                   </option>
                                 </PersistentState>

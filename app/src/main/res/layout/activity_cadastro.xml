@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/back2"
     tools:context=".CadastroActivity">
 
     <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
+
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/shape_caixa"
         android:orientation="vertical">
 
-
         <TextView
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+        
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="Foto de perfil"
@@ -40,25 +44,69 @@
             android:id="@+id/id_nome_cadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="NOME:"
             android:inputType="textPersonName"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/id_idade_cadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="IDADE:"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
 
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        <EditText
+            android:id="@+id/id_cadastro_escolaridade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="ESCOLARIDADE:"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/id_email_cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="EMAIL:"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/id_senha_castro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="SENHA:"
+            android:inputType="textPassword"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+        <RadioGroup
             android:id="@+id/id_cadastro_radiogroup_sexo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,47 +143,14 @@
 
         </RadioGroup>
 
-        <EditText
-            android:id="@+id/id_cadastro_escolaridade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="ESCOLARIDADE:"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
-
-        <EditText
-            android:id="@+id/id_email_cadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="EMAIL:"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
-
-
-        <EditText
-            android:id="@+id/id_senha_castro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="SENHA:"
-            android:inputType="textPassword"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="10sp" />
-
         <Button
             android:id="@+id/id_cadastro_cadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/colorAccent"
             android:text="CADASTRAR"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/backgroundcolor"
             android:textSize="12sp" />
     </LinearLayout>
 

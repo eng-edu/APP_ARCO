@@ -16,9 +16,11 @@ import android.widget.Toast;
 import com.developer.edu.app_arco.AdapterArco;
 import com.developer.edu.app_arco.AdapterUsuario;
 import com.developer.edu.app_arco.ArcoActivity;
+import com.developer.edu.app_arco.MediaActivity;
 import com.developer.edu.app_arco.PerfilActivity;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.model.AdapterArco2;
 import com.developer.edu.app_arco.model.Arco;
 import com.developer.edu.app_arco.model.Usuario;
 
@@ -36,6 +38,88 @@ import retrofit2.Response;
 public class ControllerArco {
 
     static AlertDialog alert;
+
+
+    public static void bucarMeusArco2(final Context context, final LayoutInflater inflater) {
+
+
+        final View view = inflater.inflate(R.layout.list_dados2, null);
+        final List<Arco> arcos = new ArrayList<>();
+        final ListView listView = view.findViewById(R.id.list_alert_list2);
+        final AdapterArco2 arrayAdapter = new AdapterArco2(context, new ArrayList<Arco>());
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
+        final String ID_USUARIO = sharedPreferences.getString("ID", "");
+
+        Call<String> stringCall = ConfigRetrofit.getService().buscarMeusArcos(ID_USUARIO);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if (response.code() == 200) {
+
+                    try {
+                        JSONArray array = new JSONArray(response.body());
+                        int size = array.length();
+
+                        for (int i = 0; i < size; i++) {
+                            JSONObject object = array.getJSONObject(i);
+
+                            arcos.add(new Arco(
+                                    object.getString("ID"),
+                                    object.getString("TEMATICA"),
+                                    object.getString("TITULO"),
+                                    object.getString("PONTO"),
+                                    object.getString("GOSTEI")
+                            ));
+
+                        }
+
+                        arrayAdapter.clear();
+                        arrayAdapter.addAll(arcos);
+                        listView.setAdapter(arrayAdapter);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else if (response.code() == 405) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("MEUS ARCOS");
+        builder.setView(view);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MediaActivity.clearList();
+                MediaActivity.clearListArcos();
+                for (Arco a : arcos) {
+
+                    if (a.getCheck()) {
+                        MediaActivity.addList(a.getID());
+                        MediaActivity.addArcos(a);
+                    }
+                }
+
+                alert.dismiss();
+                context.startActivity(new Intent(context, MediaActivity.class));
+            }
+        });
+
+        alert = builder.create();
+        alert.show();
+
+    }
+
 
     public static void bucarMeusArco(final Context context, final LayoutInflater inflater) {
 

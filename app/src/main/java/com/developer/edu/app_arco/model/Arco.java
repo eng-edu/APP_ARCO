@@ -6,6 +6,7 @@ public class Arco {
     String TITULO;
     String PONTO;
     String GOSTEI;
+    Boolean check;
 
     public Arco(String ID, String TEMATICA, String TITULO, String PONTO, String GOSTEI) {
         this.ID = ID;
@@ -13,6 +14,15 @@ public class Arco {
         this.TITULO = TITULO;
         this.PONTO = PONTO;
         this.GOSTEI = GOSTEI;
+        this.check = false;
+    }
+
+    public Boolean getCheck() {
+        return this.check;
+    }
+
+    public void setCheck(Boolean check) {
+        this.check = check;
     }
 
     public String getID() {

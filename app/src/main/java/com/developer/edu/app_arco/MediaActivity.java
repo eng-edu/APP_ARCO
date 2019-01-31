@@ -2,12 +2,14 @@ package com.developer.edu.app_arco;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.developer.edu.app_arco.model.Arco;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,19 @@ public class MediaActivity extends AppCompatActivity {
     CircleProgressView mCircleView;
 
     public static List<String> list = new ArrayList<>();
+    public static List<Arco> arcos = new ArrayList<>();
+
+    public static List<Arco> getArcos() {
+        return MediaActivity.arcos;
+    }
+
+    public static void addArcos(Arco arcos) {
+        MediaActivity.arcos.add(arcos);
+    }
+
+    public static void clearListArcos() {
+        MediaActivity.arcos.clear();
+    }
 
     public static void clearList() {
         MediaActivity.list.clear();
@@ -39,9 +54,18 @@ public class MediaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_media);
 
         mCircleView = (CircleProgressView) findViewById(R.id.circleView);
+        ListView listView = findViewById(R.id.id_list_selecionados_media);
 
-        list.add("2");
-        list.add("3");
+        Button voltar = findViewById(R.id.button_voltar);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        AdapterArco adapterArco = new AdapterArco(MediaActivity.this, getArcos());
+        listView.setAdapter(adapterArco);
 
         Call<String> stringCall = ConfigRetrofit.getService().gerarMediaArcos(list);
         stringCall.enqueue(new Callback<String>() {

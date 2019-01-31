@@ -119,7 +119,8 @@ public class MenuActivity extends AppCompatActivity {
         redimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, MediaActivity.class));
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerArco.bucarMeusArco2(MenuActivity.this, inflater);
             }
         });
 

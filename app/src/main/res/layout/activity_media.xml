@@ -55,12 +55,12 @@
             android:layout_margin="10dp"></ListView>
 
         <Button
-            android:id="@+id/button_bsucar_arcos_media"
+            android:id="@+id/button_voltar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:backgroundTint="@color/brow"
-            android:text="Selecionar arcos"
+            android:text="voltar"
             android:textColor="@color/backgroundcolor" />
 
 

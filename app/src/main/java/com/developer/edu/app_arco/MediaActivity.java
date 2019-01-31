@@ -50,28 +50,16 @@ public class MediaActivity extends AppCompatActivity {
 
                 if (response.code() == 200) {
 
-                    try {
-
-                        JSONObject object = new JSONObject(response.body());
-
-                        //value setting
+         //value setting
                         mCircleView.setMaxValue(100);
                         mCircleView.setValue(0);
-                        mCircleView.setValueAnimated(Float.parseFloat(object.getString("PONTO")));
-                        mCircleView.setDirection(Direction.CCW);
-
-                        //text sizes
-                        mCircleView.setTextSize(50); // text size set, auto text size off
-                        mCircleView.setUnitSize(40); // if i set the text size i also have to set the unit size
-                        mCircleView.setAutoTextSize(true); // enable auto text size, previous values are overwritten
-                        //if you want the calculated text sizes to be bigger/smaller you can do so via
+                        mCircleView.setValueAnimated(Float.parseFloat(response.body()));
+                        mCircleView.setDirection(Direction.CW);
+                        mCircleView.setAutoTextSize(true);
                         mCircleView.setUnitScale(0.9f);
                         mCircleView.setTextScale(0.9f);
                         mCircleView.setShowTextWhileSpinning(true);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                        mCircleView.setClickable(false);
 
 
                 } else if (response.code() == 405) {

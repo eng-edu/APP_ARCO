@@ -7,7 +7,6 @@ public  class SocketStatic {
 
     private static Socket socket;
 
-
     public static synchronized Socket getSocket() {
 
         if(socket.connected() == false){

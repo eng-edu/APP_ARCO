@@ -1,5 +1,10 @@
 package com.developer.edu.app_arco.conectionAPI;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -76,11 +81,15 @@ public interface RetrofitService {
     Call<String> buscarEtapas(@Path("ID_ARCO") String ID_ARCO,
                               @Path("ID_USUARIO") String ID_USUARIO);
 
-
     @GET("arco/buscarArcosComaprtilhados")
     Call<String> buscarArcosComaprtilhados();
 
 
     @GET("arco/buscarRanking")
     Call<String> buscarRanking();
+
+    @GET("arco/gerarmedia/{list}")
+    Call<String> gerarMediaArcos(@Path("list")List array);
+
+
 }

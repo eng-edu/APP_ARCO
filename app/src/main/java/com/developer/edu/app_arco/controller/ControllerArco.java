@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.developer.edu.app_arco.AdapterArco;
 import com.developer.edu.app_arco.AdapterUsuario;
 import com.developer.edu.app_arco.ArcoActivity;
-import com.developer.edu.app_arco.ComentarioActivity;
 import com.developer.edu.app_arco.PerfilActivity;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
@@ -30,7 +29,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -103,9 +101,12 @@ public class ControllerArco {
             }
         });
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                listView.setItemChecked(position, true);
 
                 alert.dismiss();
                 context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", arrayAdapter.getItem(position).getID()).putExtra("MEUS_ARCOS","S"));

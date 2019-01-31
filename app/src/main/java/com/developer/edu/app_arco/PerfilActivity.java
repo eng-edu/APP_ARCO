@@ -2,9 +2,7 @@ package com.developer.edu.app_arco;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -63,8 +61,6 @@ public class PerfilActivity extends AppCompatActivity {
         sexoM.setEnabled(false);
         sexoF.setEnabled(false);
         escolaridade.setEnabled(false);
-
-
 
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override

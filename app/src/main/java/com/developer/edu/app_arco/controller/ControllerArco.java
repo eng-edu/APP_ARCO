@@ -120,7 +120,6 @@ public class ControllerArco {
 
     }
 
-
     public static void bucarMeusArco(final Context context, final LayoutInflater inflater) {
 
 

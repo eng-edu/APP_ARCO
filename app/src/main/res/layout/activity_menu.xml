@@ -410,7 +410,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/cercleshape8"
                             android:padding="10dp"
-                            android:src="@mipmap/ic_todosarcos" />
+                            android:src="@mipmap/ic_aproveitamento"/>
 
                         <TextView
                             android:layout_width="wrap_content"

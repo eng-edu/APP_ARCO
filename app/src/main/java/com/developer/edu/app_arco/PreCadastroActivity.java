@@ -22,7 +22,7 @@ public class PreCadastroActivity extends AppCompatActivity {
         final String[] infos = new String[]
                 {"Metodologia ativa\n" +
                         "É um processo de aprendizagem onde a sua principal característica e fazer do aluno/estudante o maior responsável pelo seu aprendizado participando ativamente da construção do seu conhecimento onde se desenvolve sua capacidade de pesquisa, observação e uma visão mais crítica sobre o mundo.",
-                        "O arco de Maguerez é uma metodologia problematizadora que fornece um caminho para a atuação sobre os problemas da realidade. Uma ferramenta onde auxilia na aprendizagem do aluno, onde invés de uma aula mais ou menos passiva em que os alunos se limitariam a ouvir o professor, eles se tornam agentes ativos, deixam  de estar dependentes de alguém, neste caso de um professor, para se tornarem independentes na procura de soluções para os seus próprios problemas.\n" +
+                        "Arco de Maguerez\n" +"É uma metodologia problematizadora que fornece um caminho para a atuação sobre os problemas da realidade. Uma ferramenta onde auxilia na aprendizagem do aluno, onde invés de uma aula mais ou menos passiva em que os alunos se limitariam a ouvir o professor, eles se tornam agentes ativos, deixam  de estar dependentes de alguém, neste caso de um professor, para se tornarem independentes na procura de soluções para os seus próprios problemas.\n" +
                                 "A metodologia apresenta um esquema dividido em cinco etapas que começam e terminam na realidade, ou seja, o aluno trabalhará com informações reais direcionado a um projeto real no final. ",
                         "Educação Sexual\n" +
                                 "É ensinar e esclarecer dúvidas sobre os aspectos cognitivos, físicos, emocionais e sociais da sexualidade, é preparar jovens e adolescentes para que desenvolvam conhecimento, e valores éticos para realizar escolhas positivas e saudáveis sobre relacionamentos e colabora para o amadurecimento e evitar conflitos provenientes de dúvida e medos.",
@@ -34,10 +34,10 @@ public class PreCadastroActivity extends AppCompatActivity {
 
 
 
-        final EditText texto = findViewById(R.id.id_precadastro_texto);
-        final Button avancar = findViewById(R.id.id_precadastro_avancar);
-        final Button lider = (Button) findViewById(R.id.id_precadastro_lider);
-        final Button menbro = (Button) findViewById(R.id.id_precadastro_menbro);
+        final TextView texto = findViewById(R.id.id_precadastro_texto);
+        final ImageView avancar = findViewById(R.id.id_precadastro_avancar);
+        final ImageView lider =  findViewById(R.id.id_precadastro_lider);
+        final ImageView menbro = findViewById(R.id.id_precadastro_menbro);
 
         lider.setVisibility(View.INVISIBLE);
         menbro.setVisibility(View.INVISIBLE);
@@ -94,5 +94,12 @@ public class PreCadastroActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(PreCadastroActivity.this, LoginActivity.class));
+        finish();
     }
 }

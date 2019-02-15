@@ -37,7 +37,6 @@ public class ControllerLogin {
                     try {
 
                         JSONObject usuario = new JSONObject(response.body());
-
                         final SharedPreferences.Editor editor = context.getSharedPreferences("MY_PREF", MODE_PRIVATE).edit();
                         editor.putString("ID", usuario.getString("ID"));
                         editor.putString("TIPO", usuario.getString("TIPO"));

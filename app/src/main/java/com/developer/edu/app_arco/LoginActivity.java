@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
@@ -20,7 +22,7 @@ import io.socket.client.Socket;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public Socket socket;
+    private Socket socket;
 
     {
         try {
@@ -29,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
 
     @Override
@@ -42,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         final EditText email = findViewById(R.id.id_login_email);
         final EditText senha = findViewById(R.id.id_login_senha);
         Button entrar = findViewById(R.id.id_login_entrar);
-        Button cadstrar = findViewById(R.id.id_login_cadastro);
+        TextView cadstrar = findViewById(R.id.id_login_cadastro);
+
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String result = sharedPreferences.getString("ID", "");
 
@@ -58,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (email.getText().length() > 0 && senha.getText().length() > 0) {
                     ControllerLogin.logar(LoginActivity.this, email.getText().toString(), senha.getText().toString());
+                }else {
+                    Toast.makeText(LoginActivity.this, "preencha todos os campos!", Toast.LENGTH_SHORT).show();
                 }
 
             }

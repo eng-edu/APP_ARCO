@@ -14,9 +14,9 @@
         <ImageView
             android:id="@+id/id_precadastro_img"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/metodologia_ativa" />
+            android:src="@drawable/scholl2" />
 
         <ImageView
             android:id="@+id/id_precadastro_avancar"

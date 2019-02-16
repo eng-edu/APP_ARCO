@@ -18,51 +18,47 @@
             android:scaleType="centerCrop"
             android:src="@drawable/metodologia_ativa" />
 
-        <TextView
-            android:id="@+id/id_precadastro_texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="5dp"
-            android:text="Metodologia ativa é um processo de aprendizagem onde a sua principal característica e fazer do aluno/estudante o maior responsável pelo seu aprendizado participando ativamente da construção do seu conhecimento onde se desenvolve sua capacidade de pesquisa, observação e uma visão mais crítica sobre o mundo."></TextView>
-
         <ImageView
             android:id="@+id/id_precadastro_avancar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
             android:background="@drawable/cercleshape3"
             android:src="@mipmap/ic_next" />
 
-        <ImageView
+        <TextView
+            android:id="@+id/id_precadastro_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:text="Metodologia ativa é um processo de aprendizagem onde a sua principal característica e fazer do aluno/estudante o maior responsável pelo seu aprendizado participando ativamente da construção do seu conhecimento onde se desenvolve sua capacidade de pesquisa, observação e uma visão mais crítica sobre o mundo."></TextView>
 
+        <Button
             android:id="@+id/id_precadastro_lider"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_lider" />
-
-        <TextView
-            android:id="@+id/id_precadastro_lider_legend"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Líder" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:drawableRight="@mipmap/ic_adult"
+            android:text="LÍDER"
+            android:textColor="@color/backgroundcolor" />
 
-        <ImageView
+        <Button
             android:id="@+id/id_precadastro_menbro"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/ic_equipe" />
-
-        <TextView
-            android:id="@+id/id_precadastro_menbro_legend"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Menbro" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableRight="@mipmap/ic_adolecent"
+            android:text="MEMBRO"
+            android:textColor="@color/colorPrimaryDark" />
+
 
 
     </LinearLayout>

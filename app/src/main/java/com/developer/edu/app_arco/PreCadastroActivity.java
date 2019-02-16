@@ -3,10 +3,12 @@ package com.developer.edu.app_arco;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class PreCadastroActivity extends AppCompatActivity {
@@ -36,11 +38,10 @@ public class PreCadastroActivity extends AppCompatActivity {
 
         final TextView texto = findViewById(R.id.id_precadastro_texto);
         final ImageView avancar = findViewById(R.id.id_precadastro_avancar);
-        final ImageView lider =  findViewById(R.id.id_precadastro_lider);
-        final ImageView menbro = findViewById(R.id.id_precadastro_menbro);
-
-        lider.setVisibility(View.INVISIBLE);
-        menbro.setVisibility(View.INVISIBLE);
+        final Button lider =  findViewById(R.id.id_precadastro_lider);
+        final Button menbro = findViewById(R.id.id_precadastro_menbro);
+        lider.setVisibility(View.GONE);
+        menbro.setVisibility(View.GONE);
 
         texto.setText(infos[avanco]);
         avanco++;
@@ -65,7 +66,7 @@ public class PreCadastroActivity extends AppCompatActivity {
                     texto.setText(infos[avanco]);
                     lider.setVisibility(View.VISIBLE);
                     menbro.setVisibility(View.VISIBLE);
-                    avancar.setVisibility(View.INVISIBLE);
+                    avancar.setVisibility(View.GONE);
                 }
             }
         });

@@ -4,39 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2"
+    android:background="@drawable/gradient_background"
     tools:context=".CadastroActivity">
 
     <LinearLayout
 
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_gravity="center"
         android:background="@drawable/shape_caixa"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
-            android:layout_gravity="center"
-        
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="Foto de perfil"
-            android:textAlignment="center"
-            android:textSize="10sp" />
+            android:layout_gravity="center"
+            android:text="Foto de perfil"/>
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/Id_cadastro_image_perfil"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_user"
-            app:civ_border_color="@color/colorAccent"
+            android:src="@mipmap/ic_foto_perfil"
+            app:civ_border_color="@color/backgroundcolor"
             app:civ_border_width="1dp" />
 
 
@@ -110,6 +105,8 @@
             android:id="@+id/id_cadastro_radiogroup_sexo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -117,14 +114,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="SEXO:"
-                android:textSize="10sp" />
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/id_cadastro_sexo_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:checked="true"
                 android:text="M"
                 android:textColor="@color/colorPrimaryDark"
@@ -135,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:text="F"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="10sp" />
@@ -144,11 +141,13 @@
         </RadioGroup>
 
         <Button
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/id_cadastro_cadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="CADASTRAR"
             android:textColor="@color/backgroundcolor"
             android:textSize="12sp" />

@@ -2,9 +2,11 @@ package com.developer.edu.app_arco;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,11 +22,15 @@ import android.widget.Toast;
 
 import com.developer.edu.app_arco.controller.ControllerCadastro;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
 public class CadastroActivity extends AppCompatActivity {
 
     public static final int IMAGEM_INTERNA = 12;
-    ImageView fotoPerfil;
-    String pathfoto = "";
+    public static final int IMAGEM_CAMERA = 13;
+    private ImageView fotoPerfil;
+    private String pathfoto = "";
 
 
     @Override
@@ -81,12 +87,12 @@ public class CadastroActivity extends AppCompatActivity {
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pegarImg(v);
+                pegarImgGalery(v);
             }
         });
     }
 
-    public void pegarImg(View view) {
+    public void pegarImgGalery(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem: "), IMAGEM_INTERNA);
     }
@@ -95,7 +101,6 @@ public class CadastroActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(CadastroActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            //e caso ainda não tenha dado, ele solicita...
             ActivityCompat.requestPermissions((Activity) CadastroActivity.this,
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
@@ -103,7 +108,6 @@ public class CadastroActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 
         if (requestCode == IMAGEM_INTERNA && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
@@ -120,9 +124,7 @@ public class CadastroActivity extends AppCompatActivity {
             ImageView imageView = (ImageView) findViewById(R.id.Id_cadastro_image_perfil);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             pathfoto = picturePath;
-
         }
-
     }
 
     @Override

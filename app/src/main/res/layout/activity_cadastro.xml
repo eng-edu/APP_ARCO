@@ -8,10 +8,10 @@
     tools:context=".CadastroActivity">
 
     <LinearLayout
-
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="top|center"
         android:background="@drawable/shape_caixa"
         android:orientation="vertical"
         android:padding="10dp">
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Foto de perfil"/>
+            android:text="Foto de perfil" />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/Id_cadastro_image_perfil"
@@ -34,7 +34,6 @@
             app:civ_border_color="@color/backgroundcolor"
             app:civ_border_width="1dp" />
 
-
         <EditText
             android:id="@+id/id_nome_cadastro"
             android:layout_width="match_parent"
@@ -45,20 +44,18 @@
             android:ems="10"
             android:hint="NOME:"
             android:inputType="textPersonName"
-            android:textColor="@color/colorAccent"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/id_idade_cadastro"
+            android:id="@+id/id_data_nasc_cadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:autofillHints=""
             android:ems="10"
-            android:hint="IDADE:"
+            android:hint="DATA DE NASCIMENTO:"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorAccent"
             android:textSize="14sp" />
 
         <EditText
@@ -71,7 +68,6 @@
             android:ems="10"
             android:hint="ESCOLARIDADE:"
             android:inputType="textPersonName"
-            android:textColor="@color/colorAccent"
             android:textSize="14sp" />
 
         <EditText
@@ -84,7 +80,6 @@
             android:ems="10"
             android:hint="EMAIL:"
             android:inputType="textEmailAddress"
-            android:textColor="@color/colorAccent"
             android:textSize="14sp" />
 
 
@@ -98,7 +93,6 @@
             android:ems="10"
             android:hint="SENHA:"
             android:inputType="textPassword"
-            android:textColor="@color/colorAccent"
             android:textSize="14sp" />
 
         <RadioGroup
@@ -141,12 +135,12 @@
         </RadioGroup>
 
         <Button
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:id="@+id/id_cadastro_cadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:text="CADASTRAR"
             android:textColor="@color/backgroundcolor"

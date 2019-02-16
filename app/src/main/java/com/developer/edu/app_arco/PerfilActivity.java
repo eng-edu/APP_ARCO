@@ -50,8 +50,6 @@ public class PerfilActivity extends AppCompatActivity {
             alterar.setVisibility(View.INVISIBLE);
         }
 
-
-
         //BUSCA NO SERVER O PERFIL .........
         Controllerperfil.buscarUsuario(PerfilActivity.this, pontos, fotoPerfil, nome, idade, sexoM, sexoF, escolaridade, email, getIntent().getStringExtra("ID_USUARIO"));
 
@@ -82,7 +80,6 @@ public class PerfilActivity extends AppCompatActivity {
 
                     //salva as alterações no server...
 
-
                     //bloqueia as edições
                     fotoPerfil.setEnabled(false);
                     nome.setEnabled(false);
@@ -108,8 +105,6 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
-
-       // fotoPerfil = (ImageView) findViewById(R.id.Id_perfil_image_perfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +113,6 @@ public class PerfilActivity extends AppCompatActivity {
         });
 
     }
-
     public void pegarImg(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem: "), IMAGEM_INTERNA);
@@ -133,11 +127,8 @@ public class PerfilActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 
         if (requestCode == IMAGEM_INTERNA && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();

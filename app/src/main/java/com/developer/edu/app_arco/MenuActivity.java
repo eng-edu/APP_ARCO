@@ -18,52 +18,24 @@ import com.developer.edu.app_arco.controller.ControllerTematica;
 
 public class MenuActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.turn);
-        final MediaPlayer mp1 = MediaPlayer.create(this, R.raw.turn);
-
-        CardView redimento = findViewById(R.id.card_rendimento);
         CardView perfil = findViewById(R.id.card_meuperfil);
         CardView novoArco = findViewById(R.id.card_novoarco);
         CardView meusArcos = findViewById(R.id.card_meusarcos);
         CardView arcosCompartilhados = findViewById(R.id.card_compartilhados);
         CardView ranking = findViewById(R.id.card_ranking);
         CardView premioMes = findViewById(R.id.card_premiodomes);
-        CardView novaTematica = findViewById(R.id.card_novatematica);
-        CardView premium = findViewById(R.id.card_premium);
         Button sair = findViewById(R.id.id_menu_sair);
-
-        HorizontalScrollView scrollView1 = findViewById(R.id.scrollmenu1);
-        HorizontalScrollView scrollView2 = findViewById(R.id.scrollmenu2);
-
-        scrollView1.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-
-            }
-        });
-
-        scrollView2.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-
-            }
-        });
-
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String tipo = sharedPreferences.getString("TIPO", "");
 
         if (tipo.equals("2")) {
             novoArco.setVisibility(View.GONE);
-            novaTematica.setVisibility(View.GONE);
-            premium.setVisibility(View.GONE);
-            redimento.setVisibility(View.GONE);
         }
 
         perfil.setOnClickListener(new View.OnClickListener() {
@@ -113,14 +85,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this, PremioActivity.class));
-            }
-        });
-
-        redimento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LayoutInflater inflater = getLayoutInflater();
-                ControllerArco.bucarMeusArco2(MenuActivity.this, inflater);
             }
         });
 

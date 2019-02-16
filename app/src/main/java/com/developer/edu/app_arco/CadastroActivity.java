@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.controller.ControllerCadastro;
+import com.developer.edu.app_arco.model.MaskEditUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,7 +42,7 @@ public class CadastroActivity extends AppCompatActivity {
         pedirPermisssaoParaAcessarArmazenamento();
 
         final EditText nome = findViewById(R.id.id_nome_cadastro);
-        final EditText idade = findViewById(R.id.id_idade_cadastro);
+        final EditText data_nasc = findViewById(R.id.id_data_nasc_cadastro);
         final RadioButton sexoM = findViewById(R.id.id_cadastro_sexo_m);
         final RadioButton sexoF = findViewById(R.id.id_cadstro_sexo_f);
         final EditText escolaridade = findViewById(R.id.id_cadastro_escolaridade);
@@ -49,6 +50,8 @@ public class CadastroActivity extends AppCompatActivity {
         final EditText senha = findViewById(R.id.id_senha_castro);
         final Button cadastrar = findViewById(R.id.id_cadastro_cadastrar);
         final String tipo = getIntent().getStringExtra("tipo");
+
+        data_nasc.addTextChangedListener(MaskEditUtil.mask(data_nasc, MaskEditUtil.FORMAT_DATE));
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +66,13 @@ public class CadastroActivity extends AppCompatActivity {
                 }
 
                 if (nome.getText().length() > 0
-                        && idade.getText().length() > 0
+                        && data_nasc.getText().length() > 0
                         && escolaridade.getText().length() > 0
                         && email.getText().length() > 0
                         && senha.getText().length() > 0) {
 
                     ControllerCadastro.cadastrar(CadastroActivity.this, nome.getText().toString(),
-                            idade.getText().toString(),
+                            data_nasc.getText().toString(),
                             sexo,
                             escolaridade.getText().toString(),
                             email.getText().toString(),

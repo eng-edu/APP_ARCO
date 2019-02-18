@@ -28,7 +28,7 @@ public class ControllerLogin {
         dialog.setCancelable(false);
         dialog.show();
 
-        Call<String> stringCall = ConfigRetrofit.getService().buscarUsuarioEmailSenha(email,senha);
+        Call<String> stringCall = ConfigRetrofit.getService().logar(email,senha);
                 stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

@@ -35,8 +35,8 @@ public interface RetrofitService {
                                 @Part MultipartBody.Part file,
                                 @Part("file") RequestBody name);
 
-    @GET("usuario/buscarUsuarioEmailSenha/{EMAIL}/{SENHA}")
-    Call<String> buscarUsuarioEmailSenha(@Path("EMAIL") String EMAIL,
+    @GET("usuario/logar/{EMAIL}/{SENHA}")
+    Call<String> logar(@Path("EMAIL") String EMAIL,
                               @Path("SENHA") String SENHA);
 
     @GET("usuario/buscar/{ID}")

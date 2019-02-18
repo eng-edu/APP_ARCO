@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">APP_ARCO</string>
+    <string-array name="escolaridade_tipo1">
+        <item>Superior</item>
+        <item>Pós-graduado</item>
+        <item>Mestrado</item>
+        <item>Doutorado</item>
+        <item>Pós-Doutorado</item>
+    </string-array>
+    <string-array name="escolaridade_tipo2">
+        <item>Fundamental</item>
+        <item>Médio</item>
+    </string-array>
 </resources>

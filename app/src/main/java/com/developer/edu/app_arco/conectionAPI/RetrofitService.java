@@ -18,12 +18,17 @@ import retrofit2.http.Path;
 public interface RetrofitService {
 
 
+    //bio, nome, sobrenome, cpf, sexo, datanasc, escolaridade, email, senha, tipo, fileToUpload, filename
+
     @Multipart
-    @POST("/usuario/inserir/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}/{EMAIL}/{SENHA}/{TIPO}")
-    Call<String> inserirUsuario(@Path("NOME") String NOME,
-                                @Path("IDADE") String IDADE,
+    @POST("/usuario/cadastrar/{BIO}/{NOME}/{SOBRENOME}/{CPF}/{SEXO}/{DATA_NASC}/{ESCOLARIDADE}/{EMAIL}/{SENHA}/{TIPO}")
+    Call<String> cadastrarUsuario(@Path("BIO") String BIO,
+                                @Path("NOME") String NOME,
+                                @Path("SOBRENOME") String SOBRENOME,
+                                @Path("CPF") String CPF,
                                 @Path("SEXO") String SEXO,
-                                @Path("ESCOLARIDADE") String ESCOLARIDAE,
+                                @Path("DATA_NASC") String DATA_NASC,
+                                @Path("ESCOLARIDADE") String ESCOLARIDADE,
                                 @Path("EMAIL") String EMAIL,
                                 @Path("SENHA") String SENHA,
                                 @Path("TIPO") String TIPO,

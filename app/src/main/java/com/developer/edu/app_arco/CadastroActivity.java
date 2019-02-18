@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.developer.edu.app_arco.controller.ControllerCadastro;
 import com.developer.edu.app_arco.model.MaskEditUtil;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -177,6 +178,7 @@ public class CadastroActivity extends AppCompatActivity {
         } else if (tipo.equals("2")) {
             cpf.setVisibility(View.GONE);
             cpf.setText("");
+            cpfvalido = true;
             adapter = ArrayAdapter.createFromResource(this, R.array.escolaridade_tipo2, android.R.layout.simple_spinner_item);
         }
 
@@ -219,9 +221,21 @@ public class CadastroActivity extends AppCompatActivity {
                         && cpfvalido == true
                         && datanascvalido == true
                         && emailvalido == true
-                        && senhavalido == true
-                        && senha.getText().length() > 0
-                        && csenha.getText().length() > 0) {
+                        && senhavalido == true) {
+
+                    ControllerCadastro.cadastrar(CadastroActivity.this,
+                            pathfoto,
+                            bio.getText().toString(),
+                            nome.getText().toString(),
+                            sobrenome.getText().toString(),
+                            cpf.getText().toString(),
+                            sexo,
+                            data_nasc.getText().toString(),
+                            String.valueOf(spinner_escolaridade.getSelectedItem()),
+                            email.getText().toString(),
+                            senha.getText().toString(),
+                            tipo,
+                            email);
 
                     Toast.makeText(CadastroActivity.this, "pronto para cadastro", Toast.LENGTH_SHORT).show();
 

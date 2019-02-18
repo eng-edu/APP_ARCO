@@ -13,6 +13,7 @@
         android:layout_gravity="top|center"
         android:background="@drawable/shape_caixa"
         android:orientation="vertical"
+        android:layout_margin="10dp"
         android:padding="10dp">
 
         <TextView

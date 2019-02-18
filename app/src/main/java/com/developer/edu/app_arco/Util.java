@@ -97,7 +97,6 @@ public class Util {
 
     public static boolean verificarConexaoSocket(Socket socket, Context context) {
 
-
         boolean result = false;
 
         if(socket.connected()){
@@ -105,7 +104,6 @@ public class Util {
         }else {
             Toast.makeText(context,"Verifique sua conexão e tente novamente!", Toast.LENGTH_SHORT).show();
         }
-
 
         return result;
     }

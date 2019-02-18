@@ -36,6 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
     boolean cpfvalido = false;
     boolean datanascvalido = false;
     boolean emailvalido = false;
+    boolean senhavalido = false;
 
 
     @Override
@@ -130,6 +131,45 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
+        senha.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (senha.getText().length() > 8) {
+                    senha.setTextColor(Color.BLACK);
+                    senhavalido = true;
+                } else {
+                    senha.setTextColor(Color.RED);
+                    senhavalido = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        csenha.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (senha.getText().toString().equals(csenha.getText().toString()) == true) {
+                    csenha.setTextColor(Color.BLACK);
+                } else {
+                    csenha.setTextColor(Color.RED);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         if (tipo.equals("1")) {
             adapter = ArrayAdapter.createFromResource(this, R.array.escolaridade_tipo1, android.R.layout.simple_spinner_item);
@@ -170,6 +210,8 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this, "As senhas não correspondem!", Toast.LENGTH_SHORT).show();
                 } else if (pathfoto.length() < 0) {
                     Toast.makeText(CadastroActivity.this, "Adicione uma foto de perfil!", Toast.LENGTH_SHORT).show();
+                } else if (!senhavalido) {
+                    Toast.makeText(CadastroActivity.this, "Senha muito curta!", Toast.LENGTH_SHORT).show();
                 } else if (pathfoto.length() > 0
                         && bio.getText().length() > 0
                         && nome.getText().length() > 0
@@ -177,6 +219,7 @@ public class CadastroActivity extends AppCompatActivity {
                         && cpfvalido == true
                         && datanascvalido == true
                         && emailvalido == true
+                        && senhavalido == true
                         && senha.getText().length() > 0
                         && csenha.getText().length() > 0) {
 

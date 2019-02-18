@@ -237,8 +237,6 @@ public class CadastroActivity extends AppCompatActivity {
                             tipo,
                             email);
 
-                    Toast.makeText(CadastroActivity.this, "pronto para cadastro", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Toast.makeText(CadastroActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }

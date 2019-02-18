@@ -1,8 +1,8 @@
 package com.developer.edu.app_arco.controller;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,11 +19,10 @@ import retrofit2.Response;
 
 public class ControllerCadastro {
 
-    public static void cadastrar(final Context context, String pathfoto, String bio, String nome, String sobrenome, final String cpf, final String sexo, String datanasc, String escolaridade, final String email, final String senha, String tipo, EditText edemail) {
+    public static void cadastrar(final Context context, String pathfoto, String bio, String nome, String sobrenome, final String cpf, final String sexo, String datanasc, String escolaridade, final String email, final String senha, String tipo, final EditText edemail) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
-        dialog.setCancelable(false);
         dialog.show();
 
         File file = new File(pathfoto);
@@ -41,11 +40,16 @@ public class ControllerCadastro {
                     //chama o controller login
 //                    ControllerLogin.logar(context, email, senha);
 //                    ((Activity) context).finish();
-//                    dialog.dismiss();
+                    dialog.dismiss();
 
                 } else if (response.code() == 203) {
                     Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+
+                } else if (response.code() == 201) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                    edemail.setTextColor(Color.RED);
                 }
             }
 

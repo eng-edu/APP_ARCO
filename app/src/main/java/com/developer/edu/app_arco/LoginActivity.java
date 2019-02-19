@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText senha = findViewById(R.id.id_login_senha);
         Button entrar = findViewById(R.id.id_login_entrar);
         TextView cadstrar = findViewById(R.id.id_login_cadastro);
-
+        TextView recuperar = findViewById(R.id.id_login_recuperar);
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String result = sharedPreferences.getString("ID", "");
 
@@ -53,6 +53,12 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+        recuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RecuperarSenhaActivity.class));
+            }
+        });
 
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override

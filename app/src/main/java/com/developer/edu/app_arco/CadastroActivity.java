@@ -110,7 +110,6 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
-
         email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -291,7 +290,7 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
+        startActivity(new Intent(CadastroActivity.this, PreCadastroActivity.class));
         finish();
     }
 

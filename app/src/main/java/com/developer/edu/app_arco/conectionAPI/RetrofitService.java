@@ -1,8 +1,5 @@
 package com.developer.edu.app_arco.conectionAPI;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -38,6 +35,13 @@ public interface RetrofitService {
     @GET("usuario/logar/{EMAIL}/{SENHA}")
     Call<String> logar(@Path("EMAIL") String EMAIL,
                               @Path("SENHA") String SENHA);
+
+
+    @POST("usuario/recuperarSenha/{EMAIL}/{DATA_NASC}")
+    Call<String> recuperarSenha(@Path("EMAIL") String EMAIL,
+                                @Path("DATA_NASC") String DATA_NASC);
+
+
 
     @GET("usuario/buscar/{ID}")
     Call<String> buscarUsuario(@Path("ID") String ID);

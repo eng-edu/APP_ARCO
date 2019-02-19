@@ -12,164 +12,129 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/Id_perfil_image_perfil"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_user"
-            app:civ_border_color="@color/colorAccent"
-            app:civ_border_width="1dp" />
-
-
         <TextView
-            android:id="@+id/id_email_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:autofillHints=""
-            android:ems="10"
-            android:fontFamily="@font/caveat_brush"
-            android:hint="EMAIL:"
-            android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:layout_marginBottom="10dp"
+            android:text="eduardolima384@gmail.com"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/Id_perfil_image_perfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left"
+                android:layout_marginBottom="5dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_user_login"
+                app:civ_border_color="@color/backgroundcolor"
+                app:civ_border_width="1dp" />
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Líder" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eduardo" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Superior" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="uma frase legal que represente a bio" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark">
+
+        </View>
 
         <TextView
-            android:id="@+id/id_perfil_pontos"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/caveat_brush"
-            android:text="pontos"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textSize="30sp"
-            android:textStyle="italic" />
+            android:layout_marginBottom="10dp"
+            android:text="Formação"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_lider" />
-
-            <EditText
-                android:id="@+id/id_nome_perfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="NOME:"
-                android:inputType="textPersonName"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_bolo" />
-
-            <EditText
-            android:id="@+id/id_idade_perfil"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="IDADE:"
-            android:inputType="numberDecimal"
-                android:textColor="@color/colorAccent"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_escolaridade" />
-
-            <EditText
-                android:id="@+id/id_perfil_escolaridade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="ESCOLARIDADE:"
-                android:inputType="textPersonName"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/id_cadastro_radiogroup_sexo"
-            android:layout_width="match_parent"
+            android:text="instituição"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_sexo" />
-
-            <RadioButton
-                android:id="@+id/id_perfil_sexo_m"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:buttonTint="@color/colorAccent"
-                android:checked="true"
-                android:text="M"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="10sp" />
-
-            <RadioButton
-                android:id="@+id/id_perfil_sexo_f"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:buttonTint="@color/colorAccent"
-                android:text="F"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="10sp" />
-
-
-        </RadioGroup>
-
-
-        <Button
-            android:id="@+id/id_perfil_alterar"
-            android:layout_width="match_parent"
+            android:text="area de estudo"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:text="EDITAR"
-            android:textColor="@color/backgroundcolor"
-            android:textSize="12sp" />
+            android:text="ano de formação"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grupos"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrição"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark">
+
+        </View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Conquistas"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 

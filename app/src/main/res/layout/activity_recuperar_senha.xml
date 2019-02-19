@@ -23,14 +23,23 @@
 
             <TextView
                 android:layout_margin="5dp"
+                android:layout_height="wrap_content"
+                android:text="RECUPERAR SENHA"
                 android:layout_gravity="center"
+                android:layout_width="wrap_content" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RECUPERAR SENHA" />
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="A nova senha será envida para o seu email!"
+                android:textSize="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
@@ -59,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:autofillHints=""
                     android:ems="10"
-                    android:hint="Data de nasciemento:"
+                    android:hint="Data de nascimento:"
                     android:inputType="numberDecimal"
                     android:textSize="14sp" />
 
@@ -67,16 +76,14 @@
 
 
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/id_recuperar_recuperar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:text="Enviar nova senha para o meu email"
+                android:text="Recuperar"
                 android:textAllCaps="false"
-                android:textColor="@color/backgroundcolor"
-                android:textSize="10sp" />
+                android:textColor="@color/backgroundcolor" />
 
         </LinearLayout>
 

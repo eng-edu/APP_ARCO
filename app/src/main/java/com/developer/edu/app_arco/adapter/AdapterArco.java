@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.model.Arco;
 
 import java.util.List;

@@ -18,31 +18,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".act.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PreCadastroActivity" />
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".ListaActivity" />
-        <activity android:name=".PremioActivity" />
-        <activity android:name=".PerfilActivity" />
-        <activity android:name=".ArcoActivity" />
-        <activity android:name=".EquipeActivity" />
-        <activity android:name=".EtapaActivity" />
-        <activity android:name=".ComentarioActivity" />
+        <activity android:name=".act.PreCadastroActivity" />
+        <activity android:name=".act.CadastroActivity" />
+        <activity android:name=".act.MenuActivity" />
+        <activity android:name=".act.ListaActivity" />
+        <activity android:name=".act.PremioActivity" />
+        <activity android:name=".act.PerfilActivity" />
+        <activity android:name=".act.ArcoActivity" />
+        <activity android:name=".act.EquipeActivity" />
+        <activity android:name=".act.EtapaActivity" />
+        <activity android:name=".act.ComentarioActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".TESTE" />
-        <activity android:name=".MediaActivity" />
-        <activity android:name=".RecuperarSenhaActivity"></activity>
+        <activity android:name=".util.TESTE" />
+        <activity android:name=".act.MediaActivity" />
+        <activity android:name=".act.RecuperarSenhaActivity"></activity>
     </application>
 
 </manifest>

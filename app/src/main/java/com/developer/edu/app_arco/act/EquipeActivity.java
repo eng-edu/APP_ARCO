@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.act;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.developer.edu.app_arco.adapter.AdapterUsuario;
+import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerEquipe;
 import com.developer.edu.app_arco.model.Usuario;

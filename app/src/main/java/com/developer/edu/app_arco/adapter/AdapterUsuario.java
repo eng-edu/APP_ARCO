@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.model.Usuario;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;

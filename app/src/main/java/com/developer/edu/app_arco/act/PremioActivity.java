@@ -1,9 +1,10 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.act;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.developer.edu.app_arco.R;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 

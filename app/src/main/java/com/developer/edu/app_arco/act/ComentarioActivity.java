@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.act;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.developer.edu.app_arco.adapter.AdapterComentario;
+import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.model.Comentario;
 

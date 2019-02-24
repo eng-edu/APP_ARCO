@@ -15,8 +15,6 @@ import retrofit2.http.Path;
 public interface RetrofitService {
 
 
-    //bio, nome, sobrenome, cpf, sexo, datanasc, escolaridade, email, senha, tipo, fileToUpload, filename
-
     @Multipart
     @POST("/usuario/cadastrar/{BIO}/{NOME}/{SOBRENOME}/{CPF}/{SEXO}/{DATA_NASC}/{ESCOLARIDADE}/{EMAIL}/{SENHA}/{TIPO}")
     Call<String> cadastrarUsuario(@Path("BIO") String BIO,
@@ -42,9 +40,11 @@ public interface RetrofitService {
                                 @Path("DATA_NASC") String DATA_NASC);
 
 
-
-    @GET("usuario/buscar/{ID}")
+    @GET("usuario/buscarUsuario/{ID}")
     Call<String> buscarUsuario(@Path("ID") String ID);
+
+
+
 
     @Multipart
     @PUT("usuario/alterarComFoto/{ID}/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}")

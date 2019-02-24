@@ -21,8 +21,8 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\User\Documents\CAMPUS MOBILE\back.png" />
-                                      <entry key="outputName" value="ic_back" />
+                                      <entry key="imageAsset" value="C:\Users\User\Documents\CAMPUS MOBILE\icons\ic_edit_user.png" />
+                                      <entry key="outputName" value="ic_edit" />
                                     </map>
                                   </option>
                                 </PersistentState>

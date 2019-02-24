@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.act;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.util.Util;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 
 import org.json.JSONArray;

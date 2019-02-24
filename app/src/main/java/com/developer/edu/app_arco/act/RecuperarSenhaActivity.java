@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.act;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.util.Util;
 import com.developer.edu.app_arco.controller.ControllerRecuperarSenha;
 import com.developer.edu.app_arco.model.MaskEditUtil;
 

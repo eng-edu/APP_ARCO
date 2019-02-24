@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.developer.edu.app_arco.MenuActivity;
+import com.developer.edu.app_arco.act.MenuActivity;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 
 import org.json.JSONException;

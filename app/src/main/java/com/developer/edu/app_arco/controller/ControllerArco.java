@@ -13,11 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.developer.edu.app_arco.AdapterArco;
-import com.developer.edu.app_arco.AdapterUsuario;
-import com.developer.edu.app_arco.ArcoActivity;
-import com.developer.edu.app_arco.MediaActivity;
-import com.developer.edu.app_arco.PerfilActivity;
+import com.developer.edu.app_arco.adapter.AdapterArco;
+import com.developer.edu.app_arco.adapter.AdapterUsuario;
+import com.developer.edu.app_arco.act.ArcoActivity;
+import com.developer.edu.app_arco.act.MediaActivity;
+import com.developer.edu.app_arco.act.PerfilActivity;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.model.AdapterArco2;

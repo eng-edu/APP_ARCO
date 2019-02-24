@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco;
+package com.developer.edu.app_arco.act;
 
 import android.Manifest;
 import android.app.Activity;
@@ -23,6 +23,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.util.Util;
 import com.developer.edu.app_arco.controller.ControllerCadastro;
 import com.developer.edu.app_arco.model.MaskEditUtil;
 

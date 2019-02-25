@@ -42,7 +42,8 @@
 
         <activity android:name=".util.TESTE" />
         <activity android:name=".act.MediaActivity" />
-        <activity android:name=".act.RecuperarSenhaActivity"></activity>
+        <activity android:name=".act.RecuperarSenhaActivity" />
+        <activity android:name=".act.EditarPerfilActivity"></activity>
     </application>
 
 </manifest>

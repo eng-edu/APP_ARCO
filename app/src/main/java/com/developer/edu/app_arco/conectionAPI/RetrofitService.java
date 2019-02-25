@@ -44,25 +44,28 @@ public interface RetrofitService {
     Call<String> buscarUsuario(@Path("ID") String ID);
 
 
-
-
     @Multipart
-    @PUT("usuario/alterarComFoto/{ID}/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}")
+    @PUT("usuario/alterarComFoto/{ID}/{BIO}/{NOME}/{SOBRENOME}/{CPF}/{SEXO}/{DATA_NASC}/{ESCOLARIDADE}")
     Call<String> alterarComFotoUsuario(@Path("ID") String ID,
+                                       @Path("BIO") String BIO,
                                        @Path("NOME") String NOME,
-                                       @Path("IDADE") String IDADE,
+                                       @Path("SOBRENOME") String SOBRENOME,
+                                       @Path("CPF") String CPF,
                                        @Path("SEXO") String SEXO,
-                                       @Path("ESCOLARIDADE") String ESCOLARIDAE,
+                                       @Path("DATA_NASC") String DATA_NASC,
+                                       @Path("ESCOLARIDADE") String ESCOLARIDADE,
                                        @Part MultipartBody.Part file,
                                        @Part("file") RequestBody name);
 
-
-    @PUT("usuario/alterar/{ID}/{NOME}/{IDADE}/{SEXO}/{ESCOLARIDADE}")
+    @PUT("usuario/alterar/{ID}/{BIO}/{NOME}/{SOBRENOME}/{CPF}/{SEXO}/{DATA_NASC}/{ESCOLARIDADE}")
     Call<String> alterarUsuario(@Path("ID") String ID,
-                                       @Path("NOME") String NOME,
-                                       @Path("IDADE") String IDADE,
-                                       @Path("SEXO") String SEXO,
-                                       @Path("ESCOLARIDADE") String ESCOLARIDAE);
+                                @Path("BIO") String BIO,
+                                @Path("NOME") String NOME,
+                                @Path("SOBRENOME") String SOBRENOME,
+                                @Path("CPF") String CPF,
+                                @Path("SEXO") String SEXO,
+                                @Path("DATA_NASC") String DATA_NASC,
+                                @Path("ESCOLARIDADE") String ESCOLARIDADE);
 
     @GET("tematica/listar/")
     Call<String> buscarTematicas();

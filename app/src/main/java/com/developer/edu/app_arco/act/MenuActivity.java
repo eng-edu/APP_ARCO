@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
                 SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
                 final String ID_USUARIO = sharedPreferences.getString("ID", "");
-                intent.putExtra("meu_perfil", "S");
+                intent.putExtra("MEU_PERFIL", "S");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 startActivity(intent);
             }
@@ -59,7 +59,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                ControllerArco.bucarMeusArco(MenuActivity.this, inflater);
+              //  ControllerArco.bucarMeusArco(MenuActivity.this, inflater);
             }
         });
 
@@ -67,7 +67,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                ControllerArco.bucarArcosCompartilhados(MenuActivity.this, inflater);
+              //  ControllerArco.bucarArcosCompartilhados(MenuActivity.this, inflater);
             }
         });
 
@@ -75,7 +75,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                ControllerArco.bucarRanking(MenuActivity.this, inflater);
+              //  ControllerArco.bucarRanking(MenuActivity.this, inflater);
             }
         });
 

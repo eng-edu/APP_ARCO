@@ -1,17 +1,20 @@
 package com.developer.edu.app_arco.controller;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.act.PerfilActivity;
+import com.developer.edu.app_arco.bd.DB_usuario;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.model.Usuario;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -29,17 +32,9 @@ import retrofit2.Response;
 
 import static com.developer.edu.app_arco.conectionAPI.ConfigRetrofit.URL_BASE;
 
-public class Controllerperfil {
+public class ControllerPerfil {
 
-    public static void buscarUsuario(final View view, final String ID_USUARIO, final boolean meu_perfil) {
-
-        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_perfil);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                buscarUsuario(view, ID_USUARIO, meu_perfil);
-            }
-        });
+    public static void buscarPerfil(final View view, final String ID_USUARIO, final boolean meu_perfil, final SwipeRefreshLayout swipeRefreshLayout) {
 
         ImageView fotoperfil = view.findViewById(R.id.id_perfil_image_perfil);
         final TextView email = view.findViewById(R.id.id_perfil_email);
@@ -48,9 +43,7 @@ public class Controllerperfil {
         final TextView escolaridade = view.findViewById(R.id.id_perfil_escolaridade);
         final TextView bio = view.findViewById(R.id.id_perfil_bio);
 
-
         Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoperfil);
-
 
         Call<String> stringCall = ConfigRetrofit.getService().buscarUsuario(ID_USUARIO);
         stringCall.enqueue(new Callback<String>() {
@@ -60,18 +53,37 @@ public class Controllerperfil {
 
                     try {
 
+                        Usuario objusuario = new Usuario();
                         JSONObject usuario = new JSONObject(response.body());
 
-                        email.setText(usuario.getString("EMAIL"));
+                        objusuario.setId(usuario.getString("ID"));
+                        objusuario.setNome(usuario.getString("NOME"));
+                        objusuario.setSobrenome(usuario.getString("SOBRENOME"));
+                        objusuario.setEscolaridade(usuario.getString("ESCOLARIDADE"));
+                        objusuario.setCpf(usuario.getString("CPF"));
+                        objusuario.setData_nasc(usuario.getString("DATA_NASC"));
+                        objusuario.setEmail(usuario.getString("EMAIL"));
+                        objusuario.setSexo(usuario.getString("SEXO"));
+                        objusuario.setBio(usuario.getString("BIO"));
+                        objusuario.setTipo(usuario.getString("TIPO"));
+                        objusuario.setSituacao(usuario.getString("SITUACAO"));
+                        objusuario.setOline(usuario.getString("ONLINE"));
 
-                        if (usuario.getString("TIPO").equals("1")) {
+                        DB_usuario db_usuario = new DB_usuario(view.getContext());
+                        db_usuario.deletar(Integer.parseInt(ID_USUARIO));
+                        db_usuario.inserir(objusuario);
+
+
+                        email.setText(objusuario.getEmail());
+
+                        if (objusuario.getTipo().equals("1")) {
                             tipo.setText("Líder");
-                        } else if (usuario.getString("TIPO").equals("2")) {
+                        } else if (objusuario.getTipo().equals("2")) {
                             tipo.setText("Menbro");
                         }
-                        nome.setText(usuario.getString("NOME") + " " + usuario.getString("SOBRENOME"));
-                        escolaridade.setText(usuario.getString("ESCOLARIDADE"));
-                        bio.setText(usuario.getString("BIO"));
+                        nome.setText(objusuario.getNome() + " " + objusuario.getSobrenome());
+                        escolaridade.setText(objusuario.getEscolaridade());
+                        bio.setText(objusuario.getBio());
 
                         swipeRefreshLayout.setRefreshing(false);
 
@@ -95,27 +107,37 @@ public class Controllerperfil {
 
     }
 
-
-    public static void alterarUsuario(final Context context, EditText nome, EditText idade, String sexo, String pathfoto, EditText escolaridade, final ImageView fotoPerfil) {
+    public static void alterarPerfil(final Context context,
+                                     final String id,
+                                     final String meuperfil,
+                                     String pathfoto,
+                                     String bio,
+                                     String nome,
+                                     String sobrenome,
+                                     String cpf,
+                                     String sexo,
+                                     String data_nasc,
+                                     String escolaridade,
+                                     String tipo) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
+        dialog.setCancelable(false);
         dialog.show();
+
+
         Call<String> stringCall = null;
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
-        final String ID = sharedPreferences.getString("ID", "");
+        if (pathfoto == null) {
 
+            stringCall = ConfigRetrofit.getService().alterarUsuario(id, bio, nome, sobrenome, cpf, sexo, data_nasc, escolaridade);
 
-        if (pathfoto.equals("") || pathfoto == null) {
-            stringCall = ConfigRetrofit.getService().alterarUsuario(ID, nome.getText().toString(), idade.getText().toString(), sexo, escolaridade.getText().toString());
         } else {
             File file = new File(pathfoto);
             RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
             MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
             RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
-            stringCall = ConfigRetrofit.getService().alterarComFotoUsuario(ID, nome.getText().toString(), idade.getText().toString(), sexo, escolaridade.getText().toString(), fileToUpload, filename);
-
+            stringCall = ConfigRetrofit.getService().alterarComFotoUsuario(id, bio, nome, sobrenome, cpf, sexo, data_nasc, escolaridade, fileToUpload, filename);
         }
 
 
@@ -124,10 +146,13 @@ public class Controllerperfil {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
 
-                    Picasso.get().load(URL_BASE + "/IMG/" + ID + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoPerfil);
+                    Intent intent = new Intent(context, PerfilActivity.class);
+                    intent.putExtra("MEU_PERFIL", meuperfil);
+                    intent.putExtra("ID_USUARIO", id);
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
                     dialog.dismiss();
-
-                } else if (response.code() == 405) {
+                } else {
                     Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
@@ -139,5 +164,7 @@ public class Controllerperfil {
                 dialog.dismiss();
             }
         });
+
     }
+
 }

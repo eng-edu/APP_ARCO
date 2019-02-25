@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".act.CadastroActivity">
+    tools:context=".act.EditarPerfilActivity">
 
     <LinearLayout
-        android:background="@color/backgroundcolor"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
-        android:orientation="vertical"
         android:layout_margin="10dp"
+        android:background="@color/backgroundcolor"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
@@ -23,7 +23,7 @@
             android:text="Foto de perfil" />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/id_cadastro_image_perfil"
+            android:id="@+id/id_editarPerfil_image_perfil"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -35,7 +35,7 @@
             app:civ_border_width="1dp" />
 
         <EditText
-            android:id="@+id/id_cadastro_bio"
+            android:id="@+id/id_editarPerfil_bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -47,7 +47,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/id_cadastro_nome"
+            android:id="@+id/id_editarPerfil_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -59,7 +59,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/id_cadastro_sobrenome"
+            android:id="@+id/id_editarPerfil_sobrenome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -69,8 +69,9 @@
             android:hint="Sobrenome:"
             android:inputType="textPersonName"
             android:textSize="14sp" />
+
         <EditText
-            android:id="@+id/id_cadastro_cpf"
+            android:id="@+id/id_editarPerfil_cpf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -82,7 +83,7 @@
             android:textSize="14sp" />
 
         <RadioGroup
-            android:id="@+id/id_cadastro_radiogroup_sexo"
+            android:id="@+id/id_editarPerfil_radiogroup_sexo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -97,7 +98,7 @@
                 android:textSize="14sp" />
 
             <RadioButton
-                android:id="@+id/id_cadastro_sexo_m"
+                android:id="@+id/id_editarPerfil_sexo_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -108,7 +109,7 @@
                 android:textSize="10sp" />
 
             <RadioButton
-                android:id="@+id/id_cadstro_sexo_f"
+                android:id="@+id/id_editarPerfil_sexo_f"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -121,7 +122,7 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/id_cadastro_datanasc"
+            android:id="@+id/id_editarPerfil_datanasc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -135,63 +136,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:text="Escolaridade:"/>
+            android:text="Escolaridade:" />
+
         <Spinner
-            android:id="@+id/spinner_escolaridade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-        </Spinner>
-
-        <EditText
-            android:id="@+id/id_cadastro_email"
+            android:id="@+id/spinner_editarPerfil_escolaridade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="email:"
-            android:inputType="textEmailAddress"
-            android:textSize="14sp" />
+            android:layout_marginBottom="10dp"></Spinner>
 
-        <EditText
-            android:id="@+id/id_cadastro_senha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="senha:"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/id_cadastro_csenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="Confirme sua senha:"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
 
         <Button
-            android:id="@+id/id_cadastro_cadastrar"
+            android:id="@+id/id_editarPerfil_cadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="CADASTRAR"
+            android:text="SALVAR"
             android:textColor="@color/backgroundcolor"
             android:textSize="12sp" />
     </LinearLayout>

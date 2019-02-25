@@ -81,6 +81,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/id_perfil_editar_perfil"
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:layout_width="wrap_content"

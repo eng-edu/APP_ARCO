@@ -128,7 +128,7 @@ public class ControllerPerfil {
 
         Call<String> stringCall = null;
 
-        if (pathfoto == null) {
+        if (pathfoto == null || pathfoto.equals("")) {
 
             stringCall = ConfigRetrofit.getService().alterarUsuario(id, bio, nome, sobrenome, cpf, sexo, data_nasc, escolaridade);
 

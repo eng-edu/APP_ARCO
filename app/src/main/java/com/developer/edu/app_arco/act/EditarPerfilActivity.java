@@ -65,7 +65,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         final RadioButton sexoM = findViewById(R.id.id_editarPerfil_sexo_m);
         final RadioButton sexoF = findViewById(R.id.id_editarPerfil_sexo_f);
         final Spinner spinner_escolaridade = (Spinner) findViewById(R.id.spinner_editarPerfil_escolaridade);
-        final Button cadastrar = findViewById(R.id.id_editarPerfil_cadastrar);
+        final Button salvar = findViewById(R.id.id_editarPerfil_salvar);
 
         Usuario u = new DB_usuario(EditarPerfilActivity.this).buscar(ID_USUARIO);
 
@@ -163,9 +163,14 @@ public class EditarPerfilActivity extends AppCompatActivity {
         data_nasc.addTextChangedListener(MaskEditUtil.mask(data_nasc, MaskEditUtil.FORMAT_DATE));
         cpf.addTextChangedListener(MaskEditUtil.mask(cpf, MaskEditUtil.FORMAT_CPF));
 
-        cadastrar.setOnClickListener(new View.OnClickListener() {
+        salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (tipo.equals("2")) {
+                    cpfvalido = true;
+                }
+
                 String sexo = "";
 
                 if (sexoM.isChecked()) {
@@ -255,6 +260,12 @@ public class EditarPerfilActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+        Intent intent = new Intent(EditarPerfilActivity.this, PerfilActivity.class);
+        intent.putExtra("MEU_PERFIL", getIntent().getStringExtra("MEU_PERFIL"));
+        intent.putExtra("ID_USUARIO", getIntent().getStringExtra("ID_USUARIO"));
+        startActivity(intent);
+        finish();
 
     }
 }

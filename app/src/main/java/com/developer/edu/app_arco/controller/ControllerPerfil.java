@@ -125,7 +125,9 @@ public class ControllerPerfil {
         dialog.setCancelable(false);
         dialog.show();
 
-
+        if(tipo.equals("2")){
+            cpf = " - ";
+        }
         Call<String> stringCall = null;
 
         if (pathfoto == null || pathfoto.equals("")) {

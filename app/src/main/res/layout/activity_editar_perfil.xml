@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Foto de perfil" />
+            android:text="Foto de perfbbil" />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/id_editarPerfil_image_perfil"
@@ -151,7 +151,7 @@
 
 
         <Button
-            android:id="@+id/id_editarPerfil_cadastrar"
+            android:id="@+id/id_editarPerfil_salvar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

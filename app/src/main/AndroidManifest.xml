@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".act.EditarEscolaridadeActivity"></activity>
         <activity android:name=".act.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +44,7 @@
         <activity android:name=".util.TESTE" />
         <activity android:name=".act.MediaActivity" />
         <activity android:name=".act.RecuperarSenhaActivity" />
-        <activity android:name=".act.EditarPerfilActivity"></activity>
+        <activity android:name=".act.EditarPerfilActivity" />
     </application>
 
 </manifest>

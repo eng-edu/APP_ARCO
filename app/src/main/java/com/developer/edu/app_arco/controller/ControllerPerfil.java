@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.act.PerfilActivity;
+import com.developer.edu.app_arco.bd.DB_escolaridade;
 import com.developer.edu.app_arco.bd.DB_usuario;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.model.Escolaridade;
 import com.developer.edu.app_arco.model.Usuario;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
@@ -42,6 +44,7 @@ public class ControllerPerfil {
         final TextView nome = view.findViewById(R.id.id_perfil_nome);
         final TextView escolaridade = view.findViewById(R.id.id_perfil_escolaridade);
         final TextView bio = view.findViewById(R.id.id_perfil_bio);
+
 
         Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoperfil);
 
@@ -125,7 +128,7 @@ public class ControllerPerfil {
         dialog.setCancelable(false);
         dialog.show();
 
-        if(tipo.equals("2")){
+        if (tipo.equals("2")) {
             cpf = " - ";
         }
         Call<String> stringCall = null;
@@ -169,4 +172,65 @@ public class ControllerPerfil {
 
     }
 
+
+    public static void buscarEscolaridade(final View view, final String ID_USUARIO, final boolean meu_perfil, final SwipeRefreshLayout swipeRefreshLayout) {
+
+
+        final TextView instituicao = view.findViewById(R.id.id_perfil_instituicao);
+        final TextView area = view.findViewById(R.id.id_perfil_area);
+        final TextView ano = view.findViewById(R.id.id_perfil_ano);
+        final TextView grupos = view.findViewById(R.id.id_perfil_grupos);
+        final TextView descricao = view.findViewById(R.id.id_perfil_descricao);
+
+
+        Call<String> stringCall = ConfigRetrofit.getService().buscarEscolaridade(ID_USUARIO);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+                    try {
+
+                        Escolaridade objescolaridade = new Escolaridade();
+                        JSONObject escolaridade = new JSONObject(response.body());
+
+                        objescolaridade.setId(escolaridade.getString("ID"));
+                        objescolaridade.setInstituicao(escolaridade.getString("INSTITUICAO"));
+                        objescolaridade.setArea(escolaridade.getString("AREA"));
+                        objescolaridade.setAno(escolaridade.getString("ANO"));
+                        objescolaridade.setGrupos(escolaridade.getString("GRUPOS"));
+                        objescolaridade.setDescricao(escolaridade.getString("DESCRICAO"));
+
+
+                        DB_escolaridade db_escolaridade = new DB_escolaridade(view.getContext());
+                        db_escolaridade.inserir(objescolaridade);
+
+                        instituicao.setText(objescolaridade.getInstituicao());
+                        area.setText(objescolaridade.getArea());
+                        ano.setText(objescolaridade.getAno());
+                        grupos.setText(objescolaridade.getGrupos());
+                        descricao.setText(objescolaridade.getDescricao());
+
+
+                        swipeRefreshLayout.setRefreshing(false);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                } else if (response.code() == 405) {
+                    Toast.makeText(view.getContext(), response.body(), Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(view.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+    }
 }

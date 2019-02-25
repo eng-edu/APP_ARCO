@@ -67,6 +67,11 @@ public interface RetrofitService {
                                 @Path("DATA_NASC") String DATA_NASC,
                                 @Path("ESCOLARIDADE") String ESCOLARIDADE);
 
+
+    @GET("escolaridade/buscarEscolaridade/{ID_USUARIO}")
+    Call<String> buscarEscolaridade(@Path("ID_USUARIO") String ID_USUARIO);
+
+
     @GET("tematica/listar/")
     Call<String> buscarTematicas();
 

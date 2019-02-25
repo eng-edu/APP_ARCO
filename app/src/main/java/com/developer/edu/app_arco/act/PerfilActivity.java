@@ -26,19 +26,27 @@ public class PerfilActivity extends AppCompatActivity {
         final String MEU_PERFIL = getIntent().getStringExtra("MEU_PERFIL");
 
         ControllerPerfil.buscarPerfil(getWindow().getDecorView(), ID_USUARIO, MEU_PERFIL.equals("S"), swipeRefreshLayout);
+        ControllerPerfil.buscarEscolaridade(getWindow().getDecorView(), ID_USUARIO, MEU_PERFIL.equals("S"), swipeRefreshLayout);
+
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 ControllerPerfil.buscarPerfil(getWindow().getDecorView(), ID_USUARIO, MEU_PERFIL.equals("S"), swipeRefreshLayout);
+                ControllerPerfil.buscarEscolaridade(getWindow().getDecorView(), ID_USUARIO, MEU_PERFIL.equals("S"), swipeRefreshLayout);
+
             }
         });
 
         LinearLayout editarPerfil = findViewById(R.id.id_perfil_editar_perfil);
+        LinearLayout editarFormacao = findViewById(R.id.id_perfil_editar_formacao);
+
         if (MEU_PERFIL.equals("S")) {
             editarPerfil.setVisibility(View.VISIBLE);
+            editarFormacao.setVisibility(View.VISIBLE);
         } else {
             editarPerfil.setVisibility(View.GONE);
+            editarFormacao.setVisibility(View.GONE);
         }
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override

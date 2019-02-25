@@ -24,7 +24,21 @@ public class DB_OpemHelper extends SQLiteOpenHelper {
                     "situacao text," +
                     "online text" +
                     ");";
+
+    private String createTableEscolaridade =
+            "create table Escolaridade(" +
+                    "id integer primary key, " +
+                    "instituicao text, " +
+                    "area text," +
+                    "ano text," +
+                    "grupos text," +
+                    "descricao text," +
+                    "id_usuario" +
+                    ");";
+
+
     private String dropTableUsuario = "drop table Usuario";
+    private String dropTableEscolaridade = "drop table Escolaridade";
 
 
     public DB_OpemHelper(Context context) {
@@ -35,12 +49,14 @@ public class DB_OpemHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase bd) {
 
         bd.execSQL(createTableUsuario);
+        bd.execSQL(createTableEscolaridade);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase bd, int i, int i1) {
 
         bd.execSQL(dropTableUsuario);
+        bd.execSQL(dropTableEscolaridade);
         onCreate(bd);
     }
 }

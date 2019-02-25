@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginLeft="10dp"
                 android:id="@+id/id_perfil_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,6 +27,16 @@
                 android:textAllCaps="false"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/darker_gray">
+
+            </View>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,48 +144,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Formação"
+                    android:text="Escolaridade"
                     android:textAllCaps="false"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/id_perfil_instituicao"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="instituição"
                     android:textAllCaps="false"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/id_perfil_area"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="area de estudo"
                     android:textAllCaps="false"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/id_perfil_ano"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ano de formação"
                     android:textAllCaps="false"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/id_perfil_grupos"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Grupos"
                     android:textAllCaps="false"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/id_perfil_descricao"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descrição"
                     android:textAllCaps="false"
                     android:textSize="14sp" />
 
 
                 <LinearLayout
+                    android:id="@+id/id_perfil_editar_formacao"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:paddingRight="10dp"

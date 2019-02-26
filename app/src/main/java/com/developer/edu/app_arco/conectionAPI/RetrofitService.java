@@ -72,6 +72,43 @@ public interface RetrofitService {
     Call<String> buscarEscolaridade(@Path("ID_USUARIO") String ID_USUARIO);
 
 
+    @Multipart
+    @PUT("escolaridade/alterarComFoto/{ID_USUARIO}/{INSTITUICAO}/{AREA}/{ANO}/{GRUPOS}/{DESCRICAO}")
+    Call<String> alterarComFotoEscolaridade(@Path("ID_USUARIO") String ID_USUARIO,
+                                       @Path("INSTITUICAO") String INSTITUICAO,
+                                       @Path("AREA") String AREA,
+                                       @Path("ANO") String ANO,
+                                       @Path("GRUPOS") String GRUPOS,
+                                       @Path("DESCRICAO") String DESCRICAO,
+                                       @Part MultipartBody.Part file,
+                                       @Part("file") RequestBody name);
+
+    @PUT("escolaridade/alterar/{ID_USUARIO}/{INSTITUICAO}/{AREA}/{ANO}/{GRUPOS}/{DESCRICAO}")
+    Call<String> alterarEscolaridade(@Path("ID_USUARIO") String ID_USUARIO,
+                                     @Path("INSTITUICAO") String INSTITUICAO,
+                                     @Path("AREA") String AREA,
+                                     @Path("ANO") String ANO,
+                                     @Path("GRUPOS") String GRUPOS,
+                                     @Path("DESCRICAO") String DESCRICAO);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GET("tematica/listar/")
     Call<String> buscarTematicas();
 

@@ -39,14 +39,14 @@ public class PerfilActivity extends AppCompatActivity {
         });
 
         LinearLayout editarPerfil = findViewById(R.id.id_perfil_editar_perfil);
-        LinearLayout editarFormacao = findViewById(R.id.id_perfil_editar_formacao);
+        LinearLayout editarEscolaridade = findViewById(R.id.id_perfil_editar_escolaridade);
 
         if (MEU_PERFIL.equals("S")) {
             editarPerfil.setVisibility(View.VISIBLE);
-            editarFormacao.setVisibility(View.VISIBLE);
+            editarEscolaridade.setVisibility(View.VISIBLE);
         } else {
             editarPerfil.setVisibility(View.GONE);
-            editarFormacao.setVisibility(View.GONE);
+            editarEscolaridade.setVisibility(View.GONE);
         }
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +61,22 @@ public class PerfilActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        editarEscolaridade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(PerfilActivity.this, EditarEscolaridadeActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
+                final String ID_USUARIO = sharedPreferences.getString("ID", "");
+                intent.putExtra("MEU_PERFIL", "S");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
 

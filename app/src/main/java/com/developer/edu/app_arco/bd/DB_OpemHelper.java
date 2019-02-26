@@ -33,7 +33,7 @@ public class DB_OpemHelper extends SQLiteOpenHelper {
                     "ano text," +
                     "grupos text," +
                     "descricao text," +
-                    "id_usuario" +
+                    "id_usuario text" +
                     ");";
 
 

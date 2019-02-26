@@ -52,7 +52,7 @@ public class DB_escolaridade {
         Escolaridade f = new Escolaridade();
 
         bd = opemHelper.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT * FROM Formacao WHERE id = " + id, null);
+        Cursor cursor = bd.rawQuery("SELECT * FROM Escolaridade WHERE id_usuario = " + id, null);
 
         cursor.moveToFirst();
 
@@ -76,7 +76,7 @@ public class DB_escolaridade {
 
         List<Escolaridade> formacoes = new ArrayList<>();
 
-        Cursor cursor = bd.rawQuery("SELECT * FROM Formacao", null);
+        Cursor cursor = bd.rawQuery("SELECT * FROM Escolaridade", null);
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();

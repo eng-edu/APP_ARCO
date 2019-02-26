@@ -186,7 +186,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/id_perfil_editar_formacao"
+                    android:id="@+id/id_perfil_editar_escolaridade"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:paddingRight="10dp"

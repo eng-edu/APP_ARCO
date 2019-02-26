@@ -200,6 +200,7 @@ public class ControllerPerfil {
                         objescolaridade.setAno(escolaridade.getString("ANO"));
                         objescolaridade.setGrupos(escolaridade.getString("GRUPOS"));
                         objescolaridade.setDescricao(escolaridade.getString("DESCRICAO"));
+                        objescolaridade.setId_usuario(escolaridade.getString("ID_USUARIO"));
 
 
                         DB_escolaridade db_escolaridade = new DB_escolaridade(view.getContext());
@@ -219,8 +220,8 @@ public class ControllerPerfil {
                         swipeRefreshLayout.setRefreshing(false);
                     }
 
-                } else if (response.code() == 405) {
-                    Toast.makeText(view.getContext(), response.body(), Toast.LENGTH_SHORT).show();
+                } else if (response.code() == 203) {
+                    Toast.makeText(view.getContext(), response.body(), Toast.LENGTH_LONG).show();
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }
@@ -233,4 +234,63 @@ public class ControllerPerfil {
         });
 
     }
+
+
+    public static void alterarEscolaridade(final Context context,
+                                           final String id_usuario,
+                                           final String meu_perfil,
+                                           final String tipo,
+                                           final String instituicao,
+                                           final String area,
+                                           final String ano,
+                                           final String grupos,
+                                           final String descricao,
+                                           final String pathfoto) {
+
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setTitle("Aguarde...");
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Call<String> stringCall = null;
+
+        if (pathfoto == null || pathfoto.equals("")) {
+
+            stringCall = ConfigRetrofit.getService().alterarEscolaridade(id_usuario, instituicao, area, ano, grupos, descricao);
+
+        } else {
+            File file = new File(pathfoto);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+            RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
+            stringCall = ConfigRetrofit.getService().alterarComFotoEscolaridade(id_usuario, instituicao, area, ano, grupos, descricao, fileToUpload, filename);
+        }
+
+
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+                    Intent intent = new Intent(context, PerfilActivity.class);
+                    intent.putExtra("MEU_PERFIL", meu_perfil);
+                    intent.putExtra("ID_USUARIO", id_usuario);
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+    }
+
 }

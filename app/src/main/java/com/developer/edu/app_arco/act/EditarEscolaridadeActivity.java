@@ -23,6 +23,10 @@ import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.bd.DB_escolaridade;
 import com.developer.edu.app_arco.controller.ControllerPerfil;
 import com.developer.edu.app_arco.model.Escolaridade;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
+import static com.developer.edu.app_arco.conectionAPI.ConfigRetrofit.URL_BASE;
 
 public class EditarEscolaridadeActivity extends AppCompatActivity {
 
@@ -42,6 +46,7 @@ public class EditarEscolaridadeActivity extends AppCompatActivity {
         final String ID_USUARIO = getIntent().getStringExtra("ID_USUARIO");
         final String MEU_PERFIL = getIntent().getStringExtra("MEU_PERFIL");
 
+        ImageView anexo = findViewById(R.id.id_editar_escolaridade_anexo);
         TextView tituloimg = findViewById(R.id.id_editar_escolaridade_titiulo_imagem);
         final TextView instituicao = findViewById(R.id.id_editar_escolaridade_instituicao);
         final TextView area = findViewById(R.id.id_editar_escolaridade_area);
@@ -49,6 +54,10 @@ public class EditarEscolaridadeActivity extends AppCompatActivity {
         final TextView grupos = findViewById(R.id.id_editar_escolaridade_grupos);
         final TextView descricao = findViewById(R.id.id_editar_escolaridade_descricao);
         Button salvar = findViewById(R.id.id_editar_escolaridade_salvar);
+
+
+        Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_escolaridade.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(anexo);
+
 
         if (new DB_escolaridade(EditarEscolaridadeActivity.this).listarTodos().size() > 0) {
             Escolaridade escolaridade = new DB_escolaridade(EditarEscolaridadeActivity.this).buscar(ID_USUARIO);

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
@@ -66,6 +67,15 @@ public class EditarPerfilActivity extends AppCompatActivity {
         final RadioButton sexoF = findViewById(R.id.id_editarPerfil_sexo_f);
         final Spinner spinner_escolaridade = (Spinner) findViewById(R.id.spinner_editarPerfil_escolaridade);
         final Button salvar = findViewById(R.id.id_editarPerfil_salvar);
+        TextView procurarimagem = findViewById(R.id.id_editarPerfil_procurarimagem);
+
+
+        procurarimagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pegarImgGalery(v);
+            }
+        });
 
         Usuario u = new DB_usuario(EditarPerfilActivity.this).buscar(ID_USUARIO);
 

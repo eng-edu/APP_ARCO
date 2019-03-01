@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,15 @@ public class EditarEscolaridadeActivity extends AppCompatActivity {
         final TextView grupos = findViewById(R.id.id_editar_escolaridade_grupos);
         final TextView descricao = findViewById(R.id.id_editar_escolaridade_descricao);
         Button salvar = findViewById(R.id.id_editar_escolaridade_salvar);
+        TextView procurarimagem = findViewById(R.id.id_editar_escolaridade_procurarimagem);
+
+
+        procurarimagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pegarImgGalery(v);
+            }
+        });
 
 
         Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_escolaridade.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(anexo);

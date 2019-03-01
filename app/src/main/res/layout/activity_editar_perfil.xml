@@ -34,6 +34,18 @@
             app:civ_border_color="@color/backgroundcolor"
             app:civ_border_width="1dp" />
 
+        <TextView
+            android:id="@+id/id_editarPerfil_procurarimagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-1dp"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:text="Procurar Imagem"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/id_editarPerfil_bio"
             android:layout_width="match_parent"

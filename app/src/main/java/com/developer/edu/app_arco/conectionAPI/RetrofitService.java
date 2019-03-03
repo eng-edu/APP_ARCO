@@ -91,30 +91,30 @@ public interface RetrofitService {
                                      @Path("GRUPOS") String GRUPOS,
                                      @Path("DESCRICAO") String DESCRICAO);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @GET("tematica/listar/")
     Call<String> buscarTematicas();
 
-    @POST("arco/novoArco/{ID_TEMATICA}/{ID_LIDER}")
-    Call<String> novoArco(@Path("ID_TEMATICA") String ID,
-                          @Path("ID_LIDER") String NOME);
+    @POST("arco/novoArco/{ID_LIDER}/{ID_TEMATICA}")
+    Call<String> novoArco(@Path("ID_LIDER") String ID_LIDER,
+                          @Path("ID_TEMATICA") String TEMATICA);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GET("arco/buscarMeusArcos/{ID_USUARIO}")
     Call<String> buscarMeusArcos(@Path("ID_USUARIO") String ID_USUARIO);

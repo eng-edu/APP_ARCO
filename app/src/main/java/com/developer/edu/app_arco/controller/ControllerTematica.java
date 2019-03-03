@@ -55,7 +55,7 @@ public class ControllerTematica {
                         List<Tematica> tematicas = new ArrayList<>();
                         for (int i = 0; i < size; i++) {
                             JSONObject object = array.getJSONObject(i);
-                            tematicas.add(new Tematica(object.getString("ID"), object.getString("TITULO"), object.getString("DESCRICAO")));
+                            tematicas.add(new Tematica(object.getString("ID"), object.getString("NOME"), object.getString("DESCRICAO")));
                         }
 
                         arrayAdapter.clear();
@@ -78,7 +78,7 @@ public class ControllerTematica {
             }
         });
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("TEMATICAS");
+        builder.setMessage("Selecione a temática que deseja trabalhar: ");
         builder.setView(view);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class ControllerTematica {
                 //  Toast.makeText(context, arrayAdapter.getItem(position) + " ", Toast.LENGTH_SHORT).show();
                 new AlertDialog.Builder(context)
                         .setTitle("TEM CERTEZA?")
-                        .setMessage("Deseja criar seu Arco com a tematica " + arrayAdapter.getItem(position) + " ?")
+                        .setMessage("Deseja criar seu Arco com a tematica: " + arrayAdapter.getItem(position) + " ?")
                         .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -102,8 +102,8 @@ public class ControllerTematica {
                                 //criar arco
                                 alert.dismiss();
                                 SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
-                                final String ID = sharedPreferences.getString("ID", "");
-                                criarArco(context, arrayAdapter.getItem(position).getId(),ID);
+                                final String ID_LIDER = sharedPreferences.getString("ID", "");
+                                ControllerArco.criarArco(context, ID_LIDER, arrayAdapter.getItem(position).getId());
 
                             }
                         }).setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -121,35 +121,5 @@ public class ControllerTematica {
 
     }
 
-    public static void criarArco(final Context context, String idLider, String idTematica) {
 
-        final ProgressDialog dialog = new ProgressDialog(context);
-        dialog.setTitle("Aguarde...");
-        dialog.setCancelable(true);
-        dialog.show();
-
-
-        Call<String> stringCall = ConfigRetrofit.getService().novoArco(idLider, idTematica);
-        stringCall.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.code() == 200) {
-
-                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", response.body()).putExtra("MEUS_ARCOS", "S"));
-                    dialog.dismiss();
-
-                } else if (response.code() == 405) {
-                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-    }
 }

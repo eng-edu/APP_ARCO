@@ -3,12 +3,12 @@ package com.developer.edu.app_arco.model;
 public class Tematica {
 
     String id;
-    String titulo;
+    String nome;
     String descricao;
 
-    public Tematica(String id, String titulo, String descricao) {
+    public Tematica(String id, String nome, String descricao) {
         this.id = id;
-        this.titulo = titulo;
+        this.nome = nome;
         this.descricao = descricao;
     }
 
@@ -20,12 +20,12 @@ public class Tematica {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -38,6 +38,6 @@ public class Tematica {
 
     @Override
     public String toString() {
-        return titulo;
+        return "(" +nome + ")\n" +descricao;
     }
 }

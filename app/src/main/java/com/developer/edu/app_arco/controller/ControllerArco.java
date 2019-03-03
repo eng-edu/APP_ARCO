@@ -1,5 +1,15 @@
 package com.developer.edu.app_arco.controller;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.widget.Toast;
+
+import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ControllerArco {
 
 //    static AlertDialog alert;
@@ -349,4 +359,35 @@ public class ControllerArco {
 //
 //    }
 
+    public static void criarArco(final Context context, String idLider, String idTematica) {
+
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setTitle("Aguarde...");
+        dialog.setCancelable(true);
+        dialog.show();
+
+
+        Call<String> stringCall = ConfigRetrofit.getService().novoArco(idLider, idTematica);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+//                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", response.body()).putExtra("MEUS_ARCOS", "S"));
+                    dialog.dismiss();
+
+                } else if (response.code() == 203) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+    }
 }

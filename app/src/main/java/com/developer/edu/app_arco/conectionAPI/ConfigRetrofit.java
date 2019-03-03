@@ -9,7 +9,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class ConfigRetrofit {
-    public static String URL_BASE = "http://192.168.100.102:8052";
+    public static String URL_BASE = "http://192.168.100.105:8052";
    public static String URL_BASE1 = "http://191.252.193.192:8053";
 
     public static RetrofitService getService() {

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundcolor"
+    android:background="@drawable/gradient_background"
     tools:context=".act.MenuActivity">
 
     <ScrollView
@@ -190,7 +190,7 @@
                             <ImageView
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
-                                android:background="@drawable/cercleshape3"
+                                android:background="@drawable/cercleshape4"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_user" />
 
@@ -278,7 +278,7 @@
                             <ImageView
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
-                                android:background="@drawable/cercleshape6"
+                                android:background="@drawable/cercleshape2"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_todosarcos" />
 

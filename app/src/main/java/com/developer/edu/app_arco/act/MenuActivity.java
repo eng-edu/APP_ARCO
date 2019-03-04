@@ -59,7 +59,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-              //  ControllerArco.bucarMeusArco(MenuActivity.this, inflater);
+                ControllerArco.bucarMeusArco(MenuActivity.this, inflater);
             }
         });
 

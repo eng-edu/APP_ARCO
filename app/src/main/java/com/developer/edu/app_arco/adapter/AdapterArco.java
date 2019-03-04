@@ -7,12 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.model.Arco;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.developer.edu.app_arco.conectionAPI.ConfigRetrofit.URL_BASE;
 
 
 public class AdapterArco extends ArrayAdapter<Arco> {
@@ -31,19 +36,21 @@ public class AdapterArco extends ArrayAdapter<Arco> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.adapter_arco, parent, false);
+        final View view = inflater.inflate(R.layout.adapter_arco_feed, parent, false);
 
         final Arco arco = arcos.get(position);
 
-        TextView temaitca = view.findViewById(R.id.id_adapter_tematica);
-        TextView titulo = view.findViewById(R.id.id_adapter_titulo);
-        TextView pontos = view.findViewById(R.id.id_adapter_pontos);
-        TextView curtidas = view.findViewById(R.id.id_adapter_curtidas);
+        TextView status = view.findViewById(R.id.id_adapter_arco_feed_status);
+        TextView data_hora = view.findViewById(R.id.id_adapter_arco_feed_data_hora);
+        TextView nome_equipe = view.findViewById(R.id.id_adapter_arco_feed_nome_equipe);
+        TextView nome_tematica = view.findViewById(R.id.id_adapter_arco_feed_nome_tematica);
+        ImageView foto_lider = view.findViewById(R.id.id_adapter_arco_feed_foto_lider);
 
-        temaitca.setText(arco.getTEMATICA());
-        titulo.setText(arco.getTITULO());
-        pontos.setText(arco.getPONTO() + " pontos");
-        curtidas.setText(arco.getGOSTEI() + " pessoas gostaram deste arco!");
+        status.setText(arco.getSTATUS());
+        data_hora.setText(arco.getDATA_HORA());
+        nome_equipe.setText(arco.getNOME_EQUIPE());
+        nome_tematica.setText(arco.getNOME_TEMATICA());
+        Picasso.get().load(URL_BASE + "/IMG/" + arco.getID_LIDER() + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(foto_lider);
 
 
         return view;

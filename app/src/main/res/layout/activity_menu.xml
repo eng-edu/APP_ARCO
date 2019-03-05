@@ -36,13 +36,23 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@color/red"
+                                android:layout_marginBottom="10dp"/>
+
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:background="@drawable/cercleshape1"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_new" />
@@ -80,13 +90,22 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@color/yellow"
+                                android:layout_marginBottom="10dp"/>
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:background="@drawable/cercleshape6"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_ranking" />
@@ -124,13 +143,22 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@color/brow"
+                                android:layout_marginBottom="10dp"/>
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:background="@drawable/cercleshape7"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_trofeu" />
@@ -183,13 +211,22 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@color/indigo"
+                                android:layout_marginBottom="10dp"/>
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:background="@drawable/cercleshape4"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_user" />
@@ -227,13 +264,22 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@color/grenn"
+                                android:layout_marginBottom="10dp"/>
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:background="@drawable/cercleshape5"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_meusarcos" />
@@ -271,13 +317,22 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@color/pink"
+                                android:layout_marginBottom="10dp"/>
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:background="@drawable/cercleshape2"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_todosarcos" />

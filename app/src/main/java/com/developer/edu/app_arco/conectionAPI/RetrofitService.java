@@ -99,25 +99,25 @@ public interface RetrofitService {
                           @Path("ID_TEMATICA") String TEMATICA);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @GET("arco/buscarMeusArcos/{ID_USUARIO}")
     Call<String> buscarMeusArcos(@Path("ID_USUARIO") String ID_USUARIO);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @POST("arco/denunciarArco/{ID_USUARIO}/{ID_ARCO}/{DESCRICAO}")
     Call<String> denunciarArco(@Path("ID_USUARIO") String ID_USUARIO,

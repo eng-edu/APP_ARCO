@@ -26,7 +26,7 @@ public class AdapterArco extends ArrayAdapter<Arco> {
     private List<Arco> arcos;
 
     public AdapterArco(Context context, List<Arco> arcos) {
-        super(context, R.layout.adapter_arco, arcos);
+        super(context, R.layout.adapter_arco_feed, arcos);
         this.context = context;
         this.arcos = arcos;
 
@@ -40,16 +40,23 @@ public class AdapterArco extends ArrayAdapter<Arco> {
 
         final Arco arco = arcos.get(position);
 
+        String str_status = "";
+        if(arco.getSTATUS().equals("1")){
+            str_status = "Em Desenvolvimento";
+        }else if(arco.getSTATUS().equals("2")){
+            str_status = "Finalizado";
+        }
+
         TextView status = view.findViewById(R.id.id_adapter_arco_feed_status);
         TextView data_hora = view.findViewById(R.id.id_adapter_arco_feed_data_hora);
         TextView nome_equipe = view.findViewById(R.id.id_adapter_arco_feed_nome_equipe);
         TextView nome_tematica = view.findViewById(R.id.id_adapter_arco_feed_nome_tematica);
         ImageView foto_lider = view.findViewById(R.id.id_adapter_arco_feed_foto_lider);
 
-        status.setText(arco.getSTATUS());
-        data_hora.setText(arco.getDATA_HORA());
-        nome_equipe.setText(arco.getNOME_EQUIPE());
-        nome_tematica.setText(arco.getNOME_TEMATICA());
+        status.setText("Status: " + str_status);
+        data_hora.setText("Criando em: "+ arco.getDATA_HORA());
+        nome_equipe.setText("Equipe: "+arco.getNOME_EQUIPE());
+        nome_tematica.setText("Temática: " + arco.getNOME_TEMATICA());
         Picasso.get().load(URL_BASE + "/IMG/" + arco.getID_LIDER() + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(foto_lider);
 
 

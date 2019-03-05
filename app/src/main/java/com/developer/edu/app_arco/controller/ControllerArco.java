@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.act.ArcoActivity;
+
 import com.developer.edu.app_arco.adapter.AdapterArco;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.model.Arco;
@@ -34,7 +35,8 @@ public class ControllerArco {
 
 
     static AlertDialog alert;
-//
+
+    //
 //
 //    public static void bucarMeusArco2(final Context context, final LayoutInflater inflater) {
 //
@@ -143,11 +145,12 @@ public class ControllerArco {
 
                             arcos.add(new Arco(
                                     object.getString("ID"),
-                                    object.getString("TEMATICA"),
-                                    object.getString("TITULO"),
-                                    object.getString("PONTO"),
-                                    object.getString("GOSTEI")
-                                    ));
+                                    object.getString("STATUS"),
+                                    object.getString("ID_LIDER"),
+                                    object.getString("NOME_EQUIPE"),
+                                    object.getString("NOME_TEMATICA"),
+                                    object.getString("DESCRICAO_TEMATICA"),
+                                    object.getString("DATA_HORA")));
 
                         }
 
@@ -171,7 +174,7 @@ public class ControllerArco {
             }
         });
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("MEUS ARCOS");
+        builder.setMessage("Meus arcos");
         builder.setView(view);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -185,11 +188,8 @@ public class ControllerArco {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                listView.setItemChecked(position, true);
-
-
                 alert.dismiss();
-                context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", arrayAdapter.getItem(position).getID()).putExtra("MEUS_ARCOS","S"));
+                 context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", arrayAdapter.getItem(position).getID()).putExtra("MEUS_ARCOS","S"));
                 ((Activity) context).finish();
             }
         });

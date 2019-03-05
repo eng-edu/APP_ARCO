@@ -41,9 +41,9 @@ public class AdapterArco extends ArrayAdapter<Arco> {
         final Arco arco = arcos.get(position);
 
         String str_status = "";
-        if(arco.getSTATUS().equals("1")){
+        if(arco.getSITUACAO().equals("1")){
             str_status = "Em Desenvolvimento";
-        }else if(arco.getSTATUS().equals("2")){
+        }else if(arco.getSITUACAO().equals("2")){
             str_status = "Finalizado";
         }
 

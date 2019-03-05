@@ -115,11 +115,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="TEXT" />
+                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\User\Documents\CAMPUS MOBILE\obs.png" />
-                                      <entry key="outputName" value="ic_ar" />
+                                      <entry key="imageAsset" value="C:\Users\User\Documents\CAMPUS MOBILE\check.png" />
+                                      <entry key="outputName" value="ic_check" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -2,16 +2,16 @@ package com.developer.edu.app_arco.model;
 
 public class Arco {
     String ID;
-    String STATUS;
+    String SITUACAO;
     String ID_LIDER;
     String NOME_EQUIPE;
     String NOME_TEMATICA;
     String DESCRICAO_TEMATICA;
     String DATA_HORA;
 
-    public Arco(String ID, String STATUS, String ID_LIDER, String NOME_GRUPO, String NOME_TEMATICA, String DESCRICAO_TEMATICA, String DATA_HORA) {
+    public Arco(String ID, String SITUACAO, String ID_LIDER, String NOME_GRUPO, String NOME_TEMATICA, String DESCRICAO_TEMATICA, String DATA_HORA) {
         this.ID = ID;
-        this.STATUS = STATUS;
+        this.SITUACAO = SITUACAO;
         this.ID_LIDER = ID_LIDER;
         this.NOME_EQUIPE = NOME_GRUPO;
         this.NOME_TEMATICA = NOME_TEMATICA;
@@ -27,12 +27,12 @@ public class Arco {
         this.ID = ID;
     }
 
-    public String getSTATUS() {
-        return STATUS;
+    public String getSITUACAO() {
+        return SITUACAO;
     }
 
-    public void setSTATUS(String STATUS) {
-        this.STATUS = STATUS;
+    public void setSITUACAO(String SITUACAO) {
+        this.SITUACAO = SITUACAO;
     }
 
     public String getID_LIDER() {

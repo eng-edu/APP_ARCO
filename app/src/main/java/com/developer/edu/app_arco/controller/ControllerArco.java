@@ -145,7 +145,7 @@ public class ControllerArco {
 
                             arcos.add(new Arco(
                                     object.getString("ID"),
-                                    object.getString("STATUS"),
+                                    object.getString("SITUACAO"),
                                     object.getString("ID_LIDER"),
                                     object.getString("NOME_EQUIPE"),
                                     object.getString("NOME_TEMATICA"),

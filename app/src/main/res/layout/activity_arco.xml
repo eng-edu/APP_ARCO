@@ -8,9 +8,9 @@
     tools:context=".act.ArcoActivity">
 
     <LinearLayout
-        android:layout_gravity="top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="top"
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
@@ -38,13 +38,13 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/id_adapter_arco_feed_foto_lider"
+                        android:id="@+id/id_arco_foto_lider"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
                         android:adjustViewBounds="false"
                         android:cropToPadding="false"
@@ -60,26 +60,26 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/id_adapter_arco_feed_status"
+                            android:id="@+id/id_arco_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/id_adapter_arco_feed_data_hora"
+                            android:id="@+id/id_arco_data_hora"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="10sp" />
 
                         <TextView
-                            android:id="@+id/id_adapter_arco_feed_nome_equipe"
+                            android:id="@+id/id_arco_nome_equipe"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="10sp" />
 
                         <TextView
-                            android:id="@+id/id_adapter_arco_feed_nome_tematica"
+                            android:id="@+id/id_arco_nome_tematica"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="10sp" />
@@ -101,12 +101,18 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-5dp"
+                android:src="@mipmap/ic_okw" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card_e3"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground">
 
@@ -119,10 +125,10 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
+                        android:layout_marginBottom="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:src="@color/indigo"
-                        android:layout_marginBottom="10dp"/>
+                        android:src="@color/indigo" />
 
                     <ImageView
                         android:id="@+id/imageE3"
@@ -137,10 +143,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
                         android:text="Teorização"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
+
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -153,11 +160,18 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-5dp"
+                android:src="@mipmap/ic_okw" />
+
             <android.support.v7.widget.CardView
                 android:id="@+id/card_e2"
                 android:layout_width="100dp"
                 android:layout_height="110dp"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground">
 
@@ -170,10 +184,10 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
+                        android:layout_marginBottom="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:src="@color/yellow"
-                        android:layout_marginBottom="10dp"/>
+                        android:src="@color/yellow" />
 
                     <ImageView
                         android:id="@+id/imageE2"
@@ -188,9 +202,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
                         android:text="Pontos chaves"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -200,9 +214,10 @@
                 android:id="@+id/card_e4"
                 android:layout_width="100dp"
                 android:layout_height="110dp"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -212,10 +227,10 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
+                        android:layout_marginBottom="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:src="@color/brow"
-                        android:layout_marginBottom="10dp"/>
+                        android:src="@color/brow" />
 
                     <ImageView
                         android:id="@+id/imageE4"
@@ -230,13 +245,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
                         android:text="Hipótetses de Solução"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-5dp"
+                android:src="@mipmap/ic_okw" />
         </LinearLayout>
 
         <LinearLayout
@@ -245,12 +267,18 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-5dp"
+                android:src="@mipmap/ic_okw" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card_e1"
                 android:layout_width="100dp"
                 android:layout_height="110dp"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground">
 
@@ -263,10 +291,10 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
+                        android:layout_marginBottom="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:src="@color/red"
-                        android:layout_marginBottom="10dp"/>
+                        android:src="@color/red" />
 
                     <ImageView
                         android:id="@+id/imageE1"
@@ -282,9 +310,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
                         android:text="Observação da Realidade"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     View
@@ -297,12 +325,11 @@
             </android.support.v7.widget.CardView>
 
 
-
             <android.support.v7.widget.CardView
                 android:id="@+id/card_e5"
                 android:layout_width="100dp"
                 android:layout_height="110dp"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground">
 
@@ -315,10 +342,10 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
+                        android:layout_marginBottom="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:src="@color/purple"
-                        android:layout_marginBottom="10dp"/>
+                        android:src="@color/purple" />
 
                     <ImageView
                         android:id="@+id/imageE5"
@@ -333,31 +360,38 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
                         android:text="Aplicação a realidade"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-5dp"
+                android:src="@mipmap/ic_okw" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@color/backgroundcolor"></View>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             android:text="REALIDADE"
             android:textColor="@color/backgroundcolor"
             android:textSize="24dp"
-            android:textStyle="normal"
-            android:layout_marginBottom="20dp"/>
+            android:textStyle="normal" />
 
     </LinearLayout>
 

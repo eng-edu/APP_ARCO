@@ -27,7 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         CardView arcosCompartilhados = findViewById(R.id.card_compartilhados);
         CardView ranking = findViewById(R.id.card_ranking);
         CardView premioMes = findViewById(R.id.card_premiodomes);
-        Button sair = findViewById(R.id.id_menu_sair);
+//        Button sair = findViewById(R.id.id_menu_sair);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String tipo = sharedPreferences.getString("TIPO", "");
@@ -86,16 +86,16 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        sair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, LoginActivity.class));
-                final SharedPreferences.Editor editor = getSharedPreferences("MY_PREF", MODE_PRIVATE).edit();
-                editor.clear();
-                editor.apply();
-                finish();
-            }
-        });
+//        sair.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MenuActivity.this, LoginActivity.class));
+//                final SharedPreferences.Editor editor = getSharedPreferences("MY_PREF", MODE_PRIVATE).edit();
+//                editor.clear();
+//                editor.apply();
+//                finish();
+//            }
+//        });
 
     }
 

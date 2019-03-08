@@ -9,10 +9,15 @@ import android.widget.Toast;
 
 import com.developer.edu.app_arco.act.MenuActivity;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,13 +28,14 @@ public class ControllerLogin {
 
     public static void logar(final Context context, final String email, final String senha) {
 
+
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
         dialog.setCancelable(false);
         dialog.show();
 
-        Call<String> stringCall = ConfigRetrofit.getService().logar(email,senha);
-                stringCall.enqueue(new Callback<String>() {
+        Call<String> stringCall = ConfigRetrofit.getService().logar(email, senha);
+        stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
@@ -41,6 +47,8 @@ public class ControllerLogin {
                         editor.putString("ID", usuario.getString("ID"));
                         editor.putString("TIPO", usuario.getString("TIPO"));
                         editor.apply();
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();

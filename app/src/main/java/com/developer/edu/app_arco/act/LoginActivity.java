@@ -23,23 +23,12 @@ import io.socket.client.Socket;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Socket socket;
-
-    {
-        try {
-            socket = IO.socket(ConfigRetrofit.URL_BASE);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        SocketStatic.setSocket(socket);
 
         final EditText email = findViewById(R.id.id_login_email);
         final EditText senha = findViewById(R.id.id_login_senha);
@@ -50,6 +39,19 @@ public class LoginActivity extends AppCompatActivity {
         final String result = sharedPreferences.getString("ID", "");
 
         if (result != null && !result.equals("") && result != "") {
+            {
+                try {
+                    IO.Options opts = new IO.Options();
+                    opts.forceNew = true;
+                    opts.query = "ID_USUARIO=" + result;
+                    Socket socket = IO.socket(ConfigRetrofit.URL_BASE, opts);
+                    SocketStatic.setSocket(socket);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+
             startActivity(new Intent(LoginActivity.this, MenuActivity.class));
             finish();
         }
@@ -67,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (email.getText().length() > 0 && senha.getText().length() > 0) {
                     ControllerLogin.logar(LoginActivity.this, email.getText().toString(), senha.getText().toString());
-                }else {
+                } else {
                     Toast.makeText(LoginActivity.this, "preencha todos os campos!", Toast.LENGTH_SHORT).show();
                 }
 
@@ -81,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
 
     }

@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerPerfil;
+
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -74,6 +78,39 @@ public class PerfilActivity extends AppCompatActivity {
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+
+        final LinearLayout online = findViewById(R.id.id_perfil_layout_online);
+
+        SocketStatic.getSocket().on("ON".concat(ID_USUARIO), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                PerfilActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String result = args[0].toString(); //aqui recebo o json do arco
+                        if (result.equals("1")) {
+                            online.setVisibility(View.VISIBLE);
+                        } else if (result.equals("0")) {
+                            online.setVisibility(View.GONE);
+                        }
+                    }
+                });
+            }
+        });
+
+
+        SocketStatic.getSocket().on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                PerfilActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        online.setVisibility(View.GONE);
+                    }
+                });
             }
         });
 

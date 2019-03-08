@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ControllerPerfil {
         final TextView nome = view.findViewById(R.id.id_perfil_nome);
         final TextView escolaridade = view.findViewById(R.id.id_perfil_escolaridade);
         final TextView bio = view.findViewById(R.id.id_perfil_bio);
+        final LinearLayout online = view.findViewById(R.id.id_perfil_layout_online);
 
 
         Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoperfil);
@@ -87,6 +89,13 @@ public class ControllerPerfil {
                         nome.setText(objusuario.getNome() + " " + objusuario.getSobrenome());
                         escolaridade.setText(objusuario.getEscolaridade());
                         bio.setText(objusuario.getBio());
+
+                        String result =  objusuario.getOline(); //aqui recebo o json do arco
+                        if(result.equals("1")){
+                            online.setVisibility(View.VISIBLE);
+                        }else if(result.equals("0")){
+                            online.setVisibility(View.GONE);
+                        }
 
                         swipeRefreshLayout.setRefreshing(false);
 

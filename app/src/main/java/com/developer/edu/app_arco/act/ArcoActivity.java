@@ -80,11 +80,11 @@ public class ArcoActivity extends AppCompatActivity {
         nome_tematica = findViewById(R.id.id_arco_nome_tematica);
         foto_lider = findViewById(R.id.id_arco_foto_lider);
 
-        status_e1 = findViewById(R.id.id_arco_status_e1);
-        status_e2 = findViewById(R.id.id_arco_status_e2);
-        status_e3 = findViewById(R.id.id_arco_status_e3);
-        status_e4 = findViewById(R.id.id_arco_status_e4);
-        status_e5 = findViewById(R.id.id_arco_status_e5);
+        status_e1 = findViewById(R.id.imageE1);
+        status_e2 = findViewById(R.id.imageE2);
+        status_e3 = findViewById(R.id.imageE3);
+        status_e4 = findViewById(R.id.imageE4);
+        status_e5 = findViewById(R.id.imageE5);
 
         socket.emit("ETAPA", ID_ARCO);
         socket.emit("ARCO", ID_ARCO);

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh_arco"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient_background"
@@ -40,7 +40,7 @@
                             android:id="@+id/id_arco_foto_lider"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_gravity="top"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
@@ -52,11 +52,13 @@
                             app:civ_border_color="@color/backgroundcolor"
                             app:civ_border_width="1dp" />
 
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:orientation="vertical">
+
 
                             <TextView
                                 android:id="@+id/id_arco_status"
@@ -86,13 +88,55 @@
 
                         </LinearLayout>
 
+
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@mipmap/ic_equipe" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:text="Definir Equipe"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <ImageView
+
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-30dp"
+                        android:padding="5dp"
+                        android:src="@mipmap/ic_lixo" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -100,13 +144,6 @@
                 android:layout_gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/id_arco_status_e3"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="-5dp"
-                    android:src="@mipmap/ic_okw" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/card_e3"
@@ -132,18 +169,19 @@
 
                         <ImageView
                             android:id="@+id/imageE3"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/cercleshape4"
-                            android:padding="10dp"
-                            android:src="@mipmap/ic_to" />
+                            android:padding="5dp"
+                            android:src="@mipmap/ic_blockw" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:text="Teorização"
+                            android:padding="2dp"
+                            android:text="3 - Teorização"
                             android:textAlignment="center"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -160,13 +198,6 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/id_arco_status_e2"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="-5dp"
-                    android:src="@mipmap/ic_okw" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/card_e2"
@@ -192,18 +223,19 @@
 
                         <ImageView
                             android:id="@+id/imageE2"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/cercleshape6"
-                            android:padding="10dp"
-                            android:src="@mipmap/ic_pto" />
+                            android:padding="5dp"
+                            android:src="@mipmap/ic_blockw" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:text="Pontos chaves"
+                            android:padding="2dp"
+                            android:text="2 - Pontos chaves"
                             android:textAlignment="center"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -235,18 +267,19 @@
 
                         <ImageView
                             android:id="@+id/imageE4"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/cercleshape7"
-                            android:padding="10dp"
-                            android:src="@mipmap/ic_hs" />
+                            android:padding="5dp"
+                            android:src="@mipmap/ic_blockw" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:text="Hipótetses de Solução"
+                            android:padding="2dp"
+                            android:text="4 - Hipótetses de Solução"
                             android:textAlignment="center"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -254,13 +287,6 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/id_arco_status_e4"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="-5dp"
-                    android:src="@mipmap/ic_okw" />
             </LinearLayout>
 
             <LinearLayout
@@ -269,13 +295,6 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/id_arco_status_e1"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="-5dp"
-                    android:src="@mipmap/ic_okw" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/card_e1"
@@ -301,11 +320,11 @@
 
                         <ImageView
                             android:id="@+id/imageE1"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/cercleshape1"
-                            android:padding="10dp"
-                            android:src="@mipmap/ic_obs" />
+                            android:padding="5dp"
+                            android:src="@mipmap/ic_blockw" />
 
 
                         <TextView
@@ -313,7 +332,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:text="Observação da Realidade"
+                            android:padding="2dp"
+                            android:text="1 - Observação da Realidade"
                             android:textAlignment="center"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -352,32 +372,25 @@
 
                         <ImageView
                             android:id="@+id/imageE5"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/cercleshape3"
-                            android:padding="10dp"
-                            android:src="@mipmap/ic_ar" />
+                            android:padding="5dp"
+                            android:src="@mipmap/ic_blockw" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:text="Aplicação a realidade"
+                            android:padding="2dp"
+                            android:text="5 - Aplicação a realidade"
                             android:textAlignment="center"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
-
-                <ImageView
-                    android:id="@+id/id_arco_status_e5"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="-5dp"
-                    android:src="@mipmap/ic_okw" />
 
             </LinearLayout>
 

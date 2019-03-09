@@ -118,8 +118,8 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\User\Documents\CAMPUS MOBILE\check.png" />
-                                      <entry key="outputName" value="ic_check" />
+                                      <entry key="imageAsset" value="C:\Users\User\Documents\CAMPUS MOBILE\icons\lixo.png" />
+                                      <entry key="outputName" value="ic_lixo" />
                                     </map>
                                   </option>
                                 </PersistentState>

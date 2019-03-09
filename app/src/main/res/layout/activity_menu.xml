@@ -1,5 +1,4 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,9 +12,9 @@
         android:orientation="vertical">
 
         <View
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
+            android:layout_margin="10dp"
             android:background="@color/backgroundcolor"></View>
 
         <LinearLayout
@@ -24,10 +23,10 @@
             android:orientation="vertical">
 
             <HorizontalScrollView
-                android:layout_gravity="center"
                 android:id="@+id/scrollmenu1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
 
                 android:orientation="horizontal">
 
@@ -53,16 +52,16 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerCrop"
-                                android:src="@color/red"
-                                android:layout_marginBottom="10dp"/>
+                                android:src="@color/red" />
 
 
                             <ImageView
-                                android:layout_marginTop="10dp"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
                                 android:background="@drawable/cercleshape1"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_new" />
@@ -107,15 +106,15 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerCrop"
-                                android:src="@color/yellow"
-                                android:layout_marginBottom="10dp"/>
+                                android:src="@color/yellow" />
 
                             <ImageView
-                                android:layout_marginTop="10dp"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
                                 android:background="@drawable/cercleshape6"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_ranking" />
@@ -160,15 +159,15 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerCrop"
-                                android:src="@color/brow"
-                                android:layout_marginBottom="10dp"/>
+                                android:src="@color/brow" />
 
                             <ImageView
-                                android:layout_marginTop="10dp"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
                                 android:background="@drawable/cercleshape7"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_trofeu" />
@@ -201,10 +200,10 @@
             </HorizontalScrollView>
 
             <HorizontalScrollView
-                android:layout_gravity="center"
                 android:id="@+id/scrollmenu2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -229,15 +228,15 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerCrop"
-                                android:src="@color/indigo"
-                                android:layout_marginBottom="10dp"/>
+                                android:src="@color/indigo" />
 
                             <ImageView
-                                android:layout_marginTop="10dp"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
                                 android:background="@drawable/cercleshape4"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_user" />
@@ -282,15 +281,15 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerCrop"
-                                android:src="@color/grenn"
-                                android:layout_marginBottom="10dp"/>
+                                android:src="@color/grenn" />
 
                             <ImageView
-                                android:layout_marginTop="10dp"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
                                 android:background="@drawable/cercleshape5"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_meusarcos" />
@@ -335,15 +334,15 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerCrop"
-                                android:src="@color/pink"
-                                android:layout_marginBottom="10dp"/>
+                                android:src="@color/pink" />
 
                             <ImageView
-                                android:layout_marginTop="10dp"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
                                 android:background="@drawable/cercleshape2"
                                 android:padding="10dp"
                                 android:src="@mipmap/ic_todosarcos" />

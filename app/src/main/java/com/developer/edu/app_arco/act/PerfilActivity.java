@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
@@ -115,6 +116,20 @@ public class PerfilActivity extends AppCompatActivity {
         });
 
 
+        TextView sair = findViewById(R.id.id_perfil_sair);
+        sair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PerfilActivity.this, LoginActivity.class));
+                final SharedPreferences.Editor editor = getSharedPreferences("MY_PREF", MODE_PRIVATE).edit();
+                editor.clear();
+                editor.apply();
+                finish();
+            }
+        });
+
+
     }
+
 
 }

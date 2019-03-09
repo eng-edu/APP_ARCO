@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
@@ -43,6 +45,9 @@ public class ArcoActivity extends AppCompatActivity {
     ImageView status_e3;
     ImageView status_e4;
     ImageView status_e5;
+
+    LinearLayout excuir;
+    LinearLayout equipe;
 
     Socket socket = SocketStatic.getSocket();
 
@@ -86,6 +91,9 @@ public class ArcoActivity extends AppCompatActivity {
         status_e4 = findViewById(R.id.imageE4);
         status_e5 = findViewById(R.id.imageE5);
 
+        excuir = findViewById(R.id.id_arco_layout_excluir);
+        equipe = findViewById(R.id.id_arco_layout_equipe);
+
         socket.emit("ETAPA", ID_ARCO);
         socket.emit("ARCO", ID_ARCO);
 
@@ -104,9 +112,9 @@ public class ArcoActivity extends AppCompatActivity {
                             JSONObject object = new JSONObject(result);
 
                             String str_status = "";
-                            if(object.getString("SITUACAO").equals("1")){
+                            if (object.getString("SITUACAO").equals("1")) {
                                 str_status = "Em Desenvolvimento";
-                            }else if(object.getString("SITUACAO").equals("2")){
+                            } else if (object.getString("SITUACAO").equals("2")) {
                                 str_status = "Finalizado";
                             }
 
@@ -115,6 +123,14 @@ public class ArcoActivity extends AppCompatActivity {
                             nome_equipe.setText("Equipe: " + object.getString("NOME_EQUIPE"));
                             nome_tematica.setText("Temática: " + object.getString("NOME_TEMATICA"));
                             Picasso.get().load(URL_BASE + "/IMG/" + object.getString("ID_LIDER") + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(foto_lider);
+
+                            if (ID_USUARIO.equals(object.getString("ID_LIDER"))) {
+                                excuir.setVisibility(View.VISIBLE);
+                                equipe.setVisibility(View.VISIBLE);
+                            }else {
+                                excuir.setVisibility(View.GONE);
+                                equipe.setVisibility(View.GONE);
+                            }
 
 
                         } catch (JSONException e1) {

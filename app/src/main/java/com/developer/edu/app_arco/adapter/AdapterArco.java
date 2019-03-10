@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.model.Arco;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class AdapterArco extends ArrayAdapter<Arco> {
     private List<Arco> arcos;
 
     public AdapterArco(Context context, List<Arco> arcos) {
-        super(context, R.layout.adapter_arco_feed, arcos);
+        super(context, R.layout.adapter_meus_arcos, arcos);
         this.context = context;
         this.arcos = arcos;
 
@@ -36,7 +35,7 @@ public class AdapterArco extends ArrayAdapter<Arco> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.adapter_arco_feed, parent, false);
+        final View view = inflater.inflate(R.layout.adapter_meus_arcos, parent, false);
 
         final Arco arco = arcos.get(position);
 

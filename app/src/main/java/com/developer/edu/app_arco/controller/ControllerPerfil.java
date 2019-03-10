@@ -18,7 +18,6 @@ import com.developer.edu.app_arco.bd.DB_usuario;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.model.Escolaridade;
 import com.developer.edu.app_arco.model.Usuario;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -90,10 +89,10 @@ public class ControllerPerfil {
                         escolaridade.setText(objusuario.getEscolaridade());
                         bio.setText(objusuario.getBio());
 
-                        String result =  objusuario.getOline(); //aqui recebo o json do arco
-                        if(result.equals("1")){
+                        String result = objusuario.getOline(); //aqui recebo o json do arco
+                        if (result.equals("1")) {
                             online.setVisibility(View.VISIBLE);
-                        }else if(result.equals("0")){
+                        } else if (result.equals("0")) {
                             online.setVisibility(View.GONE);
                         }
 
@@ -230,7 +229,11 @@ public class ControllerPerfil {
                     }
 
                 } else if (response.code() == 203) {
-                    Toast.makeText(view.getContext(), response.body(), Toast.LENGTH_LONG).show();
+
+                    if (meu_perfil) {
+                        Toast.makeText(view.getContext(), response.body(), Toast.LENGTH_LONG).show();
+                    }
+
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }

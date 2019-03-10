@@ -16,7 +16,6 @@ import android.widget.EditText;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.controller.ControllerArco;
-import com.developer.edu.app_arco.controller.ControllerEquipe;
 import com.developer.edu.app_arco.controller.ControllerTematica;
 
 public class MenuActivity extends AppCompatActivity {
@@ -37,10 +36,6 @@ public class MenuActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String TIPO_USUARIO = sharedPreferences.getString("TIPO", "");
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
-
-        if (TIPO_USUARIO.equals("2")) {
-
-        }
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +112,7 @@ public class MenuActivity extends AppCompatActivity {
         mensagem.setPositiveButton("Entrar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ControllerEquipe.novoArco(MenuActivity.this, input.getText().toString(), ID_USUARIO);
+                ControllerArco.novoArco(MenuActivity.this, input.getText().toString(), ID_USUARIO);
             }
         });
 

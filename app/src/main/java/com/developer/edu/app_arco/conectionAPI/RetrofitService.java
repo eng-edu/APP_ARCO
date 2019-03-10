@@ -121,6 +121,7 @@ public interface RetrofitService {
 
 
 
+
     @POST("arco/denunciarArco/{ID_USUARIO}/{ID_ARCO}/{DESCRICAO}")
     Call<String> denunciarArco(@Path("ID_USUARIO") String ID_USUARIO,
                                @Path("ID_ARCO") String ID_ARCO,

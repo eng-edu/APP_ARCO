@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
+import com.developer.edu.app_arco.controller.ControllerSolicitacao;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -46,6 +48,9 @@ public class ArcoActivity extends AppCompatActivity {
 
     LinearLayout excuir;
     LinearLayout equipe;
+    LinearLayout solicitacoes;
+
+    TextView num_solicitacao;
 
     Socket socket = SocketStatic.getSocket();
 
@@ -92,17 +97,38 @@ public class ArcoActivity extends AppCompatActivity {
 
         excuir = findViewById(R.id.id_arco_layout_excluir);
         equipe = findViewById(R.id.id_arco_layout_equipe);
+        solicitacoes = findViewById(R.id.id_arco_layout_solicitacoes);
+
+        num_solicitacao = findViewById(R.id.id_arco_num_solicitacoes);
+
 
         socket.emit("ETAPA", ID_ARCO);
         socket.emit("ARCO", ID_ARCO);
 
+
+        foto_lider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, PerfilActivity.class);
+                intent.putExtra("MEU_PERFIL", "N");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                startActivity(intent);
+            }
+        });
+
+
         equipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ArcoActivity.this, EquipeActivity.class);
-                intent.putExtra("ID_ARCO", ID_ARCO);
-                intent.putExtra("CODIGO_EQUIPE", CODIGO_EQUIPE);
-                startActivity(intent);
+                //controler buscar equipe
+            }
+        });
+
+        solicitacoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerSolicitacao.buscarSolicitacoes(ArcoActivity.this, inflater, CODIGO_EQUIPE, socket);
             }
         });
 
@@ -135,13 +161,35 @@ public class ArcoActivity extends AppCompatActivity {
                             if (ID_USUARIO.equals(object.getString("ID_LIDER"))) {
                                 excuir.setVisibility(View.VISIBLE);
                                 equipe.setVisibility(View.VISIBLE);
+                                solicitacoes.setVisibility(View.VISIBLE);
                             } else {
                                 excuir.setVisibility(View.GONE);
                                 equipe.setVisibility(View.GONE);
+                                solicitacoes.setVisibility(View.GONE);
                             }
 
                             CODIGO_EQUIPE = object.getString("CODIGO_EQUIPE");
+                            socket.emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
+                            socket.on("NUM_SOLICITACAO".concat(CODIGO_EQUIPE), new Emitter.Listener() {
+                                @Override
+                                public void call(final Object... args) {
+                                    ArcoActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            String result = args[0].toString(); //aqui recebo o json do arco
+                                            swipeRefreshLayout.setRefreshing(false);
 
+                                            if (Integer.parseInt(result) > 0) {
+                                                num_solicitacao.setVisibility(View.VISIBLE);
+                                                num_solicitacao.setText(result);
+                                            } else {
+                                                num_solicitacao.setVisibility(View.GONE);
+                                            }
+
+                                        }
+                                    });
+                                }
+                            });
 
                         } catch (JSONException e1) {
                             e1.printStackTrace();
@@ -193,6 +241,7 @@ public class ArcoActivity extends AppCompatActivity {
 
 
     }
+
 
     public static void definirIconImageView(ImageView imageView, String status) {
         if (status.equals("1")) {

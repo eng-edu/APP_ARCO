@@ -45,13 +45,16 @@ public class PerfilActivity extends AppCompatActivity {
 
         LinearLayout editarPerfil = findViewById(R.id.id_perfil_editar_perfil);
         LinearLayout editarEscolaridade = findViewById(R.id.id_perfil_editar_escolaridade);
+        TextView sair = findViewById(R.id.id_perfil_sair);
 
         if (MEU_PERFIL.equals("S")) {
             editarPerfil.setVisibility(View.VISIBLE);
             editarEscolaridade.setVisibility(View.VISIBLE);
+            sair.setVisibility(View.VISIBLE);
         } else {
             editarPerfil.setVisibility(View.GONE);
             editarEscolaridade.setVisibility(View.GONE);
+            sair.setVisibility(View.GONE);
         }
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +119,7 @@ public class PerfilActivity extends AppCompatActivity {
         });
 
 
-        TextView sair = findViewById(R.id.id_perfil_sair);
+
         sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

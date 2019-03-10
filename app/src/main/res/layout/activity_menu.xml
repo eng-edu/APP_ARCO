@@ -84,7 +84,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:padding="5dp"
-                                android:text="Vamos lá, crie um novo Arco!"
+                                android:text="Vamos ao Trabalho?!"
                                 android:textColor="@android:color/darker_gray" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>

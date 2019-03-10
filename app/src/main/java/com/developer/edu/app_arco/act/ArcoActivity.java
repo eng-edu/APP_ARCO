@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -36,7 +35,6 @@ public class ArcoActivity extends AppCompatActivity {
 
     TextView status;
     TextView data_hora;
-    TextView nome_equipe;
     TextView nome_tematica;
     ImageView foto_lider;
 
@@ -50,6 +48,8 @@ public class ArcoActivity extends AppCompatActivity {
     LinearLayout equipe;
 
     Socket socket = SocketStatic.getSocket();
+
+    String CODIGO_EQUIPE = "";
 
 
     @Override
@@ -81,7 +81,6 @@ public class ArcoActivity extends AppCompatActivity {
 
         status = findViewById(R.id.id_arco_status);
         data_hora = findViewById(R.id.id_arco_data_hora);
-        nome_equipe = findViewById(R.id.id_arco_nome_equipe);
         nome_tematica = findViewById(R.id.id_arco_nome_tematica);
         foto_lider = findViewById(R.id.id_arco_foto_lider);
 
@@ -96,6 +95,16 @@ public class ArcoActivity extends AppCompatActivity {
 
         socket.emit("ETAPA", ID_ARCO);
         socket.emit("ARCO", ID_ARCO);
+
+        equipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EquipeActivity.class);
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                intent.putExtra("CODIGO_EQUIPE", CODIGO_EQUIPE);
+                startActivity(intent);
+            }
+        });
 
 
         socket.on("ARCO".concat(ID_ARCO), new Emitter.Listener() {
@@ -120,17 +129,18 @@ public class ArcoActivity extends AppCompatActivity {
 
                             status.setText("Status: " + str_status);
                             data_hora.setText("Criando em: " + object.getString("DATA_HORA"));
-                            nome_equipe.setText("Equipe: " + object.getString("NOME_EQUIPE"));
                             nome_tematica.setText("Temática: " + object.getString("NOME_TEMATICA"));
-                            Picasso.get().load(URL_BASE + "/IMG/" + object.getString("ID_LIDER") + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(foto_lider);
+                            Picasso.get().load(URL_BASE + "/IMG/" + object.getString("ID_LIDER") + "_usuario.jpg").into(foto_lider);
 
                             if (ID_USUARIO.equals(object.getString("ID_LIDER"))) {
                                 excuir.setVisibility(View.VISIBLE);
                                 equipe.setVisibility(View.VISIBLE);
-                            }else {
+                            } else {
                                 excuir.setVisibility(View.GONE);
                                 equipe.setVisibility(View.GONE);
                             }
+
+                            CODIGO_EQUIPE = object.getString("CODIGO_EQUIPE");
 
 
                         } catch (JSONException e1) {

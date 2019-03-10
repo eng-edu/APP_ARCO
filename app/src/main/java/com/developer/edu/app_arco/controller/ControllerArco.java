@@ -147,7 +147,6 @@ public class ControllerArco {
                                     object.getString("ID"),
                                     object.getString("SITUACAO"),
                                     object.getString("ID_LIDER"),
-                                    object.getString("NOME_EQUIPE"),
                                     object.getString("NOME_TEMATICA"),
                                     object.getString("DESCRICAO_TEMATICA"),
                                     object.getString("DATA_HORA")));
@@ -389,7 +388,7 @@ public class ControllerArco {
         dialog.show();
 
 
-        Call<String> stringCall = ConfigRetrofit.getService().novoArco(idLider, idTematica);
+        Call<String> stringCall = ConfigRetrofit.getService().novoArcoLider(idLider, idTematica);
         stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

@@ -49,15 +49,13 @@ public class AdapterArco extends ArrayAdapter<Arco> {
 
         TextView status = view.findViewById(R.id.id_adapter_arco_feed_status);
         TextView data_hora = view.findViewById(R.id.id_adapter_arco_feed_data_hora);
-        TextView nome_equipe = view.findViewById(R.id.id_adapter_arco_feed_nome_equipe);
         TextView nome_tematica = view.findViewById(R.id.id_adapter_arco_feed_nome_tematica);
         ImageView foto_lider = view.findViewById(R.id.id_adapter_arco_feed_foto_lider);
 
         status.setText("Status: " + str_status);
         data_hora.setText("Criando em: "+ arco.getDATA_HORA());
-        nome_equipe.setText("Equipe: "+arco.getNOME_EQUIPE());
         nome_tematica.setText("Temática: " + arco.getNOME_TEMATICA());
-        Picasso.get().load(URL_BASE + "/IMG/" + arco.getID_LIDER() + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(foto_lider);
+        Picasso.get().load(URL_BASE + "/IMG/" + arco.getID_LIDER() + "_usuario.jpg").into(foto_lider);
 
 
         return view;

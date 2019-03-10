@@ -1,17 +1,22 @@
 package com.developer.edu.app_arco.act;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.controller.ControllerArco;
+import com.developer.edu.app_arco.controller.ControllerEquipe;
 import com.developer.edu.app_arco.controller.ControllerTematica;
 
 public class MenuActivity extends AppCompatActivity {
@@ -30,18 +35,18 @@ public class MenuActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
-        final String tipo = sharedPreferences.getString("TIPO", "");
+        final String TIPO_USUARIO = sharedPreferences.getString("TIPO", "");
+        final String ID_USUARIO = sharedPreferences.getString("ID", "");
 
-        if (tipo.equals("2")) {
-            novoArco.setVisibility(View.GONE);
+        if (TIPO_USUARIO.equals("2")) {
+
         }
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
-                SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
-                final String ID_USUARIO = sharedPreferences.getString("ID", "");
+
                 intent.putExtra("MEU_PERFIL", "S");
                 intent.putExtra("ID_USUARIO", ID_USUARIO);
                 startActivity(intent);
@@ -51,7 +56,12 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                ControllerTematica.bucarTematicas(MenuActivity.this, inflater);
+                if (TIPO_USUARIO.equals("1")) {
+                    ControllerTematica.bucarTematicas(MenuActivity.this, inflater);
+                } else if (TIPO_USUARIO.equals("2")) {
+                    exibirMensagemEdt(ID_USUARIO);
+                }
+
 
             }
         });
@@ -67,7 +77,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-              //  ControllerArco.bucarArcosCompartilhados(MenuActivity.this, inflater);
+                //  ControllerArco.bucarArcosCompartilhados(MenuActivity.this, inflater);
             }
         });
 
@@ -75,7 +85,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-              //  ControllerArco.bucarRanking(MenuActivity.this, inflater);
+                //  ControllerArco.bucarRanking(MenuActivity.this, inflater);
             }
         });
 
@@ -87,6 +97,34 @@ public class MenuActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void exibirMensagemEdt(final String ID_USUARIO) {
+
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(this);
+        mensagem.setMessage("Solicite o codigo da equipe ao seu líder!");
+        // DECLARACAO DO EDITTEXT
+        final EditText input = new EditText(this);
+        mensagem.setView(input);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        mensagem.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        mensagem.setPositiveButton("Entrar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ControllerEquipe.novoArco(MenuActivity.this, input.getText().toString(), ID_USUARIO);
+            }
+        });
+
+        mensagem.show();
+        // FORÇA O TECLADO APARECER AO ABRIR O ALERT
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
 }

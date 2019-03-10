@@ -63,12 +63,6 @@
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/id_adapter_arco_feed_nome_equipe"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp" />
-
-                    <TextView
                         android:id="@+id/id_adapter_arco_feed_nome_tematica"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -48,7 +48,7 @@ public class ControllerPerfil {
         final LinearLayout online = view.findViewById(R.id.id_perfil_layout_online);
 
 
-        Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").memoryPolicy(MemoryPolicy.NO_CACHE).into(fotoperfil);
+        Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").into(fotoperfil);
 
         Call<String> stringCall = ConfigRetrofit.getService().buscarUsuario(ID_USUARIO);
         stringCall.enqueue(new Callback<String>() {

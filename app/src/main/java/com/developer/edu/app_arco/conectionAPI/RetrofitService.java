@@ -95,14 +95,16 @@ public interface RetrofitService {
     Call<String> buscarTematicas();
 
     @POST("arco/novoArco/{ID_LIDER}/{ID_TEMATICA}")
-    Call<String> novoArco(@Path("ID_LIDER") String ID_LIDER,
+    Call<String> novoArcoLider(@Path("ID_LIDER") String ID_LIDER,
                           @Path("ID_TEMATICA") String TEMATICA);
 
 
     @GET("arco/buscarMeusArcos/{ID_USUARIO}")
     Call<String> buscarMeusArcos(@Path("ID_USUARIO") String ID_USUARIO);
 
-
+    @POST("equipe/inserirMenbro/{CODIGO}/{ID_USUARIO}")
+    Call<String> novoArcoMenbro(@Path("CODIGO") String CODIGO_EQUIPE,
+                          @Path("ID_USUARIO") String ID_USUARIO);
 
 
 

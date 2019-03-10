@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.developer.edu.app_arco.adapter.AdapterUsuario;
 import com.developer.edu.app_arco.R;
@@ -31,33 +32,19 @@ import io.socket.emitter.Emitter;
 public class EquipeActivity extends AppCompatActivity {
 
 
-    @SuppressLint("RestrictedApi")
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipe);
 
-
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
+        final String ID_ARCO = getIntent().getStringExtra("ID_ARCO");
+        final String CODIGO_EQUIPE = getIntent().getStringExtra("CODIGO_EQUIPE");
 
-        final FloatingActionButton novoMenbro = findViewById(R.id.id_equipe_novomenbro);
-        novoMenbro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LayoutInflater inflater = getLayoutInflater();
-               // ControllerEquipe.bucarUsuarios(EquipeActivity.this, inflater, getIntent().getStringExtra("ID_ARCO"), socket);
-            }
-        });
+        TextView codigo = findViewById(R.id.id_equipe_codigo);
+        codigo.setText(CODIGO_EQUIPE);
 
-
-        if(getIntent().getStringExtra("MEUS_ARCOS").equals("S")){
-            novoMenbro.setVisibility(View.VISIBLE);
-        }else {
-            novoMenbro.setVisibility(View.GONE);
-        }
-
-        final ListView listView = findViewById(R.id.id_lista_menbros);
-        final AdapterUsuario arrayAdapter = new AdapterUsuario(EquipeActivity.this, new ArrayList<Usuario>());
 
     }
 

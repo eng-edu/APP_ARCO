@@ -4,30 +4,58 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.text.InputType;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.developer.edu.app_arco.adapter.AdapterUsuario;
-import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
-import com.developer.edu.app_arco.model.Usuario;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControllerEquipe {
+
+
+    public static void novoArco(final Context context, String CODIGO_EQUIPE, String ID_USUARIO) {
+
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setTitle("Aguarde...");
+        dialog.show();
+
+        Call<String> stringCall = ConfigRetrofit.getService().novoArcoMenbro(CODIGO_EQUIPE, ID_USUARIO);
+
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if (response.code() == 200) {
+
+                    AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
+                    mensagem.setMessage("Aguarde a aprovação do líder, você será notificado!");
+                    mensagem.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    mensagem.show();
+
+                    dialog.dismiss();
+                } else if (response.code() == 203) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
 
 //
 //    static AlertDialog alert;

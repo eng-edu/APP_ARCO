@@ -48,9 +48,15 @@ public class ControllerLogin {
                         editor.putString("TIPO", usuario.getString("TIPO"));
                         editor.apply();
 
-
+                        IO.Options opts = new IO.Options();
+                        opts.forceNew = true;
+                        opts.query = "ID_USUARIO=" +  usuario.getString("ID");
+                        Socket socket = IO.socket(ConfigRetrofit.URL_BASE, opts);
+                        SocketStatic.setSocket(socket);
 
                     } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
 

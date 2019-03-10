@@ -17,6 +17,7 @@ import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.act.ArcoActivity;
 import com.developer.edu.app_arco.adapter.AdapterArco;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.model.Arco;
 
 import org.json.JSONArray;
@@ -35,7 +36,7 @@ public class ControllerArco {
 
     static AlertDialog alert;
 
-    public static void novoArco(final Context context, String CODIGO_EQUIPE, String ID_USUARIO) {
+    public static void novoArco(final Context context, final String CODIGO_EQUIPE, String ID_USUARIO) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
@@ -49,8 +50,10 @@ public class ControllerArco {
 
                 if (response.code() == 200) {
 
+                    SocketStatic.getSocket().emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
+
                     AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
-                    mensagem.setMessage("Aguarde a aprovação do líder, você será notificado!");
+                    mensagem.setMessage("Aguarde a aprovação do líder!");
                     mensagem.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -169,8 +172,15 @@ public class ControllerArco {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
 
-//                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", response.body()).putExtra("MEUS_ARCOS", "S"));
-                    dialog.dismiss();
+                    JSONObject object = null;
+                    try {
+                        object = new JSONObject(response.body());
+                        context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", object.optString("ID_ARCO")).putExtra("MEUS_ARCOS", "S"));
+                        dialog.dismiss();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        dialog.dismiss();
+                    }
 
                 } else if (response.code() == 203) {
                     Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();

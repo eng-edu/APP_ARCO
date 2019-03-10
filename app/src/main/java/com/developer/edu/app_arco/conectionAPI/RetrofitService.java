@@ -18,21 +18,21 @@ public interface RetrofitService {
     @Multipart
     @POST("/usuario/cadastrar/{BIO}/{NOME}/{SOBRENOME}/{CPF}/{SEXO}/{DATA_NASC}/{ESCOLARIDADE}/{EMAIL}/{SENHA}/{TIPO}")
     Call<String> cadastrarUsuario(@Path("BIO") String BIO,
-                                @Path("NOME") String NOME,
-                                @Path("SOBRENOME") String SOBRENOME,
-                                @Path("CPF") String CPF,
-                                @Path("SEXO") String SEXO,
-                                @Path("DATA_NASC") String DATA_NASC,
-                                @Path("ESCOLARIDADE") String ESCOLARIDADE,
-                                @Path("EMAIL") String EMAIL,
-                                @Path("SENHA") String SENHA,
-                                @Path("TIPO") String TIPO,
-                                @Part MultipartBody.Part file,
-                                @Part("file") RequestBody name);
+                                  @Path("NOME") String NOME,
+                                  @Path("SOBRENOME") String SOBRENOME,
+                                  @Path("CPF") String CPF,
+                                  @Path("SEXO") String SEXO,
+                                  @Path("DATA_NASC") String DATA_NASC,
+                                  @Path("ESCOLARIDADE") String ESCOLARIDADE,
+                                  @Path("EMAIL") String EMAIL,
+                                  @Path("SENHA") String SENHA,
+                                  @Path("TIPO") String TIPO,
+                                  @Part MultipartBody.Part file,
+                                  @Part("file") RequestBody name);
 
     @GET("usuario/logar/{EMAIL}/{SENHA}")
     Call<String> logar(@Path("EMAIL") String EMAIL,
-                              @Path("SENHA") String SENHA);
+                       @Path("SENHA") String SENHA);
 
 
     @POST("usuario/recuperarSenha/{EMAIL}/{DATA_NASC}")
@@ -75,13 +75,13 @@ public interface RetrofitService {
     @Multipart
     @PUT("escolaridade/alterarComFoto/{ID_USUARIO}/{INSTITUICAO}/{AREA}/{ANO}/{GRUPOS}/{DESCRICAO}")
     Call<String> alterarComFotoEscolaridade(@Path("ID_USUARIO") String ID_USUARIO,
-                                       @Path("INSTITUICAO") String INSTITUICAO,
-                                       @Path("AREA") String AREA,
-                                       @Path("ANO") String ANO,
-                                       @Path("GRUPOS") String GRUPOS,
-                                       @Path("DESCRICAO") String DESCRICAO,
-                                       @Part MultipartBody.Part file,
-                                       @Part("file") RequestBody name);
+                                            @Path("INSTITUICAO") String INSTITUICAO,
+                                            @Path("AREA") String AREA,
+                                            @Path("ANO") String ANO,
+                                            @Path("GRUPOS") String GRUPOS,
+                                            @Path("DESCRICAO") String DESCRICAO,
+                                            @Part MultipartBody.Part file,
+                                            @Part("file") RequestBody name);
 
     @PUT("escolaridade/alterar/{ID_USUARIO}/{INSTITUICAO}/{AREA}/{ANO}/{GRUPOS}/{DESCRICAO}")
     Call<String> alterarEscolaridade(@Path("ID_USUARIO") String ID_USUARIO,
@@ -96,7 +96,7 @@ public interface RetrofitService {
 
     @POST("arco/novoArco/{ID_LIDER}/{ID_TEMATICA}")
     Call<String> novoArcoLider(@Path("ID_LIDER") String ID_LIDER,
-                          @Path("ID_TEMATICA") String TEMATICA);
+                               @Path("ID_TEMATICA") String TEMATICA);
 
 
     @GET("arco/buscarMeusArcos/{ID_USUARIO}")
@@ -104,24 +104,18 @@ public interface RetrofitService {
 
     @POST("equipe/inserirMenbro/{CODIGO}/{ID_USUARIO}")
     Call<String> novoArcoMenbro(@Path("CODIGO") String CODIGO_EQUIPE,
-                          @Path("ID_USUARIO") String ID_USUARIO);
+                                @Path("ID_USUARIO") String ID_USUARIO);
+
+    @PUT("equipe/aceitarSolicitacao/{CODIGO}/{ID_USUARIO}")
+    Call<String> aceitarSolicitacao(@Path("CODIGO") String CODIGO_EQUIPE,
+                                    @Path("ID_USUARIO") String ID_USUARIO);
+
+    @PUT("equipe/recusarSolicitacao/{CODIGO}/{ID_USUARIO}")
+    Call<String> recusarSolicitacao(@Path("CODIGO") String CODIGO_EQUIPE,
+                                    @Path("ID_USUARIO") String ID_USUARIO);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @POST("arco/denunciarArco/{ID_USUARIO}/{ID_ARCO}/{DESCRICAO}")
     Call<String> denunciarArco(@Path("ID_USUARIO") String ID_USUARIO,
                                @Path("ID_ARCO") String ID_ARCO,
@@ -132,7 +126,7 @@ public interface RetrofitService {
 
     @POST("usuario/novoMenbro/{ID_USUARIO}/{ID_ARCO}")
     Call<String> novoMenbro(@Path("ID_USUARIO") String ID_USUARIO,
-                          @Path("ID_ARCO") String ARCO);
+                            @Path("ID_ARCO") String ARCO);
 
     @GET("etapa/buscar/{ID_ARCO}/{ID_USUARIO}")
     Call<String> buscarEtapas(@Path("ID_ARCO") String ID_ARCO,
@@ -146,7 +140,7 @@ public interface RetrofitService {
     Call<String> buscarRanking();
 
     @GET("arco/gerarmedia/{list}")
-    Call<String> gerarMediaArcos(@Path("list")List array);
+    Call<String> gerarMediaArcos(@Path("list") List array);
 
 
 }

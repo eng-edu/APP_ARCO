@@ -35,6 +35,7 @@ public class ArcoActivity extends AppCompatActivity {
     CardView etapa4;
     CardView etapa5;
 
+    TextView codigo_equipe;
     TextView status;
     TextView data_hora;
     TextView nome_tematica;
@@ -55,7 +56,7 @@ public class ArcoActivity extends AppCompatActivity {
     Socket socket = SocketStatic.getSocket();
 
     String CODIGO_EQUIPE = "";
-
+    String ID_LIDER = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class ArcoActivity extends AppCompatActivity {
         etapa4 = findViewById(R.id.card_e4);
         etapa5 = findViewById(R.id.card_e5);
 
+        codigo_equipe = findViewById(R.id.id_arco_codigo);
         status = findViewById(R.id.id_arco_status);
         data_hora = findViewById(R.id.id_arco_data_hora);
         nome_tematica = findViewById(R.id.id_arco_nome_tematica);
@@ -111,7 +113,7 @@ public class ArcoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ArcoActivity.this, PerfilActivity.class);
                 intent.putExtra("MEU_PERFIL", "N");
-                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                intent.putExtra("ID_USUARIO", ID_LIDER);
                 startActivity(intent);
             }
         });
@@ -128,7 +130,7 @@ public class ArcoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                ControllerSolicitacao.buscarSolicitacoes(ArcoActivity.this, inflater, CODIGO_EQUIPE, socket);
+                ControllerSolicitacao.buscarSolicitacoes(ArcoActivity.this, inflater, CODIGO_EQUIPE);
             }
         });
 
@@ -146,6 +148,8 @@ public class ArcoActivity extends AppCompatActivity {
 
                             JSONObject object = new JSONObject(result);
 
+                            ID_LIDER = object.getString("ID_LIDER");
+                            CODIGO_EQUIPE = object.getString("CODIGO_EQUIPE");
                             String str_status = "";
                             if (object.getString("SITUACAO").equals("1")) {
                                 str_status = "Em Desenvolvimento";
@@ -153,6 +157,7 @@ public class ArcoActivity extends AppCompatActivity {
                                 str_status = "Finalizado";
                             }
 
+                            codigo_equipe.setText("Código da equipe: " + CODIGO_EQUIPE);
                             status.setText("Status: " + str_status);
                             data_hora.setText("Criando em: " + object.getString("DATA_HORA"));
                             nome_tematica.setText("Temática: " + object.getString("NOME_TEMATICA"));
@@ -162,13 +167,15 @@ public class ArcoActivity extends AppCompatActivity {
                                 excuir.setVisibility(View.VISIBLE);
                                 equipe.setVisibility(View.VISIBLE);
                                 solicitacoes.setVisibility(View.VISIBLE);
+                                codigo_equipe.setVisibility(View.VISIBLE);
                             } else {
                                 excuir.setVisibility(View.GONE);
                                 equipe.setVisibility(View.GONE);
                                 solicitacoes.setVisibility(View.GONE);
+                                codigo_equipe.setVisibility(View.GONE);
                             }
 
-                            CODIGO_EQUIPE = object.getString("CODIGO_EQUIPE");
+
                             socket.emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
                             socket.on("NUM_SOLICITACAO".concat(CODIGO_EQUIPE), new Emitter.Listener() {
                                 @Override

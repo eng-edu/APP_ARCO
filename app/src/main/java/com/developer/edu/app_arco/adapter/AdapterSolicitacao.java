@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
-import com.developer.edu.app_arco.act.ArcoActivity;
 import com.developer.edu.app_arco.act.PerfilActivity;
+import com.developer.edu.app_arco.controller.ControllerSolicitacao;
 import com.developer.edu.app_arco.model.Solicitacao;
 import com.squareup.picasso.Picasso;
 
@@ -27,11 +26,14 @@ public class AdapterSolicitacao extends ArrayAdapter<Solicitacao> {
 
     private Context context;
     private List<Solicitacao> solicitacaos;
+    private String CODIGO_EQUIPE;
 
-    public AdapterSolicitacao(Context context, List<Solicitacao> solicitacaos) {
+
+    public AdapterSolicitacao(Context context, List<Solicitacao> solicitacaos, String CODIGO_EQUIPE) {
         super(context, R.layout.adapter_solicitacao, solicitacaos);
         this.context = context;
         this.solicitacaos = solicitacaos;
+        this.CODIGO_EQUIPE = CODIGO_EQUIPE;
 
     }
 
@@ -52,21 +54,21 @@ public class AdapterSolicitacao extends ArrayAdapter<Solicitacao> {
 
 
         Picasso.get().load(URL_BASE + "/IMG/" + solicitacao.getID() + "_usuario.jpg").into(foto_lider);
-        nome.setText(solicitacao.getNOME() +" " + solicitacao.getSOBRENOME());
+        nome.setText(solicitacao.getNOME() + " " + solicitacao.getSOBRENOME());
         data_nasc.setText(solicitacao.getDATA_NASC());
         escolaridade.setText(solicitacao.getESCOLARIDADE());
 
         aceitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ControllerSolicitacao.aceitarSolicitacao(context, CODIGO_EQUIPE, solicitacao.getID());
             }
         });
 
         recusar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ControllerSolicitacao.recusarSolicitacao(context, CODIGO_EQUIPE, solicitacao.getID());
             }
         });
 

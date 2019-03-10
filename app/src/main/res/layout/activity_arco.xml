@@ -60,11 +60,17 @@
 
 
                             <TextView
+                                android:id="@+id/id_arco_codigo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
                                 android:id="@+id/id_arco_status"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/id_arco_data_hora"
@@ -152,14 +158,15 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:src="@mipmap/ic_equipe" />
+
                             <TextView
                                 android:id="@+id/id_arco_num_solicitacoes"
-                                android:visibility="gone"
-                                android:layout_gravity="top"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="top"
                                 android:text=""
-                                android:textColor="@color/red"/>
+                                android:textColor="@color/red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:layout_width="match_parent"

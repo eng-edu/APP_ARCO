@@ -2,21 +2,16 @@ package com.developer.edu.app_arco.controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.adapter.AdapterNotificacao;
-import com.developer.edu.app_arco.adapter.AdapterSolicitacao;
-import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.model.Notificacao;
-import com.developer.edu.app_arco.model.Solicitacao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,9 +22,6 @@ import java.util.List;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ControllerNotificacao {
 
@@ -65,6 +57,7 @@ public class ControllerNotificacao {
                                 JSONObject object = array.getJSONObject(i);
 
                                 notificacaos.add(new Notificacao(
+                                        object.getString("ID"),
                                         object.getString("ID_ARCO"),
                                         object.getString("ID_USUARIO"),
                                         object.getString("DATA_HORA"),

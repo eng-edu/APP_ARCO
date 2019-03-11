@@ -2,26 +2,18 @@ package com.developer.edu.app_arco.model;
 
 public class Notificacao {
 
+    String ID;
     String ID_ARCO;
     String ID_USUARIO;
     String DATA_HORA;
     String TEXTO;
 
-    @Override
-    public String toString() {
-        return "Notificacao{" +
-                "ID_ARCO='" + ID_ARCO + '\'' +
-                ", ID_USUARIO='" + ID_USUARIO + '\'' +
-                ", DATA_HORA='" + DATA_HORA + '\'' +
-                ", TEXTO='" + TEXTO + '\'' +
-                '}';
+    public String getID() {
+        return ID;
     }
 
-    public Notificacao(String ID_ARCO, String ID_USUARIO, String DATA_HORA, String MENSAGEM) {
-        this.ID_ARCO = ID_ARCO;
-        this.ID_USUARIO = ID_USUARIO;
-        this.DATA_HORA = DATA_HORA;
-        this.TEXTO = MENSAGEM;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getID_ARCO() {
@@ -53,6 +45,14 @@ public class Notificacao {
     }
 
     public void setTEXTO(String TEXTO) {
+        this.TEXTO = TEXTO;
+    }
+
+    public Notificacao(String ID, String ID_ARCO, String ID_USUARIO, String DATA_HORA, String TEXTO) {
+        this.ID = ID;
+        this.ID_ARCO = ID_ARCO;
+        this.ID_USUARIO = ID_USUARIO;
+        this.DATA_HORA = DATA_HORA;
         this.TEXTO = TEXTO;
     }
 }

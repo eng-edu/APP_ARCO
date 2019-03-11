@@ -114,6 +114,7 @@ public class ControllerSolicitacao {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
 
+                    SocketStatic.getSocket().emit("NUM_NOTIFICACAO",ID_USUARIO);
                     socket.emit("NOTIFICACAO", ID_USUARIO);
                     socket.emit("SOLICITACAO", CODIGO_EQUIPE);
                     socket.emit("NUM_SOLICITACAO", CODIGO_EQUIPE);

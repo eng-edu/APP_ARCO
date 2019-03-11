@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +38,8 @@ public class ControllerArco {
     static AlertDialog alert;
 
     public static void novoArco(final Context context, final String CODIGO_EQUIPE, final String ID_USUARIO) {
+
+        final Socket socket = SocketStatic.getSocket();
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
@@ -54,8 +57,9 @@ public class ControllerArco {
                     JSONObject object = null;
                     try {
                         object = new JSONObject(response.body());
-                        SocketStatic.getSocket().emit("NOTIFICACAO", object.getString("ID_USUARIO"));
-                        SocketStatic.getSocket().emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
+                        socket.emit("NUM_NOTIFICACAO", object.getString("ID_USUARIO"));
+                        socket.emit("NOTIFICACAO", object.getString("ID_USUARIO"));
+                        socket.emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
 
                     } catch (JSONException e) {
                         e.printStackTrace();

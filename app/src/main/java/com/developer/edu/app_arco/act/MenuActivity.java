@@ -14,13 +14,20 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerArco;
 import com.developer.edu.app_arco.controller.ControllerNotificacao;
 import com.developer.edu.app_arco.controller.ControllerTematica;
 
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
 public class MenuActivity extends AppCompatActivity {
+
+    Socket socket = SocketStatic.getSocket();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +41,33 @@ public class MenuActivity extends AppCompatActivity {
         CardView ranking = findViewById(R.id.card_ranking);
         CardView premioMes = findViewById(R.id.card_premiodomes);
         ImageView notifacao = findViewById(R.id.id_menu_notification);
-
+        final TextView num_notificacao = findViewById(R.id.id_menu_num_notificacao);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String TIPO_USUARIO = sharedPreferences.getString("TIPO", "");
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
+
+        socket.emit("NUM_NOTIFICACAO",ID_USUARIO);
+        socket.on("NUM_NOTIFICACAO".concat(ID_USUARIO), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MenuActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String result = args[0].toString(); //aqui recebo o json do arco
+
+                        if (Integer.parseInt(result) > 0) {
+                            num_notificacao.setVisibility(View.VISIBLE);
+                            num_notificacao.setText(result);
+                        } else {
+                            num_notificacao.setVisibility(View.GONE);
+                        }
+
+                    }
+                });
+            }
+        });
+
 
         notifacao.setOnClickListener(new View.OnClickListener() {
             @Override

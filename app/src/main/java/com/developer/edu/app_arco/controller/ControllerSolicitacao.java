@@ -100,7 +100,7 @@ public class ControllerSolicitacao {
 
     }
 
-    public static void aceitarSolicitacao(final Context context, final String CODIGO_EQUIPE, String ID_USUARIO) {
+    public static void aceitarSolicitacao(final Context context, final String CODIGO_EQUIPE, final String ID_USUARIO) {
 
         final Socket socket = SocketStatic.getSocket();
         final ProgressDialog dialog = new ProgressDialog(context);
@@ -114,6 +114,7 @@ public class ControllerSolicitacao {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 200) {
 
+                    socket.emit("NOTIFICACAO", ID_USUARIO);
                     socket.emit("SOLICITACAO", CODIGO_EQUIPE);
                     socket.emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
                     dialog.dismiss();

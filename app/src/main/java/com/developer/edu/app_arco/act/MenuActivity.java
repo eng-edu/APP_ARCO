@@ -13,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.controller.ControllerArco;
+import com.developer.edu.app_arco.controller.ControllerNotificacao;
 import com.developer.edu.app_arco.controller.ControllerTematica;
 
 public class MenuActivity extends AppCompatActivity {
@@ -31,11 +33,21 @@ public class MenuActivity extends AppCompatActivity {
         CardView arcosCompartilhados = findViewById(R.id.card_compartilhados);
         CardView ranking = findViewById(R.id.card_ranking);
         CardView premioMes = findViewById(R.id.card_premiodomes);
+        ImageView notifacao = findViewById(R.id.id_menu_notification);
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String TIPO_USUARIO = sharedPreferences.getString("TIPO", "");
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
+
+        notifacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerNotificacao.buscarNoticacoes(MenuActivity.this, inflater, ID_USUARIO);
+            }
+        });
+
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override

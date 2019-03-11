@@ -36,7 +36,7 @@ public class ControllerArco {
 
     static AlertDialog alert;
 
-    public static void novoArco(final Context context, final String CODIGO_EQUIPE, String ID_USUARIO) {
+    public static void novoArco(final Context context, final String CODIGO_EQUIPE, final String ID_USUARIO) {
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("Aguarde...");
@@ -50,7 +50,18 @@ public class ControllerArco {
 
                 if (response.code() == 200) {
 
-                    SocketStatic.getSocket().emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
+
+                    JSONObject object = null;
+                    try {
+                        object = new JSONObject(response.body());
+                        SocketStatic.getSocket().emit("NOTIFICACAO", object.getString("ID_USUARIO"));
+                        SocketStatic.getSocket().emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        dialog.dismiss();
+                    }
+
 
                     AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
                     mensagem.setMessage("Aguarde a aprovação do líder!");

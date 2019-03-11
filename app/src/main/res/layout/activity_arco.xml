@@ -161,12 +161,14 @@
 
                             <TextView
                                 android:id="@+id/id_arco_num_solicitacoes"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
                                 android:layout_gravity="top"
-                                android:text=""
-                                android:textColor="@color/red"
-                                android:visibility="gone" />
+                                android:background="@drawable/cercleshape1"
+                                android:textAlignment="center"
+                                android:textColor="@color/backgroundcolor"
+                                android:textSize="7sp"
+                                android:visibility="gone"></TextView>
 
                             <TextView
                                 android:layout_width="match_parent"

@@ -167,12 +167,10 @@ public class ArcoActivity extends AppCompatActivity {
                                 excuir.setVisibility(View.VISIBLE);
                                 equipe.setVisibility(View.VISIBLE);
                                 solicitacoes.setVisibility(View.VISIBLE);
-                                codigo_equipe.setVisibility(View.VISIBLE);
                             } else {
                                 excuir.setVisibility(View.GONE);
                                 equipe.setVisibility(View.GONE);
                                 solicitacoes.setVisibility(View.GONE);
-                                codigo_equipe.setVisibility(View.GONE);
                             }
 
 

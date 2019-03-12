@@ -59,6 +59,7 @@ public class ControllerArco {
                         object = new JSONObject(response.body());
                         socket.emit("NUM_NOTIFICACAO", object.getString("ID_USUARIO"));
                         socket.emit("NOTIFICACAO", object.getString("ID_USUARIO"));
+                        socket.emit("SOLICITACAO", CODIGO_EQUIPE);
                         socket.emit("NUM_SOLICITACAO", CODIGO_EQUIPE);
 
                     } catch (JSONException e) {

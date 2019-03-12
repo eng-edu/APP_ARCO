@@ -7,6 +7,28 @@ public class Notificacao {
     String ID_USUARIO;
     String DATA_HORA;
     String TEXTO;
+    String SITUACAO;
+
+    @Override
+    public String toString() {
+        return "Notificacao{" +
+                "ID='" + ID + '\'' +
+                ", ID_ARCO='" + ID_ARCO + '\'' +
+                ", ID_USUARIO='" + ID_USUARIO + '\'' +
+                ", DATA_HORA='" + DATA_HORA + '\'' +
+                ", TEXTO='" + TEXTO + '\'' +
+                ", SITUACAO='" + SITUACAO + '\'' +
+                '}';
+    }
+
+    public Notificacao(String ID, String ID_ARCO, String ID_USUARIO, String DATA_HORA, String TEXTO, String SITUACAO) {
+        this.ID = ID;
+        this.ID_ARCO = ID_ARCO;
+        this.ID_USUARIO = ID_USUARIO;
+        this.DATA_HORA = DATA_HORA;
+        this.TEXTO = TEXTO;
+        this.SITUACAO = SITUACAO;
+    }
 
     public String getID() {
         return ID;
@@ -48,11 +70,11 @@ public class Notificacao {
         this.TEXTO = TEXTO;
     }
 
-    public Notificacao(String ID, String ID_ARCO, String ID_USUARIO, String DATA_HORA, String TEXTO) {
-        this.ID = ID;
-        this.ID_ARCO = ID_ARCO;
-        this.ID_USUARIO = ID_USUARIO;
-        this.DATA_HORA = DATA_HORA;
-        this.TEXTO = TEXTO;
+    public String getSITUACAO() {
+        return SITUACAO;
+    }
+
+    public void setSITUACAO(String SITUACAO) {
+        this.SITUACAO = SITUACAO;
     }
 }

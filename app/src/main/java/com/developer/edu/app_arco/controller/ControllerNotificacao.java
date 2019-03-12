@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.act.ArcoActivity;
 import com.developer.edu.app_arco.adapter.AdapterNotificacao;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.model.Notificacao;
@@ -61,7 +64,8 @@ public class ControllerNotificacao {
                                         object.getString("ID_ARCO"),
                                         object.getString("ID_USUARIO"),
                                         object.getString("DATA_HORA"),
-                                        object.getString("TEXTO")));
+                                        object.getString("TEXTO"),
+                                        object.getString("SITUACAO")));
                             }
 
                             arrayAdapter.clear();
@@ -77,17 +81,18 @@ public class ControllerNotificacao {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO",   arrayAdapter.getItem(position).getID_ARCO()).putExtra("MEUS_ARCOS", "S"));
+                ((Activity) context).finish();
+            }
+        });
+
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Notificações");
         builder.setView(view);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
 
         alert = builder.create();
         alert.show();

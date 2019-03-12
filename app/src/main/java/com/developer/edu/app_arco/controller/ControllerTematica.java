@@ -36,9 +36,9 @@ public class ControllerTematica {
     public static void bucarTematicas(final Context context, final LayoutInflater inflater) {
 
 
-        final View view = inflater.inflate(R.layout.list_dados, null);
+        final View view = inflater.inflate(R.layout.dialog_tematica, null);
 
-        final ListView listView = view.findViewById(R.id.list_alert_list);
+        final ListView listView = view.findViewById(R.id.lista_tematicas);
         final ArrayAdapter<Tematica> arrayAdapter = new ArrayAdapter<Tematica>(context, R.layout.support_simple_spinner_dropdown_item);
 
 

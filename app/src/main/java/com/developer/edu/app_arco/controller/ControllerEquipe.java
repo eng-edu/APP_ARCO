@@ -2,26 +2,19 @@ package com.developer.edu.app_arco.controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
-import com.developer.edu.app_arco.act.ArcoActivity;
-import com.developer.edu.app_arco.adapter.AdapterArco;
 import com.developer.edu.app_arco.adapter.AdapterEquipe;
-import com.developer.edu.app_arco.adapter.AdapterSolicitacao;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
-import com.developer.edu.app_arco.model.Arco;
 import com.developer.edu.app_arco.model.Equipe;
-import com.developer.edu.app_arco.model.Solicitacao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +33,7 @@ public class ControllerEquipe {
 
     public static AlertDialog alert = null;
 
-    public static void buscarEquipe(final Context context, final LayoutInflater inflater, String CODIGO_EQUIPE) {
+    public static void buscarEquipe(final Context context, final LayoutInflater inflater, String CODIGO_EQUIPE, final String ID_LIDER) {
 
         Socket socket = SocketStatic.getSocket();
 
@@ -68,12 +61,17 @@ public class ControllerEquipe {
                             for (int i = 0; i < size; i++) {
                                 JSONObject object = array.getJSONObject(i);
 
-                                solicitacaos.add(new Equipe(
-                                        object.getString("ID"),
-                                        object.getString("NOME"),
-                                        object.getString("SOBRENOME"),
-                                        object.getString("DATA_NASC"),
-                                        object.getString("ESCOLARIDADE")));
+                                if (object.getString("ID").equals(ID_LIDER)) {
+
+
+                                } else {
+                                    solicitacaos.add(new Equipe(
+                                            object.getString("ID"),
+                                            object.getString("NOME"),
+                                            object.getString("SOBRENOME"),
+                                            object.getString("DATA_NASC"),
+                                            object.getString("ESCOLARIDADE")));
+                                }
                             }
 
                             arrayAdapter.clear();
@@ -106,5 +104,38 @@ public class ControllerEquipe {
 
     }
 
+    public static void removerMenbro(final Context context, final String CODIGO_EQUIPE, final String ID_USUARIO) {
+
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setTitle("Aguarde...");
+        dialog.setCancelable(true);
+        dialog.show();
+
+        final Socket socket = SocketStatic.getSocket();
+
+        Call<String> stringCall = ConfigRetrofit.getService().removerMenbro(CODIGO_EQUIPE, ID_USUARIO);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+                    socket.emit("EQUIPE", CODIGO_EQUIPE);
+                    dialog.dismiss();
+
+
+                } else if (response.code() == 203) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+    }
 
 }

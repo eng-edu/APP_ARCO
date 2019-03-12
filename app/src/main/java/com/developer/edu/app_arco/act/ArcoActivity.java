@@ -41,6 +41,7 @@ public class ArcoActivity extends AppCompatActivity {
     TextView data_hora;
     TextView nome_tematica;
     ImageView foto_lider;
+    ImageView foto_menbro;
 
     ImageView status_e1;
     ImageView status_e2;
@@ -66,6 +67,7 @@ public class ArcoActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
+        final String TIPO = sharedPreferences.getString("TIPO", "");
         final String MEUS_ARCOS = getIntent().getStringExtra("MEUS_ARCOS");
         final String ID_ARCO = getIntent().getStringExtra("ID_ARCO");
 
@@ -91,6 +93,7 @@ public class ArcoActivity extends AppCompatActivity {
         data_hora = findViewById(R.id.id_arco_data_hora);
         nome_tematica = findViewById(R.id.id_arco_nome_tematica);
         foto_lider = findViewById(R.id.id_arco_foto_lider);
+        foto_menbro = findViewById(R.id.id_arco_foto_menbro);
 
         status_e1 = findViewById(R.id.imageE1);
         status_e2 = findViewById(R.id.imageE2);
@@ -109,6 +112,14 @@ public class ArcoActivity extends AppCompatActivity {
         socket.emit("ARCO", ID_ARCO);
 
 
+        if(TIPO.equals("2")){
+            foto_menbro.setVisibility(View.VISIBLE);
+            Picasso.get().load(URL_BASE + "/IMG/" + ID_USUARIO + "_usuario.jpg").into(foto_menbro);
+        }else {
+            foto_menbro.setVisibility(View.GONE);
+        }
+
+
         foto_lider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,12 +130,22 @@ public class ArcoActivity extends AppCompatActivity {
             }
         });
 
+        foto_menbro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, PerfilActivity.class);
+                intent.putExtra("MEU_PERFIL", "S");
+                intent.putExtra("ID_USUARIO", ID_USUARIO);
+                startActivity(intent);
+            }
+        });
+
 
         equipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                ControllerEquipe.buscarEquipe(ArcoActivity.this, inflater, CODIGO_EQUIPE);
+                ControllerEquipe.buscarEquipe(ArcoActivity.this, inflater, CODIGO_EQUIPE, ID_LIDER);
             }
         });
 

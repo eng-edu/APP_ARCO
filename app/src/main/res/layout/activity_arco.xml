@@ -36,21 +36,40 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/id_arco_foto_lider"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:adjustViewBounds="false"
-                            android:cropToPadding="false"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_user_login"
-                            app:civ_border_color="@color/backgroundcolor"
-                            app:civ_border_width="1dp" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                android:id="@+id/id_arco_foto_lider"
+                              android:layout_margin="5dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="top"
+                                android:adjustViewBounds="false"
+                                android:cropToPadding="false"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/ic_user_login"
+                                app:civ_border_color="@color/backgroundcolor"
+                                app:civ_border_width="1dp" />
+
+                            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                android:visibility="gone"
+                                android:id="@+id/id_arco_foto_menbro"
+                                android:layout_margin="5dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="top"
+                                android:adjustViewBounds="false"
+                                android:cropToPadding="false"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/ic_user_login"
+                                app:civ_border_color="@color/backgroundcolor"
+                                app:civ_border_width="1dp" />
+                        </LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"

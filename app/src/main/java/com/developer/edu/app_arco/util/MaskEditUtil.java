@@ -1,4 +1,4 @@
-package com.developer.edu.app_arco.model;
+package com.developer.edu.app_arco.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;

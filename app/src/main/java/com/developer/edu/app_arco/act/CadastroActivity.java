@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.util.Util;
 import com.developer.edu.app_arco.controller.ControllerCadastro;
-import com.developer.edu.app_arco.model.MaskEditUtil;
+import com.developer.edu.app_arco.util.MaskEditUtil;
 
 public class CadastroActivity extends AppCompatActivity {
 

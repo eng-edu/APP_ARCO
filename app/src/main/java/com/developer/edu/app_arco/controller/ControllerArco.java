@@ -97,9 +97,9 @@ public class ControllerArco {
     public static void bucarMeusArco(final Context context, final LayoutInflater inflater) {
 
 
-        final View view = inflater.inflate(R.layout.list_dados, null);
+        final View view = inflater.inflate(R.layout.dialog_arco, null);
 
-        final ListView listView = view.findViewById(R.id.list_alert_list);
+        final ListView listView = view.findViewById(R.id.lista_arcos);
         final AdapterArco arrayAdapter = new AdapterArco(context, new ArrayList<Arco>());
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);

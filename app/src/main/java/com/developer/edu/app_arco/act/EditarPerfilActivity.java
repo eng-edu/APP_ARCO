@@ -27,7 +27,7 @@ import android.widget.Toast;
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.bd.DB_usuario;
 import com.developer.edu.app_arco.controller.ControllerPerfil;
-import com.developer.edu.app_arco.model.MaskEditUtil;
+import com.developer.edu.app_arco.util.MaskEditUtil;
 import com.developer.edu.app_arco.model.Usuario;
 import com.developer.edu.app_arco.util.Util;
 import com.squareup.picasso.MemoryPolicy;

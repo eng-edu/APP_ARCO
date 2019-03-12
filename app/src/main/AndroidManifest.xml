@@ -30,20 +30,15 @@
         <activity android:name=".act.PreCadastroActivity" />
         <activity android:name=".act.CadastroActivity" />
         <activity android:name=".act.MenuActivity" />
-        <activity android:name=".act.ListaActivity" />
         <activity android:name=".act.PremioActivity" />
         <activity android:name=".act.PerfilActivity" />
         <activity android:name=".act.ArcoActivity" />
         <activity android:name=".act.EquipeDialog" />
-        <activity android:name=".act.EtapaActivity" />
-        <activity android:name=".act.ComentarioActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".util.TESTE" />
-        <activity android:name=".act.MediaActivity" />
         <activity android:name=".act.RecuperarSenhaActivity" />
         <activity android:name=".act.EditarPerfilActivity" />
     </application>

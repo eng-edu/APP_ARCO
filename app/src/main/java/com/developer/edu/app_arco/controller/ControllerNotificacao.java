@@ -31,9 +31,9 @@ public class ControllerNotificacao {
 
     public static AlertDialog alert = null;
 
-    public static void buscarNoticacoes(final Context context, final LayoutInflater inflater, String ID_USUARIO) {
+    public static void buscarNoticacoes(final Context context, final LayoutInflater inflater, final String ID_USUARIO) {
 
-        Socket socket = SocketStatic.getSocket();
+        final Socket socket = SocketStatic.getSocket();
 
         final View view = inflater.inflate(R.layout.dialog_notificacao, null);
 
@@ -84,6 +84,8 @@ public class ControllerNotificacao {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                socket.emit("VIU_NOTIFICACAO",  arrayAdapter.getItem(position).getID());
                 context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO",   arrayAdapter.getItem(position).getID_ARCO()).putExtra("MEUS_ARCOS", "S"));
                 ((Activity) context).finish();
             }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
+import com.developer.edu.app_arco.controller.ControllerEquipe;
 import com.developer.edu.app_arco.controller.ControllerSolicitacao;
 import com.squareup.picasso.Picasso;
 
@@ -122,7 +123,8 @@ public class ArcoActivity extends AppCompatActivity {
         equipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //controler buscar equipe
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerEquipe.buscarEquipe(ArcoActivity.this, inflater, CODIGO_EQUIPE);
             }
         });
 

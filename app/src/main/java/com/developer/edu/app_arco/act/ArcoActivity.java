@@ -68,6 +68,7 @@ public class ArcoActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
         final String TIPO = sharedPreferences.getString("TIPO", "");
+
         final String MEUS_ARCOS = getIntent().getStringExtra("MEUS_ARCOS");
         final String ID_ARCO = getIntent().getStringExtra("ID_ARCO");
 
@@ -267,6 +268,63 @@ public class ArcoActivity extends AppCompatActivity {
             }
         });
 
+
+        etapa1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                intent.putExtra("CODIGO", "1");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        etapa2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                intent.putExtra("CODIGO", "1");
+                startActivity(intent);
+                finish();
+            }
+        });
+        etapa3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                intent.putExtra("CODIGO", "1");
+                startActivity(intent);
+                finish();
+            }
+        });
+        etapa4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                intent.putExtra("CODIGO", "1");
+                startActivity(intent);
+                finish();
+            }
+        });
+        etapa5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArcoActivity.this, EtapaActivity.class);
+                intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
+                intent.putExtra("ID_ARCO", ID_ARCO);
+                intent.putExtra("CODIGO", "1");
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 

@@ -5,11 +5,23 @@ public class Tematica {
     String id;
     String nome;
     String descricao;
+    String idade_minima;
 
-    public Tematica(String id, String nome, String descricao) {
+    public Tematica(String id, String nome, String descricao, String idade_minima) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.idade_minima = idade_minima;
+    }
+
+    @Override
+    public String toString() {
+        return "Tematica{" +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", idade_minima='" + idade_minima + '\'' +
+                '}';
     }
 
     public String getId() {
@@ -36,8 +48,11 @@ public class Tematica {
         this.descricao = descricao;
     }
 
-    @Override
-    public String toString() {
-        return "(" +nome + ")\n" +descricao;
+    public String getIdade_minima() {
+        return idade_minima;
+    }
+
+    public void setIdade_minima(String idade_minima) {
+        this.idade_minima = idade_minima;
     }
 }

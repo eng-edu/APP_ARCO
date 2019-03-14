@@ -1,10 +1,8 @@
 package com.developer.edu.app_arco.controller;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.developer.edu.app_arco.act.ArcoActivity;
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.adapter.AdapterTematica;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.model.Tematica;
 
@@ -39,7 +37,7 @@ public class ControllerTematica {
         final View view = inflater.inflate(R.layout.dialog_tematica, null);
 
         final ListView listView = view.findViewById(R.id.lista_tematicas);
-        final ArrayAdapter<Tematica> arrayAdapter = new ArrayAdapter<Tematica>(context, R.layout.support_simple_spinner_dropdown_item);
+        final ArrayAdapter<Tematica> arrayAdapter = new AdapterTematica(context, new ArrayList<Tematica>());
 
 
         Call<String> stringCall = ConfigRetrofit.getService().buscarTematicas();
@@ -55,7 +53,11 @@ public class ControllerTematica {
                         List<Tematica> tematicas = new ArrayList<>();
                         for (int i = 0; i < size; i++) {
                             JSONObject object = array.getJSONObject(i);
-                            tematicas.add(new Tematica(object.getString("ID"), object.getString("NOME"), object.getString("DESCRICAO")));
+                            tematicas.add(new Tematica(
+                                    object.getString("ID"),
+                                    object.getString("NOME"),
+                                    object.getString("DESCRICAO"),
+                                    object.getString("IDADE_MINIMA")));
                         }
 
                         arrayAdapter.clear();

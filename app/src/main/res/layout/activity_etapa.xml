@@ -9,8 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
         <android.support.v7.widget.CardView
             android:id="@+id/card_novoarco"
             android:layout_width="match_parent"
@@ -99,6 +97,14 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+        <ListView
+            android:id="@+id/id_etapa_lista_opinioes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
     </LinearLayout>
 
 </ScrollView>

@@ -4,34 +4,11 @@ public class Etapa {
 
     String id;
     String nome_etapa;
-    String situacao_etapa;
-    String codigo_etapa;
-    String descricao_etapa;
+    String descricao_etapa_lider;
+    String descricao_etapa_menbro;
     String nome_tematica;
     String descricao_tematica;
 
-    @Override
-    public String toString() {
-        return "Etapa{" +
-                "id='" + id + '\'' +
-                ", nome_etapa='" + nome_etapa + '\'' +
-                ", situacao_etapa='" + situacao_etapa + '\'' +
-                ", codigo_etapa='" + codigo_etapa + '\'' +
-                ", descricao_etapa='" + descricao_etapa + '\'' +
-                ", nome_tematica='" + nome_tematica + '\'' +
-                ", descricao_tematica='" + descricao_tematica + '\'' +
-                '}';
-    }
-
-    public Etapa(String id, String nome_etapa, String situacao_etapa, String codigo_etapa, String descricao_etapa, String nome_tematica, String descricao_tematica) {
-        this.id = id;
-        this.nome_etapa = nome_etapa;
-        this.situacao_etapa = situacao_etapa;
-        this.codigo_etapa = codigo_etapa;
-        this.descricao_etapa = descricao_etapa;
-        this.nome_tematica = nome_tematica;
-        this.descricao_tematica = descricao_tematica;
-    }
 
     public String getId() {
         return id;
@@ -49,28 +26,20 @@ public class Etapa {
         this.nome_etapa = nome_etapa;
     }
 
-    public String getSituacao_etapa() {
-        return situacao_etapa;
+    public String getDescricao_etapa_lider() {
+        return descricao_etapa_lider;
     }
 
-    public void setSituacao_etapa(String situacao_etapa) {
-        this.situacao_etapa = situacao_etapa;
+    public void setDescricao_etapa_lider(String descricao_etapa_lider) {
+        this.descricao_etapa_lider = descricao_etapa_lider;
     }
 
-    public String getCodigo_etapa() {
-        return codigo_etapa;
+    public String getDescricao_etapa_menbro() {
+        return descricao_etapa_menbro;
     }
 
-    public void setCodigo_etapa(String codigo_etapa) {
-        this.codigo_etapa = codigo_etapa;
-    }
-
-    public String getDescricao_etapa() {
-        return descricao_etapa;
-    }
-
-    public void setDescricao_etapa(String descricao_etapa) {
-        this.descricao_etapa = descricao_etapa;
+    public void setDescricao_etapa_menbro(String descricao_etapa_menbro) {
+        this.descricao_etapa_menbro = descricao_etapa_menbro;
     }
 
     public String getNome_tematica() {
@@ -86,6 +55,15 @@ public class Etapa {
     }
 
     public void setDescricao_tematica(String descricao_tematica) {
+        this.descricao_tematica = descricao_tematica;
+    }
+
+    public Etapa(String id, String nome_etapa, String descricao_etapa_lider, String descricao_etapa_menbro, String nome_tematica, String descricao_tematica) {
+        this.id = id;
+        this.nome_etapa = nome_etapa;
+        this.descricao_etapa_lider = descricao_etapa_lider;
+        this.descricao_etapa_menbro = descricao_etapa_menbro;
+        this.nome_tematica = nome_tematica;
         this.descricao_tematica = descricao_tematica;
     }
 }

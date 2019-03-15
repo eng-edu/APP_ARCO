@@ -119,32 +119,10 @@ public interface RetrofitService {
     Call<String> removerMenbro(@Path("CODIGO") String CODIGO_EQUIPE,
                                     @Path("ID_USUARIO") String ID_USUARIO);
 
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    @POST("arco/denunciarArco/{ID_USUARIO}/{ID_ARCO}/{DESCRICAO}")
-    Call<String> denunciarArco(@Path("ID_USUARIO") String ID_USUARIO,
-                               @Path("ID_ARCO") String ID_ARCO,
-                               @Path("DESCRICAO") String DESCRICAO);
-
-    @GET("usuario/listar/{ID_ARCO}")
-    Call<String> buscarUsuarios(@Path("ID_ARCO") String ID_ARCOO);
-
-    @POST("usuario/novoMenbro/{ID_USUARIO}/{ID_ARCO}")
-    Call<String> novoMenbro(@Path("ID_USUARIO") String ID_USUARIO,
-                            @Path("ID_ARCO") String ARCO);
-
-    @GET("etapa/buscar/{ID_ARCO}/{ID_USUARIO}")
-    Call<String> buscarEtapas(@Path("ID_ARCO") String ID_ARCO,
-                              @Path("ID_USUARIO") String ID_USUARIO);
-
-    @GET("arco/buscarArcosComaprtilhados")
-    Call<String> buscarArcosComaprtilhados();
+    @GET("etapa/buscarEtapa/{ID_ETAPA}")
+    Call<String> buscarEtapa(@Path("ID_ETAPA") String ID_ETAPA);
 
 
-    @GET("arco/buscarRanking")
-    Call<String> buscarRanking();
-
-    @GET("arco/gerarmedia/{list}")
-    Call<String> gerarMediaArcos(@Path("list") List array);
 
 
 }

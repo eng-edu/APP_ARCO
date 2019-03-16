@@ -62,6 +62,21 @@ public class EtapaActivity extends AppCompatActivity {
         LinearLayout layout_escrever = findViewById(R.id.id_etapa_layout_escrever);
         LinearLayout layout_finalizar = findViewById(R.id.id_etapa_layout_finalizar);
 
+
+        layout_escrever.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        layout_finalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         if (MEUS_ARCOS.equals("S")) {
             if (TIPO.equals("1")) {
                 layout_finalizar.setVisibility(View.VISIBLE);

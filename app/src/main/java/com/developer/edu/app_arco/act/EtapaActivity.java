@@ -12,11 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.developer.edu.app_arco.R;
-import com.developer.edu.app_arco.adapter.AdapterArco;
+import com.developer.edu.app_arco.adapter.AdapterOpiniao;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerEtapa;
-import com.developer.edu.app_arco.model.Arco;
 import com.developer.edu.app_arco.model.Etapa;
+import com.developer.edu.app_arco.model.Opiniao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,11 +28,11 @@ import java.util.List;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+
 public class EtapaActivity extends AppCompatActivity {
 
     Socket socket = SocketStatic.getSocket();
-    ArrayAdapter<Etapa> arrayAdapter;
-    ListView lw_etapas;
+
 
 
     @Override
@@ -57,6 +57,7 @@ public class EtapaActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 ControllerEtapa.buscarEtapa(getWindow().getDecorView(), ID_ETAPA, TIPO, swipeRefreshLayout);
+                socket.emit("OPINIAO", ID_ETAPA);
             }
         });
 
@@ -77,10 +78,10 @@ public class EtapaActivity extends AppCompatActivity {
         }
 
         final ListView listView = findViewById(R.id.id_etapa_lista_opinioes);
-        final AdapterArco arrayAdapter = new AdapterArco(EtapaActivity.this, new ArrayList<Arco>());
+        final AdapterOpiniao arrayAdapter = new AdapterOpiniao(EtapaActivity.this, new ArrayList<Opiniao>());
 
-
-        socket.on("OPINIAO".concat(ID_ARCO), new Emitter.Listener() {
+        socket.emit("OPINIAO", ID_ETAPA);
+        socket.on("OPINIAO".concat(ID_ETAPA), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
                 EtapaActivity.this.runOnUiThread(new Runnable() {
@@ -94,24 +95,23 @@ public class EtapaActivity extends AppCompatActivity {
 
                             JSONArray array = new JSONArray(result);
                             int size = array.length();
-                            List<Arco> arcos = new ArrayList<>();
+                            List<Opiniao> opinioes = new ArrayList<>();
 
                             for (int i = 0; i < size; i++) {
 
                                 JSONObject object = array.getJSONObject(i);
-
-                                arcos.add(new Arco(
+                                opinioes.add(new Opiniao(
                                         object.getString("ID"),
-                                        object.getString("SITUACAO"),
-                                        object.getString("ID_LIDER"),
-                                        object.getString("NOME_TEMATICA"),
-                                        object.getString("DESCRICAO_TEMATICA"),
-                                        object.getString("DATA_HORA")));
+                                        object.getString("ID_ETAPA"),
+                                        object.getString("NOME_ETAPA"),
+                                        object.getString("ID_USUARIO"),
+                                        object.getString("DATA_HORA"),
+                                        object.getString("TEXTO")));
 
                             }
 
                             arrayAdapter.clear();
-                            arrayAdapter.addAll(arcos);
+                            arrayAdapter.addAll(opinioes);
                             listView.setAdapter(arrayAdapter);
 
 

@@ -43,6 +43,8 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         texto.setText(opiniao.getTEXTO());
 
 
+
+
         return view;
     }
 

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -15,7 +15,6 @@ import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.adapter.AdapterOpiniao;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerEtapa;
-import com.developer.edu.app_arco.model.Etapa;
 import com.developer.edu.app_arco.model.Opiniao;
 
 import org.json.JSONArray;
@@ -32,7 +31,6 @@ import io.socket.emitter.Emitter;
 public class EtapaActivity extends AppCompatActivity {
 
     Socket socket = SocketStatic.getSocket();
-
 
 
     @Override
@@ -122,6 +120,18 @@ public class EtapaActivity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (TIPO.equals("1")) {
+                    startActivity(new Intent(EtapaActivity.this, PerfilActivity.class).putExtra("ID_USUARIO", arrayAdapter.getItem(position).getID_USUARIO()).putExtra("MEU_PERFIL", "N"));
+
+                }
+
+                return false;
             }
         });
 

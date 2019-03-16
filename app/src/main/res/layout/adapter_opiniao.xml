@@ -81,16 +81,14 @@
 
             </LinearLayout>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
 
-                <TextView
-                    android:id="@+id/id_adapter_opiniao_texto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="20dp" />
-            </ScrollView>
+            <TextView
+                android:id="@+id/id_adapter_opiniao_texto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="150dp"
+                android:padding="20dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,13 +119,6 @@
                         android:padding="10dp"
                         android:src="@mipmap/ic_denuncia" />
 
-                    <ImageView
-                        android:id="@+id/id_adatper_opiniao_comentario"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="right"
-                        android:padding="10dp"
-                        android:src="@mipmap/ic_msg" />
 
                     <ImageView
                         android:id="@+id/id_adatper_opiniao_curtida"

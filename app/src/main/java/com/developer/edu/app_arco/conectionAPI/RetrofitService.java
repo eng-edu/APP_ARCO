@@ -1,7 +1,5 @@
 package com.developer.edu.app_arco.conectionAPI;
 
-import java.util.List;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -117,12 +115,14 @@ public interface RetrofitService {
 
     @DELETE("equipe/removerMenbro/{CODIGO}/{ID_USUARIO}")
     Call<String> removerMenbro(@Path("CODIGO") String CODIGO_EQUIPE,
-                                    @Path("ID_USUARIO") String ID_USUARIO);
+                               @Path("ID_USUARIO") String ID_USUARIO);
 
     @GET("etapa/buscarEtapa/{ID_ETAPA}")
     Call<String> buscarEtapa(@Path("ID_ETAPA") String ID_ETAPA);
 
-
+    @GET("opiniao/buscarOpiniao/{ID_USUARIO}/{ID_ETAPA}")
+    Call<String> buscarOpiniao(@Path("ID_USUARIO") String ID_USUARIO,
+                               @Path("ID_ETAPA") String CODIGO_ETAPA);
 
 
 }

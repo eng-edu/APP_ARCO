@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -66,7 +67,8 @@ public class EtapaActivity extends AppCompatActivity {
         layout_escrever.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                final LayoutInflater inflater = getLayoutInflater();
+                ControllerEtapa.buscarOpiniao(EtapaActivity.this, inflater, ID_USUARIO, ID_ETAPA);
             }
         });
 

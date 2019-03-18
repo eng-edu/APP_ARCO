@@ -1,8 +1,13 @@
 package com.developer.edu.app_arco.controller;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +22,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControllerEtapa {
+
+
+    static AlertDialog alert;
 
     public static void buscarEtapa(final View view, final String ID_ETAPA, final String TIPO, final SwipeRefreshLayout swipeRefreshLayout) {
 
@@ -77,4 +85,77 @@ public class ControllerEtapa {
 
     }
 
+    public static void escreverOpiniao(final Context context, final LayoutInflater inflater, final String OPINIAO, final String ID_USUSARIO, final String ID_ETAPA) {
+
+        final View view = inflater.inflate(R.layout.dialog_opiniao, null);
+
+        final EditText texto = view.findViewById(R.id.id_dialog_opiniao_texto);
+        texto.setText(OPINIAO);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(view);
+        builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Call<String> stringCall = ConfigRetrofit.getService().atualizarOpiniao(ID_USUSARIO, ID_ETAPA, texto.getText().toString());
+//                stringCall.enqueue(new Callback<String>() {
+//                    @Override
+//                    public void onResponse(Call<String> call, Response<String> response) {
+//                        if (response.code() == 200) {
+//                            alert.dismiss();
+//                        } else if (response.code() == 203) {
+//                            Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<String> call, Throwable t) {
+//                        Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        alert = builder.create();
+        alert.show();
+
+    }
+
+    public static void buscarOpiniao(final Context context, final LayoutInflater inflater, final String ID_USUSARIO, final String ID_ETAPA) {
+
+        Call<String> stringCall = ConfigRetrofit.getService().buscarOpiniao(ID_USUSARIO, ID_ETAPA);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+                    try {
+
+                        JSONObject object = new JSONObject(response.body());
+                        escreverOpiniao(context, inflater, object.getString("TEXTO"), ID_USUSARIO, ID_ETAPA);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (response.code() == 203) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
 }

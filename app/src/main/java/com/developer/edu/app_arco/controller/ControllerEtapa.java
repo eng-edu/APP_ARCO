@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,6 +89,8 @@ public class ControllerEtapa {
 
     public static void escreverOpiniao(final Context context, final LayoutInflater inflater, final String OPINIAO, final String ID_USUSARIO, final String ID_ETAPA) {
 
+        final Socket socket = SocketStatic.getSocket();
+
         final View view = inflater.inflate(R.layout.dialog_opiniao, null);
 
         final EditText texto = view.findViewById(R.id.id_dialog_opiniao_texto);
@@ -96,23 +100,24 @@ public class ControllerEtapa {
         builder.setView(view);
         builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                Call<String> stringCall = ConfigRetrofit.getService().atualizarOpiniao(ID_USUSARIO, ID_ETAPA, texto.getText().toString());
-//                stringCall.enqueue(new Callback<String>() {
-//                    @Override
-//                    public void onResponse(Call<String> call, Response<String> response) {
-//                        if (response.code() == 200) {
-//                            alert.dismiss();
-//                        } else if (response.code() == 203) {
-//                            Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<String> call, Throwable t) {
-//                        Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+            public void onClick(final DialogInterface dialog, int which) {
+                Call<String> stringCall = ConfigRetrofit.getService().atualizarOpiniao(ID_USUSARIO, ID_ETAPA, texto.getText().toString());
+                stringCall.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.code() == 200) {
+                            alert.dismiss();
+                            socket.emit("OPINIAO", ID_ETAPA);
+                        } else if (response.code() == 203) {
+                            Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

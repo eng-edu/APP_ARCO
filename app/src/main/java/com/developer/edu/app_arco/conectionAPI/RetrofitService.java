@@ -124,5 +124,9 @@ public interface RetrofitService {
     Call<String> buscarOpiniao(@Path("ID_USUARIO") String ID_USUARIO,
                                @Path("ID_ETAPA") String CODIGO_ETAPA);
 
+    @PUT("opiniao/atualizarOpiniao/{ID_USUARIO}/{ID_ETAPA}/{TEXTO}")
+    Call<String> atualizarOpiniao(@Path("ID_USUARIO") String ID_USUARIO,
+                                  @Path("ID_ETAPA") String CODIGO_ETAPA,
+                                  @Path("TEXTO") String TEXTO);
 
 }

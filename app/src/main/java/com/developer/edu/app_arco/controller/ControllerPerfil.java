@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.act.EditarEscolaridadeActivity;
 import com.developer.edu.app_arco.act.PerfilActivity;
 import com.developer.edu.app_arco.bd.DB_escolaridade;
 import com.developer.edu.app_arco.bd.DB_usuario;
@@ -212,6 +213,7 @@ public class ControllerPerfil {
 
 
                         DB_escolaridade db_escolaridade = new DB_escolaridade(view.getContext());
+                        db_escolaridade.deletarTodos();
                         db_escolaridade.inserir(objescolaridade);
 
                         instituicao.setText(objescolaridade.getInstituicao());
@@ -232,6 +234,8 @@ public class ControllerPerfil {
 
                     if (meu_perfil) {
                         Toast.makeText(view.getContext(), response.body(), Toast.LENGTH_LONG).show();
+                        DB_escolaridade db_escolaridade = new DB_escolaridade(view.getContext());
+                        db_escolaridade.deletarTodos();
                     }
 
                     swipeRefreshLayout.setRefreshing(false);
@@ -288,6 +292,9 @@ public class ControllerPerfil {
                     intent.putExtra("MEU_PERFIL", meu_perfil);
                     intent.putExtra("ID_USUARIO", id_usuario);
                     context.startActivity(intent);
+                    DB_escolaridade db_escolaridade = new DB_escolaridade(context);
+                    db_escolaridade.deletarTodos();
+
                     ((Activity) context).finish();
                     dialog.dismiss();
                 } else {

@@ -93,7 +93,7 @@ public class EtapaActivity extends AppCompatActivity {
             layout_escrever.setVisibility(View.GONE);
         }
 
-        if (SITUACAO_ETAPA.equals("3")) {
+        if (SITUACAO_ETAPA.equals("2")) {
             layout_finalizar.setVisibility(View.GONE);
             layout_escrever.setVisibility(View.GONE);
         }

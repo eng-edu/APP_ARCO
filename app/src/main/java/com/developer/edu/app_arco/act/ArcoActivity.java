@@ -281,7 +281,7 @@ public class ArcoActivity extends AppCompatActivity {
 
                                 } else if (object.getString("CODIGO_ETAPA").equals("4")) {
 
-                                    ID_E1 = object.getString("ID");
+                                    ID_E4 = object.getString("ID");
                                     SITUACAO_E4 = object.getString("SITUACAO_ETAPA");
                                     definirIconImageView(status_e4, SITUACAO_E4, etapa4);
 

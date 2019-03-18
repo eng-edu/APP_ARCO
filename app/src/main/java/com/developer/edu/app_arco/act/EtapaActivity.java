@@ -49,6 +49,7 @@ public class EtapaActivity extends AppCompatActivity {
         final String MEUS_ARCOS = getIntent().getStringExtra("MEUS_ARCOS");
         final String ID_ARCO = getIntent().getStringExtra("ID_ARCO");
         final String ID_ETAPA = getIntent().getStringExtra("ID_ETAPA");
+        final String SITUACAO_ETAPA = getIntent().getStringExtra("SITUACAO_ETAPA");
 
         ControllerEtapa.buscarEtapa(getWindow().getDecorView(), ID_ETAPA, TIPO, swipeRefreshLayout);
 
@@ -88,6 +89,11 @@ public class EtapaActivity extends AppCompatActivity {
                 layout_escrever.setVisibility(View.VISIBLE);
             }
         } else {
+            layout_finalizar.setVisibility(View.GONE);
+            layout_escrever.setVisibility(View.GONE);
+        }
+
+        if (SITUACAO_ETAPA.equals("3")) {
             layout_finalizar.setVisibility(View.GONE);
             layout_escrever.setVisibility(View.GONE);
         }
@@ -145,7 +151,6 @@ public class EtapaActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (TIPO.equals("1")) {
                     startActivity(new Intent(EtapaActivity.this, PerfilActivity.class).putExtra("ID_USUARIO", arrayAdapter.getItem(position).getID_USUARIO()).putExtra("MEU_PERFIL", "N"));
-
                 }
 
                 return false;

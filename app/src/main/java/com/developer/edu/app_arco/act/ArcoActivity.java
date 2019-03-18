@@ -67,6 +67,13 @@ public class ArcoActivity extends AppCompatActivity {
     String ID_E5 = "";
 
 
+    String SITUACAO_E1 = "";
+    String SITUACAO_E2 = "";
+    String SITUACAO_E3 = "";
+    String SITUACAO_E4 = "";
+    String SITUACAO_E5 = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -253,20 +260,39 @@ public class ArcoActivity extends AppCompatActivity {
 
                                 JSONObject object = array.getJSONObject(i);
                                 if (object.getString("CODIGO_ETAPA").equals("1")) {
-                                    definirIconImageView(status_e1, object.getString("SITUACAO_ETAPA"));
+
                                     ID_E1 = object.getString("ID");
+                                    SITUACAO_E1 = object.getString("SITUACAO_ETAPA");
+                                    definirIconImageView(status_e1, SITUACAO_E1, etapa1);
+
+
                                 } else if (object.getString("CODIGO_ETAPA").equals("2")) {
-                                    definirIconImageView(status_e2, object.getString("SITUACAO_ETAPA"));
+
                                     ID_E2 = object.getString("ID");
+                                    SITUACAO_E2 = object.getString("SITUACAO_ETAPA");
+                                    definirIconImageView(status_e2, SITUACAO_E2, etapa2);
+
                                 } else if (object.getString("CODIGO_ETAPA").equals("3")) {
-                                    definirIconImageView(status_e3, object.getString("SITUACAO_ETAPA"));
+
                                     ID_E3 = object.getString("ID");
+                                    SITUACAO_E3 = object.getString("SITUACAO_ETAPA");
+                                    definirIconImageView(status_e3, SITUACAO_E3, etapa3);
+
+
                                 } else if (object.getString("CODIGO_ETAPA").equals("4")) {
-                                    definirIconImageView(status_e4, object.getString("SITUACAO_ETAPA"));
-                                    ID_E4 = object.getString("ID");
+
+                                    ID_E1 = object.getString("ID");
+                                    SITUACAO_E4 = object.getString("SITUACAO_ETAPA");
+                                    definirIconImageView(status_e4, SITUACAO_E4, etapa4);
+
+
                                 } else if (object.getString("CODIGO_ETAPA").equals("5")) {
-                                    definirIconImageView(status_e5, object.getString("SITUACAO_ETAPA"));
+
                                     ID_E5 = object.getString("ID");
+                                    SITUACAO_E5 = object.getString("SITUACAO_ETAPA");
+                                    definirIconImageView(status_e5, SITUACAO_E5, etapa5);
+
+
                                 }
                             }
 
@@ -288,6 +314,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
                 intent.putExtra("ID_ARCO", ID_ARCO);
                 intent.putExtra("ID_ETAPA", ID_E1);
+                intent.putExtra("SITUACAO_ETAPA", SITUACAO_E1);
                 startActivity(intent);
                 finish();
             }
@@ -300,6 +327,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
                 intent.putExtra("ID_ARCO", ID_ARCO);
                 intent.putExtra("ID_ETAPA", ID_E2);
+                intent.putExtra("SITUACAO_ETAPA", SITUACAO_E2);
                 startActivity(intent);
                 finish();
             }
@@ -311,6 +339,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
                 intent.putExtra("ID_ARCO", ID_ARCO);
                 intent.putExtra("ID_ETAPA", ID_E3);
+                intent.putExtra("SITUACAO_ETAPA", SITUACAO_E3);
                 startActivity(intent);
                 finish();
             }
@@ -322,6 +351,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
                 intent.putExtra("ID_ARCO", ID_ARCO);
                 intent.putExtra("ID_ETAPA", ID_E4);
+                intent.putExtra("SITUACAO_ETAPA", SITUACAO_E4);
                 startActivity(intent);
                 finish();
             }
@@ -333,6 +363,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("MEUS_ARCOS", MEUS_ARCOS);
                 intent.putExtra("ID_ARCO", ID_ARCO);
                 intent.putExtra("ID_ETAPA", ID_E5);
+                intent.putExtra("SITUACAO_ETAPA", SITUACAO_E5);
                 startActivity(intent);
                 finish();
             }
@@ -341,13 +372,16 @@ public class ArcoActivity extends AppCompatActivity {
     }
 
 
-    public static void definirIconImageView(ImageView imageView, String status) {
+    public static void definirIconImageView(ImageView imageView, String status, CardView etapa) {
         if (status.equals("1")) {
             imageView.setImageResource(R.mipmap.ic_editw);
+            etapa.setClickable(true);
         } else if (status.equals("2")) {
             imageView.setImageResource(R.mipmap.ic_okw);
+            etapa.setClickable(true);
         } else if (status.equals("3")) {
             imageView.setImageResource(R.mipmap.ic_blockw);
+            etapa.setClickable(false);
         }
     }
 

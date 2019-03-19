@@ -17,46 +17,7 @@ import io.socket.client.Socket;
 
 public class Util {
 
-    public static void definirIconPontos(int ponto, ImageView estrela1, ImageView estrela2, ImageView estrela3, ImageView estrela4, ImageView estrela5) {
 
-        if (ponto == 1) {
-            estrela1.setImageResource(R.mipmap.ic_star2);
-            estrela2.setImageResource(R.mipmap.ic_star1);
-            estrela3.setImageResource(R.mipmap.ic_star1);
-            estrela4.setImageResource(R.mipmap.ic_star1);
-            estrela5.setImageResource(R.mipmap.ic_star1);
-
-        } else if (ponto == 2) {
-            estrela1.setImageResource(R.mipmap.ic_star2);
-            estrela2.setImageResource(R.mipmap.ic_star2);
-            estrela3.setImageResource(R.mipmap.ic_star1);
-            estrela4.setImageResource(R.mipmap.ic_star1);
-            estrela5.setImageResource(R.mipmap.ic_star1);
-
-        } else if (ponto == 3) {
-            estrela1.setImageResource(R.mipmap.ic_star2);
-            estrela2.setImageResource(R.mipmap.ic_star2);
-            estrela3.setImageResource(R.mipmap.ic_star2);
-            estrela4.setImageResource(R.mipmap.ic_star1);
-            estrela5.setImageResource(R.mipmap.ic_star1);
-
-        } else if (ponto == 4) {
-            estrela1.setImageResource(R.mipmap.ic_star2);
-            estrela2.setImageResource(R.mipmap.ic_star2);
-            estrela3.setImageResource(R.mipmap.ic_star2);
-            estrela4.setImageResource(R.mipmap.ic_star2);
-            estrela5.setImageResource(R.mipmap.ic_star1);
-
-        } else if (ponto == 5) {
-            estrela1.setImageResource(R.mipmap.ic_star2);
-            estrela2.setImageResource(R.mipmap.ic_star2);
-            estrela3.setImageResource(R.mipmap.ic_star2);
-            estrela4.setImageResource(R.mipmap.ic_star2);
-            estrela5.setImageResource(R.mipmap.ic_star2);
-
-        }
-
-    }
 
     public static boolean isCPF(String CPF) {
 

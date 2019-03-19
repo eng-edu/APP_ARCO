@@ -62,16 +62,15 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final Opiniao opiniao = opinioes.get(position);
 
 
-        try {
-            JSONObject object = new JSONObject();
-            object.put("ID_USUARIO", opiniao.getID_USUARIO());
-            object.put("ID_OPINIAO", opiniao.getID());
-            socket.emit("EU_CURTI", object);
-            socket.emit("EU_ESTRELAS", object);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+//        try {
+//            JSONObject object = new JSONObject();
+//            object.put("ID_USUARIO", ID_USUARIO);
+//            object.put("ID_OPINIAO", opiniao.getID());
+//            socket.emit("EU_CURTI", object);
+//            socket.emit("EU_ESTRELAS", object);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
         data_hora.setText(opiniao.getDATA_HORA());
@@ -83,11 +82,11 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             public void onClick(View v) {
                 if (curtiu == 1) {
                     curti(1, curtida);
-                    emitCurtida(opiniao, String.valueOf(curtiu), socket);
+                    emitCurtida(opiniao, String.valueOf(curtiu), ID_USUARIO, socket);
                     curtiu = 2;
                 } else {
                     curti(2, curtida);
-                    emitCurtida(opiniao, String.valueOf(curtiu), socket);
+                    emitCurtida(opiniao, String.valueOf(curtiu), ID_USUARIO, socket);
                     curtiu = 1;
                 }
 
@@ -99,7 +98,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(1, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(1), socket);
+                emitEstrelas(opiniao, String.valueOf(1), ID_USUARIO, socket);
             }
         });
 
@@ -107,7 +106,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(2, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(2), socket);
+                emitEstrelas(opiniao, String.valueOf(2),ID_USUARIO, socket);
             }
         });
 
@@ -115,7 +114,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(3, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(3), socket);
+                emitEstrelas(opiniao, String.valueOf(3),ID_USUARIO, socket);
             }
         });
 
@@ -123,7 +122,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(4, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(4), socket);
+                emitEstrelas(opiniao, String.valueOf(4), ID_USUARIO, socket);
             }
         });
 
@@ -131,38 +130,38 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(5, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(5), socket);
+                emitEstrelas(opiniao, String.valueOf(5), ID_USUARIO, socket);
             }
         });
 
 
-        socket.on("EU_CURTI".concat(ID_USUARIO), new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-                ((Activity) context).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String result = args[0].toString();
-                        curtiu = Integer.parseInt(result);
-                        curti(curtiu, curtida);
-                    }
-                });
-            }
-        });
-
-
-        socket.on("EU_ESTRELAS".concat(ID_USUARIO), new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-                ((Activity) context).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String result = args[0].toString();
-                        definirIconPontos(Integer.parseInt(result), e1, e2, e3, e4, e5);
-                    }
-                });
-            }
-        });
+//        socket.on("EU_CURTI".concat(ID_USUARIO), new Emitter.Listener() {
+//            @Override
+//            public void call(final Object... args) {
+//                ((Activity) context).runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String result = args[0].toString();
+//                        curtiu = Integer.parseInt(result);
+//                        curti(curtiu, curtida);
+//                    }
+//                });
+//            }
+//        });
+//
+//
+//        socket.on("EU_ESTRELAS".concat(ID_USUARIO), new Emitter.Listener() {
+//            @Override
+//            public void call(final Object... args) {
+//                ((Activity) context).runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String result = args[0].toString();
+//                        definirIconPontos(Integer.parseInt(result), e1, e2, e3, e4, e5);
+//                    }
+//                });
+//            }
+//        });
 
 
         return view;
@@ -221,11 +220,12 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         }
     }
 
-    public static void emitCurtida(Opiniao opiniao, String curti, Socket socket) {
+    public static void emitCurtida(Opiniao opiniao, String curti, String id_usuario, Socket socket) {
+
 
         try {
             JSONObject object = new JSONObject();
-            object.put("ID_USUARIO", opiniao.getID_USUARIO());
+            object.put("ID_USUARIO", id_usuario);
             object.put("ID_OPINIAO", opiniao.getID());
             object.put("CURTIU", curti);
             socket.emit("CURTIU", object);
@@ -236,10 +236,10 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
     }
 
 
-    public static void emitEstrelas(Opiniao opiniao, String quantidade, Socket socket) {
+    public static void emitEstrelas(Opiniao opiniao, String quantidade, String id_usuario, Socket socket) {
         try {
             JSONObject object = new JSONObject();
-            object.put("ID_USUARIO", opiniao.getID_USUARIO());
+            object.put("ID_USUARIO", id_usuario);
             object.put("ID_OPINIAO", opiniao.getID());
             object.put("QUANTIDADE", quantidade);
             socket.emit("ESTRELAS", object);

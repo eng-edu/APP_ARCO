@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">APP_ARCO</string>
+    <string name="app_name">Argio</string>
     <string-array name="escolaridade_tipo1">
         <item>Superior</item>
         <item>Pós-graduado</item>

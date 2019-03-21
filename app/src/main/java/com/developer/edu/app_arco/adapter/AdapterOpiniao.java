@@ -50,6 +50,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final TextView data_hora = view.findViewById(R.id.id_adatper_opiniao_data_hora);
         final TextView nome_etapa = view.findViewById(R.id.id_adatper_opiniao_nome_etapa);
         final TextView texto = view.findViewById(R.id.id_adapter_opiniao_texto);
+        final TextView qtd_curtida_estrelas = view.findViewById(R.id.id_adatper_opiniao_qtd_curtida_estrelas);
 
         final ImageView e1 = view.findViewById(R.id.id_adatper_opiniao_estrela1);
         final ImageView e2 = view.findViewById(R.id.id_adatper_opiniao_estrela2);
@@ -68,6 +69,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             object.put("ID_OPINIAO", opiniao.getID());
             socket.emit("EU_CURTI", object);
             socket.emit("EU_ESTRELAS", object);
+            socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -84,12 +86,16 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
                     curti(1, curtida);
                     emitCurtida(opiniao, String.valueOf(curtiu), ID_USUARIO, socket);
                     curtiu = 2;
+
                 } else {
                     curti(2, curtida);
                     emitCurtida(opiniao, String.valueOf(curtiu), ID_USUARIO, socket);
                     curtiu = 1;
+
                 }
 
+
+                socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
 
@@ -99,6 +105,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             public void onClick(View v) {
                 definirIconPontos(1, e1, e2, e3, e4, e5);
                 emitEstrelas(opiniao, String.valueOf(1), ID_USUARIO, socket);
+                socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
 
@@ -107,6 +114,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             public void onClick(View v) {
                 definirIconPontos(2, e1, e2, e3, e4, e5);
                 emitEstrelas(opiniao, String.valueOf(2),ID_USUARIO, socket);
+                socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
 
@@ -115,6 +123,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             public void onClick(View v) {
                 definirIconPontos(3, e1, e2, e3, e4, e5);
                 emitEstrelas(opiniao, String.valueOf(3),ID_USUARIO, socket);
+                socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
 
@@ -123,6 +132,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             public void onClick(View v) {
                 definirIconPontos(4, e1, e2, e3, e4, e5);
                 emitEstrelas(opiniao, String.valueOf(4), ID_USUARIO, socket);
+                socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
 
@@ -131,6 +141,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             public void onClick(View v) {
                 definirIconPontos(5, e1, e2, e3, e4, e5);
                 emitEstrelas(opiniao, String.valueOf(5), ID_USUARIO, socket);
+                socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
 
@@ -171,6 +182,19 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             }
         });
 
+
+        socket.on("QTD_CURTIDAS_ESTRELAS".concat(opiniao.getID()), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String result = args[0].toString();
+                        qtd_curtida_estrelas.setText(result);
+                    }
+                });
+            }
+        });
 
         return view;
     }

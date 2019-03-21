@@ -10,11 +10,12 @@
         android:layout_margin="10dp"
         android:foreground="?android:attr/selectableItemBackground">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -22,8 +23,8 @@
                 android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
-
                 <TextView
+                    android:textSize="10dp"
                     android:id="@+id/id_adatper_opiniao_data_hora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,6 +84,14 @@
 
 
             <TextView
+                android:textSize="10dp"
+                android:id="@+id/id_adatper_opiniao_qtd_curtida_estrelas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp" />
+
+            <TextView
                 android:id="@+id/id_adapter_opiniao_texto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -98,6 +107,7 @@
 
 
                 <TextView
+                    android:textSize="10dp"
                     android:id="@+id/id_adatper_opiniao_nome_etapa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -128,9 +138,14 @@
                         android:padding="10dp"
                         android:src="@mipmap/ic_ngostei" />
 
+
+
                 </LinearLayout>
 
             </LinearLayout>
+
+
+
 
         </LinearLayout>
 

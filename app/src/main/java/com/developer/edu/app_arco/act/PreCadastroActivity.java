@@ -22,11 +22,11 @@ public class PreCadastroActivity extends AppCompatActivity {
 
         final String[] infos = new String[]
                 {"Metodologia ativa\n" +
-                        "É um processo de aprendizagem onde a sua principal característica e fazer do aluno/estudante o maior responsável pelo seu aprendizado participando ativamente da construção do seu conhecimento onde se desenvolve sua capacidade de pesquisa, observação e uma visão mais crítica sobre o mundo.",
+                        "É um processo de aprendizagem onde a sua principal característica e fazer do aluno o maior responsável pelo seu aprendizado participando ativamente da construção do seu conhecimento onde se desenvolve sua capacidade de pesquisa, observação e uma visão mais crítica sobre o mundo.",
                         "Arco de Maguerez\n" +"É uma metodologia problematizadora que fornece um caminho para a atuação sobre os problemas da realidade. Uma ferramenta onde auxilia na aprendizagem do aluno, onde invés de uma aula mais ou menos passiva em que os alunos se limitariam a ouvir o professor, eles se tornam agentes ativos, deixam  de estar dependentes de alguém, neste caso de um professor, para se tornarem independentes na procura de soluções para os seus próprios problemas.\n" +
                                 "A metodologia apresenta um esquema dividido em cinco etapas que começam e terminam na realidade, ou seja, o aluno trabalhará com informações reais direcionado a um projeto real no final. ",
                         "Educação Sexual\n" +
-                                "É ensinar e esclarecer dúvidas sobre os aspectos cognitivos, físicos, emocionais e sociais da sexualidade, é preparar jovens e adolescentes para que desenvolvam conhecimento, e valores éticos para realizar escolhas positivas e saudáveis sobre relacionamentos e colabora para o amadurecimento e evitar conflitos provenientes de dúvida e medos.",
+                                "É ensinar e esclarecer dúvidas sobre os aspectos cognitivos, físicos, emocionais e sociais da sexualidade, é preparar os adolescentes para que desenvolvam conhecimento, e valores éticos para realizar escolhas positivas e saudáveis sobre relacionamentos e colabora para o amadurecimento e evitar conflitos provenientes de dúvida e medos.",
                         "Líder\n" +
                                 "E o mediador da relações de aprendizagem ele que irar orientar os membros a encontrar sentido naquilo que está aprendendo, o responsável por gerenciar os arcos e organizar os membros e avaliar cada etapa construída pelos membros.",
                         "Membro \n" +

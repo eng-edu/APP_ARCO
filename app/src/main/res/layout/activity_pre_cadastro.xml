@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     tools:context=".act.PreCadastroActivity">
 
@@ -12,18 +13,25 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/id_precadastro_img"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background23" />
+            android:layout_margin="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/argio_" />
+
+        ImageView
+        android:id="@+id/id_precadastro_img"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background23" />
 
         <LinearLayout
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -32,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_margin="10dp"
-                android:background="@drawable/cercleshape3"
+                android:background="@drawable/cercleshape2"
                 android:src="@mipmap/ic_next" />
 
 
@@ -46,29 +54,33 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:padding="5dp"
-            android:text="Metodologia ativa é um processo de aprendizagem onde a sua principal característica e fazer do aluno/estudante o maior responsável pelo seu aprendizado participando ativamente da construção do seu conhecimento onde se desenvolve sua capacidade de pesquisa, observação e uma visão mais crítica sobre o mundo."></TextView>
+            android:textColor="@color/backgroundcolor"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
 
         <Button
             android:id="@+id/id_precadastro_lider"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:text="LÍDER"
-            android:textColor="@color/backgroundcolor" />
+            android:text="Líder"
+            android:textColor="@color/yellow"
+            android:backgroundTint="@color/backgroundcolor"/>
 
         <Button
             android:id="@+id/id_precadastro_menbro"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
-            android:text="MEMBRO"
-            android:textColor="@color/colorPrimaryDark" />
-
+            android:text="Menbro"
+            android:backgroundTint="@color/backgroundcolor"
+            android:textColor="@color/red" />
 
 
     </LinearLayout>

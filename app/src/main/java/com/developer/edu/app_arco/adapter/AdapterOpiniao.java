@@ -62,15 +62,15 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final Opiniao opiniao = opinioes.get(position);
 
 
-//        try {
-//            JSONObject object = new JSONObject();
-//            object.put("ID_USUARIO", ID_USUARIO);
-//            object.put("ID_OPINIAO", opiniao.getID());
-//            socket.emit("EU_CURTI", object);
-//            socket.emit("EU_ESTRELAS", object);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            JSONObject object = new JSONObject();
+            object.put("ID_USUARIO", ID_USUARIO);
+            object.put("ID_OPINIAO", opiniao.getID());
+            socket.emit("EU_CURTI", object);
+            socket.emit("EU_ESTRELAS", object);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         data_hora.setText(opiniao.getDATA_HORA());
@@ -135,33 +135,41 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         });
 
 
-//        socket.on("EU_CURTI".concat(ID_USUARIO), new Emitter.Listener() {
-//            @Override
-//            public void call(final Object... args) {
-//                ((Activity) context).runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        String result = args[0].toString();
-//                        curtiu = Integer.parseInt(result);
-//                        curti(curtiu, curtida);
-//                    }
-//                });
-//            }
-//        });
-//
-//
-//        socket.on("EU_ESTRELAS".concat(ID_USUARIO), new Emitter.Listener() {
-//            @Override
-//            public void call(final Object... args) {
-//                ((Activity) context).runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        String result = args[0].toString();
-//                        definirIconPontos(Integer.parseInt(result), e1, e2, e3, e4, e5);
-//                    }
-//                });
-//            }
-//        });
+        socket.on("EU_CURTI".concat(ID_USUARIO), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String result = args[0].toString();
+                        int i = Integer.parseInt(result);
+
+                        if (i == 1) {
+                            curti(1, curtida);
+                            curtiu = 2;
+                        } else {
+                            curti(2, curtida);
+                            curtiu = 1;
+                        }
+
+                    }
+                });
+            }
+        });
+
+
+        socket.on("EU_ESTRELAS".concat(ID_USUARIO), new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String result = args[0].toString();
+                        definirIconPontos(Integer.parseInt(result), e1, e2, e3, e4, e5);
+                    }
+                });
+            }
+        });
 
 
         return view;

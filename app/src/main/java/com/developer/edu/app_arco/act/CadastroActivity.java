@@ -140,7 +140,7 @@ public class CadastroActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (senha.getText().length() > 8) {
+                if (senha.getText().length() > 4) {
                     senha.setTextColor(Color.BLACK);
                     senhavalido = true;
                 } else {

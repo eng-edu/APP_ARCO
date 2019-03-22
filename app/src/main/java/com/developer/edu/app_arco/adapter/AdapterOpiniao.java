@@ -59,6 +59,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final ImageView e5 = view.findViewById(R.id.id_adatper_opiniao_estrela5);
 
         final ImageView curtida = view.findViewById(R.id.id_adatper_opiniao_curtida);
+        final ImageView denuncia = view.findViewById(R.id.id_adatper_opiniao_denuncia);
 
         final Opiniao opiniao = opinioes.get(position);
 
@@ -146,7 +147,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         });
 
 
-        socket.on("EU_CURTI".concat(ID_USUARIO), new Emitter.Listener() {
+        socket.on("EU_CURTI".concat(opiniao.getID()+ID_USUARIO), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
                 ((Activity) context).runOnUiThread(new Runnable() {
@@ -169,7 +170,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         });
 
 
-        socket.on("EU_ESTRELAS".concat(ID_USUARIO), new Emitter.Listener() {
+        socket.on("EU_ESTRELAS".concat(opiniao.getID()+ID_USUARIO), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
                 ((Activity) context).runOnUiThread(new Runnable() {
@@ -193,6 +194,14 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
                         qtd_curtida_estrelas.setText(result);
                     }
                 });
+            }
+        });
+
+
+        denuncia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

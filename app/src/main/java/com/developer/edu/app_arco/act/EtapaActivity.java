@@ -16,6 +16,7 @@ import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.adapter.AdapterOpiniao;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerEtapa;
+import com.developer.edu.app_arco.model.Etapa;
 import com.developer.edu.app_arco.model.Opiniao;
 
 import org.json.JSONArray;
@@ -49,7 +50,7 @@ public class EtapaActivity extends AppCompatActivity {
         final String ID_ARCO = getIntent().getStringExtra("ID_ARCO");
         final String ID_ETAPA = getIntent().getStringExtra("ID_ETAPA");
         final String SITUACAO_ETAPA = getIntent().getStringExtra("SITUACAO_ETAPA");
-
+        final String CODIGO_ETAPA = getIntent().getStringExtra("CODIGO_ETAPA");
         ControllerEtapa.buscarEtapa(getWindow().getDecorView(), ID_ETAPA, TIPO, swipeRefreshLayout);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -75,7 +76,7 @@ public class EtapaActivity extends AppCompatActivity {
         layout_finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ControllerEtapa.finalizarEtapa(EtapaActivity.this,ID_ETAPA, CODIGO_ETAPA, ID_ARCO, MEUS_ARCOS);
             }
         });
 

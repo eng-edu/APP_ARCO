@@ -1,9 +1,11 @@
 package com.developer.edu.app_arco.controller;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.act.ArcoActivity;
+import com.developer.edu.app_arco.act.EtapaActivity;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 
@@ -161,6 +165,36 @@ public class ControllerEtapa {
             }
         });
 
+
+    }
+
+    public static void finalizarEtapa(final Context context, String ID_ETAPA, final String CODIGO_ETAPA, final String ID_ARCO, final String MEUS_ARCOS) {
+
+
+//        Call<String> stringCall = ConfigRetrofit.getService().finalizarEtapa(ID_ETAPA, CODIGO_ETAPA);
+//        stringCall.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if (response.code() == 200) {
+//
+//                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", ID_ARCO).putExtra("MEUS_ARCOS", MEUS_ARCOS));
+//                    ((Activity) context).finish();
+//
+//                } else if (response.code() == 203) {
+//                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+//
+//                }else {
+//                    Toast.makeText(context, response.message(), Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
     }
 }

@@ -36,7 +36,7 @@ public class ControllerOpiniao {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-              
+
             }
         });
 

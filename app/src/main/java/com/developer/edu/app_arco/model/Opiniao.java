@@ -8,6 +8,15 @@ public class Opiniao {
     String ID_USUARIO;
     String DATA_HORA;
     String TEXTO;
+    String ID_LIDER;
+
+    public String getID_LIDER() {
+        return ID_LIDER;
+    }
+
+    public void setID_LIDER(String ID_LIDER) {
+        this.ID_LIDER = ID_LIDER;
+    }
 
     public String getID() {
         return ID;
@@ -57,12 +66,13 @@ public class Opiniao {
         this.TEXTO = TEXTO;
     }
 
-    public Opiniao(String ID, String ID_ETAPA, String NOME_ETAPA, String ID_USUARIO, String DATA_HORA, String TEXTO) {
+    public Opiniao(String ID, String ID_ETAPA, String NOME_ETAPA, String ID_USUARIO, String DATA_HORA, String TEXTO, String ID_LIDER) {
         this.ID = ID;
         this.ID_ETAPA = ID_ETAPA;
         this.NOME_ETAPA = NOME_ETAPA;
         this.ID_USUARIO = ID_USUARIO;
         this.DATA_HORA = DATA_HORA;
         this.TEXTO = TEXTO;
+        this.ID_LIDER = ID_LIDER;
     }
 }

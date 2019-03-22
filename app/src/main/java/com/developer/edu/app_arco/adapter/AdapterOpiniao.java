@@ -1,14 +1,19 @@
 package com.developer.edu.app_arco.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +56,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final TextView nome_etapa = view.findViewById(R.id.id_adatper_opiniao_nome_etapa);
         final TextView texto = view.findViewById(R.id.id_adapter_opiniao_texto);
         final TextView qtd_curtida_estrelas = view.findViewById(R.id.id_adatper_opiniao_qtd_curtida_estrelas);
+        final TextView id_usuario = view.findViewById(R.id.id_adatper_opiniao_id_usuario);
 
         final ImageView e1 = view.findViewById(R.id.id_adatper_opiniao_estrela1);
         final ImageView e2 = view.findViewById(R.id.id_adatper_opiniao_estrela2);
@@ -79,6 +85,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         data_hora.setText(opiniao.getDATA_HORA());
         nome_etapa.setText(opiniao.getNOME_ETAPA());
         texto.setText(opiniao.getTEXTO());
+        id_usuario.setText("Menbro: " + opiniao.getID_USUARIO());
 
         curtida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +121,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(2, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(2),ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(2), ID_USUARIO, socket);
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -123,7 +130,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(3, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(3),ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(3), ID_USUARIO, socket);
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -147,7 +154,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         });
 
 
-        socket.on("EU_CURTI".concat(opiniao.getID()+ID_USUARIO), new Emitter.Listener() {
+        socket.on("EU_CURTI".concat(opiniao.getID() + ID_USUARIO), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
                 ((Activity) context).runOnUiThread(new Runnable() {
@@ -170,7 +177,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         });
 
 
-        socket.on("EU_ESTRELAS".concat(opiniao.getID()+ID_USUARIO), new Emitter.Listener() {
+        socket.on("EU_ESTRELAS".concat(opiniao.getID() + ID_USUARIO), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
                 ((Activity) context).runOnUiThread(new Runnable() {
@@ -197,11 +204,10 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             }
         });
 
-
         denuncia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                enviarDenuncia(context, ID_USUARIO, opiniao.getID(), socket);
             }
         });
 
@@ -288,5 +294,48 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             e.printStackTrace();
         }
     }
+
+
+    public void enviarDenuncia(Context context, final String ID_USUARIO, final String ID_OPINIAO, final Socket socket) {
+
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
+        mensagem.setMessage("Descreva o motivo da sua denúncia...");
+        // DECLARACAO DO EDITTEXT
+        final EditText input = new EditText(context);
+        mensagem.setView(input);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        mensagem.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if (input.length() > 0) {
+
+
+                    try {
+                        JSONObject object = new JSONObject();
+                        object.put("ID_USUARIO", ID_USUARIO);
+                        object.put("ID_OPINIAO", ID_OPINIAO);
+                        object.put("TEXTO", input.getText().toString());
+                        socket.emit("DENUNCIA", object);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        });
+        mensagem.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        mensagem.show();
+
+    }
+
 }
 

@@ -45,7 +45,6 @@ public class EtapaActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
         final String TIPO = sharedPreferences.getString("TIPO", "");
-
         final String MEUS_ARCOS = getIntent().getStringExtra("MEUS_ARCOS");
         final String ID_ARCO = getIntent().getStringExtra("ID_ARCO");
         final String ID_ETAPA = getIntent().getStringExtra("ID_ETAPA");
@@ -127,7 +126,8 @@ public class EtapaActivity extends AppCompatActivity {
                                         object.getString("NOME_ETAPA"),
                                         object.getString("ID_USUARIO"),
                                         object.getString("DATA_HORA"),
-                                        object.getString("TEXTO")));
+                                        object.getString("TEXTO"),
+                                        object.getString("ID_LIDER")));
 
                             }
 
@@ -151,6 +151,8 @@ public class EtapaActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (TIPO.equals("1")) {
                     startActivity(new Intent(EtapaActivity.this, PerfilActivity.class).putExtra("ID_USUARIO", arrayAdapter.getItem(position).getID_USUARIO()).putExtra("MEU_PERFIL", "N"));
+                } else if (TIPO.equals("2")) {
+                    startActivity(new Intent(EtapaActivity.this, PerfilActivity.class).putExtra("ID_USUARIO", arrayAdapter.getItem(position).getID_LIDER()).putExtra("MEU_PERFIL", "N"));
                 }
 
                 return false;

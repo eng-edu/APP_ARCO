@@ -158,9 +158,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         mensagem.show();
-        // FORÇA O TECLADO APARECER AO ABRIR O ALERT
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
     }
 
 }

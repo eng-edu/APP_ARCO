@@ -211,7 +211,7 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this, "Data de nascimento inválida!", Toast.LENGTH_SHORT).show();
                 } else if (senha.getText().toString().equals(csenha.getText().toString()) == false) {
                     Toast.makeText(CadastroActivity.this, "As senhas não correspondem!", Toast.LENGTH_SHORT).show();
-                } else if (pathfoto.length() < 0) {
+                } else if (pathfoto == null || pathfoto.equals("") || pathfoto.equals(null)) {
                     Toast.makeText(CadastroActivity.this, "Adicione uma foto de perfil!", Toast.LENGTH_SHORT).show();
                 } else if (!senhavalido) {
                     Toast.makeText(CadastroActivity.this, "Senha muito curta!", Toast.LENGTH_SHORT).show();

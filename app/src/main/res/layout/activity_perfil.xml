@@ -36,7 +36,7 @@
                     android:adjustViewBounds="false"
                     android:cropToPadding="false"
                     android:scaleType="fitXY"
-                    android:src="@drawable/background23" />
+                    android:src="@drawable/back1" />
 
                 <TextView
                     android:id="@+id/id_perfil_sair"
@@ -50,7 +50,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:text="Sair"
-                    android:textColor="@color/backgroundcolor"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="0dp"
-                    android:textColor="@color/backgroundcolor"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

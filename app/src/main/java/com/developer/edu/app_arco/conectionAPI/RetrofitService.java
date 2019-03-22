@@ -129,4 +129,9 @@ public interface RetrofitService {
                                   @Path("ID_ETAPA") String CODIGO_ETAPA,
                                   @Path("TEXTO") String TEXTO);
 
+
+    @POST("opiniao/denunciar/{ID_OPINIAO}/{ID_USUARIO}/{TEXTO}")
+    Call<String> denunciar(@Path("ID_OPINIAO") String ID_OPINIAO,
+                           @Path("ID_USUARIO") String ID_USUARIO,
+                           @Path("TEXTO") String TEXTO);
 }

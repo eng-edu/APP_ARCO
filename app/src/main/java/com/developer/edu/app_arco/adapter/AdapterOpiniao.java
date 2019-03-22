@@ -2,8 +2,10 @@ package com.developer.edu.app_arco.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,9 +18,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
+import com.developer.edu.app_arco.act.ArcoActivity;
+import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
+import com.developer.edu.app_arco.controller.ControllerOpiniao;
 import com.developer.edu.app_arco.model.Opiniao;
 
 import org.json.JSONException;
@@ -28,6 +34,9 @@ import java.util.List;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
 
@@ -207,7 +216,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         denuncia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarDenuncia(context, ID_USUARIO, opiniao.getID(), socket);
+                enviarDenuncia(context, ID_USUARIO, opiniao.getID());
             }
         });
 
@@ -296,7 +305,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
     }
 
 
-    public void enviarDenuncia(Context context, final String ID_USUARIO, final String ID_OPINIAO, final Socket socket) {
+    public void enviarDenuncia(final Context context, final String ID_USUARIO, final String ID_OPINIAO) {
 
         AlertDialog.Builder mensagem = new AlertDialog.Builder(context);
         mensagem.setMessage("Descreva o motivo da sua denúncia...");
@@ -309,33 +318,22 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if (input.length() > 0) {
-
-
-                    try {
-                        JSONObject object = new JSONObject();
-                        object.put("ID_USUARIO", ID_USUARIO);
-                        object.put("ID_OPINIAO", ID_OPINIAO);
-                        object.put("TEXTO", input.getText().toString());
-                        socket.emit("DENUNCIA", object);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
             }
         });
         mensagem.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                if (input.length() > 0) {
+                    ControllerOpiniao.denunciar(context, ID_USUARIO, ID_OPINIAO, input.getText().toString());
+                }
             }
         });
 
         mensagem.show();
 
     }
+
+
 
 }
 

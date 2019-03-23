@@ -134,4 +134,8 @@ public interface RetrofitService {
     Call<String> denunciar(@Path("ID_OPINIAO") String ID_OPINIAO,
                            @Path("ID_USUARIO") String ID_USUARIO,
                            @Path("TEXTO") String TEXTO);
+
+    @PUT("etapa/finalizarEtapa/{ID}/{CODIGO}")
+    Call<String>finalizarEtapa(@Path("ID") String ID,
+                           @Path("CODIGO") String CODIGO);
 }

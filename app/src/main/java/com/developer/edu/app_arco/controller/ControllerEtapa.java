@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.act.ArcoActivity;
-import com.developer.edu.app_arco.act.EtapaActivity;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 
@@ -34,9 +33,6 @@ public class ControllerEtapa {
 
     public static void buscarEtapa(final View view, final String ID_ETAPA, final String TIPO, final SwipeRefreshLayout swipeRefreshLayout) {
 
-        final TextView situacao_etapa = view.findViewById(R.id.id_etapa_situacao);
-        final TextView nome_tematica = view.findViewById(R.id.id_etapa_nome_tematica);
-        final TextView descricao_temaica = view.findViewById(R.id.id_etapa_descricao_tematica);
         final TextView nome_etapa = view.findViewById(R.id.id_etapa_nome_etapa);
         final TextView descricao_etapa = view.findViewById(R.id.id_etapa_descricao_etapa);
 
@@ -51,25 +47,22 @@ public class ControllerEtapa {
 
                         JSONObject object = new JSONObject(response.body());
 
-                        String situacao = "";
-                        if (object.getString("SITUACAO_ETAPA").equals("1")) {
-                            situacao = "Etapa em desenvolvimento";
-                        } else if (object.getString("SITUACAO_ETAPA").equals("2")) {
-                            situacao = "Etapa finalizada";
-                        } else if (object.getString("SITUACAO_ETAPA").equals("3")) {
-                            situacao = "Etapa bloaqueada";
-                        }
-
-                        situacao_etapa.setText(situacao);
-                        nome_tematica.setText(object.getString("NOME_TEMATICA"));
-                        descricao_temaica.setText(object.getString("DESCRICAO_TEMATICA"));
                         nome_etapa.setText(object.getString("NOME_ETAPA"));
 
-                        if (TIPO.equals("1")) {
-                            descricao_etapa.setText(object.getString("DESCRICAO_ETAPA_LIDER"));
-                        } else {
-                            descricao_etapa.setText(object.getString("DESCRICAO_ETAPA_MENBRO"));
+
+                        if (object.getString("CODIGO_ETAPA").equals("1")) {
+                            descricao_etapa.setText(R.string.obs_realidade);
+                        } else if (object.getString("CODIGO_ETAPA").equals("2")) {
+                            descricao_etapa.setText(R.string.pto_chaves);
+                        } else if (object.getString("CODIGO_ETAPA").equals("3")) {
+                            descricao_etapa.setText(R.string.teorizacao);
+                        } else if (object.getString("CODIGO_ETAPA").equals("4")) {
+                            descricao_etapa.setText(R.string.h_solucao);
+                        } else if (object.getString("CODIGO_ETAPA").equals("5")) {
+                            descricao_etapa.setText(R.string.a_realidade);
                         }
+
+
                         swipeRefreshLayout.setRefreshing(false);
 
                     } catch (JSONException e) {
@@ -171,30 +164,30 @@ public class ControllerEtapa {
     public static void finalizarEtapa(final Context context, String ID_ETAPA, final String CODIGO_ETAPA, final String ID_ARCO, final String MEUS_ARCOS) {
 
 
-//        Call<String> stringCall = ConfigRetrofit.getService().finalizarEtapa(ID_ETAPA, CODIGO_ETAPA);
-//        stringCall.enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                if (response.code() == 200) {
-//
-//                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", ID_ARCO).putExtra("MEUS_ARCOS", MEUS_ARCOS));
-//                    ((Activity) context).finish();
-//
-//                } else if (response.code() == 203) {
-//                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
-//
-//                }else {
-//                    Toast.makeText(context, response.message(), Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        Call<String> stringCall = ConfigRetrofit.getService().finalizarEtapa(ID_ETAPA, CODIGO_ETAPA);
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+
+                    context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", ID_ARCO).putExtra("MEUS_ARCOS", MEUS_ARCOS));
+                    ((Activity) context).finish();
+
+                } else if (response.code() == 203) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(context, response.message(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 }

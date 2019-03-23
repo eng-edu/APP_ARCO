@@ -11,4 +11,13 @@
         <item>Fundamental</item>
         <item>Médio</item>
     </string-array>
+
+    <string name="obs_realidade">Reflitam a partir de livros, vídeos, noticias ou contexto real. busquem informações de modo a identificar o problema utilizando os recursos citados ou quais preferir!</string>
+    <string name="pto_chaves">Reflitam sobre as causas dos problemas e listem os pontos essenciais que deverão ser estudados para responder a questão maior que é “Por que esse problema existe?”</string>
+    <string name="teorizacao">Planejem um estudo teórico sobre o problema definido, indo até a biblioteca na busca por livros, jornais ou pesquisas já realizadas. Dica busquem pela resposta do problema através também da elaboração de questionários e entrevistas. </string>
+    <string name="h_solucao">Algumas perguntas precisam ser feitas “o que precisa acontecer para solucionar o problema?”, “o que precisa ser providenciado?”. Use a criatividade e o senso crítico para se pensar nas alternativas de solução para o problema.</string>
+    <string name="a_realidade">Para finalizar, é discutido quais das alternativas de soluções pensadas na etapa anterior é mais viável para ser executada na realidade. A dica é que o projeto seja finalizado com a realização da solução, como sugestão o projeto pode ser finalizado com um evento, sendo apresentado em uma mostra cultural ou feira de ciências, por exemplo.
+</string>
+
+
 </resources>

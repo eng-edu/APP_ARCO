@@ -79,29 +79,32 @@
 
 
                             <TextView
+                                android:id="@+id/id_arco_data_hora"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp" />
+
+                            <TextView
                                 android:id="@+id/id_arco_codigo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/id_arco_status"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/id_arco_data_hora"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/id_arco_nome_tematica"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/id_arco_descrocao_tematica"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:textStyle="bold"/>
 
 
                         </LinearLayout>

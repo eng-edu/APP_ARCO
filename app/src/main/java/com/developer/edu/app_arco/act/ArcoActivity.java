@@ -37,9 +37,9 @@ public class ArcoActivity extends AppCompatActivity {
     CardView etapa5;
 
     TextView codigo_equipe;
-    TextView status;
     TextView data_hora;
     TextView nome_tematica;
+    TextView descricao_tematica;
     ImageView foto_lider;
     ImageView foto_menbro;
 
@@ -104,9 +104,9 @@ public class ArcoActivity extends AppCompatActivity {
         etapa5 = findViewById(R.id.card_e5);
 
         codigo_equipe = findViewById(R.id.id_arco_codigo);
-        status = findViewById(R.id.id_arco_status);
         data_hora = findViewById(R.id.id_arco_data_hora);
         nome_tematica = findViewById(R.id.id_arco_nome_tematica);
+        descricao_tematica = findViewById(R.id.id_arco_descrocao_tematica);
         foto_lider = findViewById(R.id.id_arco_foto_lider);
         foto_menbro = findViewById(R.id.id_arco_foto_menbro);
 
@@ -196,9 +196,10 @@ public class ArcoActivity extends AppCompatActivity {
                             }
 
                             codigo_equipe.setText("Código da equipe: " + CODIGO_EQUIPE);
-                            status.setText("Status: " + str_status);
                             data_hora.setText("Criando em: " + object.getString("DATA_HORA"));
                             nome_tematica.setText("Temática: " + object.getString("NOME_TEMATICA"));
+                            descricao_tematica.setText("Descrição: " + object.getString("DESCRICAO_TEMATICA"));
+
                             Picasso.get().load(URL_BASE + "/IMG/" + object.getString("ID_LIDER") + "_usuario.jpg").into(foto_lider);
 
                             if (ID_USUARIO.equals(object.getString("ID_LIDER"))) {

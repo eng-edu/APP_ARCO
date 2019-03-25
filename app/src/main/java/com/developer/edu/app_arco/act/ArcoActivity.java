@@ -318,7 +318,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("SITUACAO_ETAPA", SITUACAO_E1);
                 intent.putExtra("CODIGO_ETAPA", "1");
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -332,7 +332,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("SITUACAO_ETAPA", SITUACAO_E2);
                 intent.putExtra("CODIGO_ETAPA", "2");
                 startActivity(intent);
-                finish();
+
             }
         });
         etapa3.setOnClickListener(new View.OnClickListener() {
@@ -345,7 +345,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("SITUACAO_ETAPA", SITUACAO_E3);
                 intent.putExtra("CODIGO_ETAPA", "3");
                 startActivity(intent);
-                finish();
+
             }
         });
         etapa4.setOnClickListener(new View.OnClickListener() {
@@ -358,7 +358,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("SITUACAO_ETAPA", SITUACAO_E4);
                 intent.putExtra("CODIGO_ETAPA", "4");
                 startActivity(intent);
-                finish();
+
             }
         });
         etapa5.setOnClickListener(new View.OnClickListener() {
@@ -371,7 +371,7 @@ public class ArcoActivity extends AppCompatActivity {
                 intent.putExtra("SITUACAO_ETAPA", SITUACAO_E5);
                 intent.putExtra("CODIGO_ETAPA", "5");
                 startActivity(intent);
-                finish();
+
             }
         });
 

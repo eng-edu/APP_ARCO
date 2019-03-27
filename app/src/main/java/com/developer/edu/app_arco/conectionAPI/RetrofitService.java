@@ -138,4 +138,8 @@ public interface RetrofitService {
     @PUT("etapa/finalizarEtapa/{ID}/{CODIGO}")
     Call<String>finalizarEtapa(@Path("ID") String ID,
                            @Path("CODIGO") String CODIGO);
+
+    @GET("arco/buscarTodosArcos/")
+    Call<String> buscarTodosArcos();
+
 }

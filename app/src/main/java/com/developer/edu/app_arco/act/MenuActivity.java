@@ -11,7 +11,6 @@ import android.support.v7.widget.CardView;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
         final String TIPO_USUARIO = sharedPreferences.getString("TIPO", "");
         final String ID_USUARIO = sharedPreferences.getString("ID", "");
 
-        socket.emit("NUM_NOTIFICACAO",ID_USUARIO);
+        socket.emit("NUM_NOTIFICACAO", ID_USUARIO);
         socket.on("NUM_NOTIFICACAO".concat(ID_USUARIO), new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
@@ -112,8 +111,8 @@ public class MenuActivity extends AppCompatActivity {
         arcosCompartilhados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final LayoutInflater inflater = getLayoutInflater();
-              //  ControllerArco.bucarTodosArcos(MenuActivity.this, inflater);
+                Intent intent = new Intent(MenuActivity.this, ArcosCompartilhadosActivity.class);
+                startActivity(intent);
             }
         });
 

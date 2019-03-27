@@ -111,7 +111,6 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
 
                 }
 
-
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });

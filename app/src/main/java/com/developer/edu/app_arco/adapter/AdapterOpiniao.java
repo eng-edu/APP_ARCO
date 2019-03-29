@@ -2,7 +2,6 @@ package com.developer.edu.app_arco.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,16 +12,13 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
-import com.developer.edu.app_arco.act.ArcoActivity;
-import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
+import com.developer.edu.app_arco.act.ComentarioActivity;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.controller.ControllerOpiniao;
 import com.developer.edu.app_arco.model.Opiniao;
@@ -34,9 +30,6 @@ import java.util.List;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
 
@@ -53,9 +46,9 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
     }
 
     @Override
-    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.adapter_opiniao, parent, false);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("MY_PREF", Context.MODE_PRIVATE);
@@ -75,6 +68,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
 
         final ImageView curtida = view.findViewById(R.id.id_adatper_opiniao_curtida);
         final ImageView denuncia = view.findViewById(R.id.id_adatper_opiniao_denuncia);
+        final ImageView msg = view.findViewById(R.id.id_adatper_opiniao_msg);
 
         final Opiniao opiniao = opinioes.get(position);
 
@@ -216,6 +210,17 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 enviarDenuncia(context, ID_USUARIO, opiniao.getID());
+            }
+        });
+
+
+        msg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent();
+                intent.putExtra("ID_OPINIAO", )
+                context.startActivity(new Intent(context, ComentarioActivity.class));
             }
         });
 

@@ -1,7 +1,6 @@
 package com.developer.edu.app_arco.act;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.widget.ListView;
@@ -26,15 +25,5 @@ public class ArcosCompartilhadosActivity extends AppCompatActivity {
         final LayoutInflater inflater = getLayoutInflater();
 
         ControllerArcosCompartilhados.buscarArcos(ArcosCompartilhadosActivity.this, inflater, arrayAdapter, listView);
-
-//
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//
-//                ControllerArcosCompartilhados.buscarArcos(ArcosCompartilhadosActivity.this, inflater, arrayAdapter, listView, swipeRefreshLayout);
-//
-//            }
-//        });
     }
 }

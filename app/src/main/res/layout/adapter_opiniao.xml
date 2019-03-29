@@ -134,6 +134,14 @@
 
 
 
+                    <ImageView
+                        android:id="@+id/id_adatper_opiniao_msg"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:padding="7dp"
+                        android:src="@mipmap/ic_msg" />
+
 
                     <ImageView
                         android:id="@+id/id_adatper_opiniao_denuncia"

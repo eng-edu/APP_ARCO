@@ -96,6 +96,12 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         texto.setText(opiniao.getTEXTO());
         id_usuario.setText("Menbro: " + opiniao.getID_USUARIO());
 
+
+        if (ID_USUARIO.equals(opiniao.getID_USUARIO())){
+            id_usuario.setText("Minha contribuição");
+
+        }
+
         curtida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -66,7 +66,6 @@ public class ArcoActivity extends AppCompatActivity {
     String ID_E4 = "";
     String ID_E5 = "";
 
-
     String SITUACAO_E1 = "";
     String SITUACAO_E2 = "";
     String SITUACAO_E3 = "";

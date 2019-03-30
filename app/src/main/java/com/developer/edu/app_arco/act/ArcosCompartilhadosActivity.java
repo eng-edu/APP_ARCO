@@ -21,7 +21,7 @@ public class ArcosCompartilhadosActivity extends AppCompatActivity {
 
 
         final ListView listView = findViewById(R.id.id_lista_a_compartilhados);
-        final AdapterOpiniao arrayAdapter = new AdapterOpiniao(ArcosCompartilhadosActivity.this, new ArrayList<Opiniao>());
+        final AdapterOpiniao arrayAdapter = new AdapterOpiniao(ArcosCompartilhadosActivity.this, new ArrayList<Opiniao>(), "N");
         final LayoutInflater inflater = getLayoutInflater();
 
         ControllerArcosCompartilhados.buscarArcos(ArcosCompartilhadosActivity.this, inflater, arrayAdapter, listView);

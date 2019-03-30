@@ -35,14 +35,16 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
 
     private Context context;
     private List<Opiniao> opinioes;
+    private String MEUS_ARCOS;
     int curtiu = 2;
 
     Socket socket = SocketStatic.getSocket();
 
-    public AdapterOpiniao(Context context, List<Opiniao> opinioes) {
+    public AdapterOpiniao(Context context, List<Opiniao> opinioes, String MEUS_ARCOS) {
         super(context, R.layout.adapter_opiniao, opinioes);
         this.context = context;
         this.opinioes = opinioes;
+        this.MEUS_ARCOS = MEUS_ARCOS;
     }
 
     @Override
@@ -69,6 +71,10 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final ImageView curtida = view.findViewById(R.id.id_adatper_opiniao_curtida);
         final ImageView denuncia = view.findViewById(R.id.id_adatper_opiniao_denuncia);
         final ImageView msg = view.findViewById(R.id.id_adatper_opiniao_msg);
+
+        if(MEUS_ARCOS.equals("N")){
+            msg.setVisibility(View.GONE);
+        }
 
         final Opiniao opiniao = opinioes.get(position);
 

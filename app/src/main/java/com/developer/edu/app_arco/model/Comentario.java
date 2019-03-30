@@ -3,13 +3,13 @@ package com.developer.edu.app_arco.model;
 public class Comentario {
 
     String ID_AUTOR;
-    String EMAIL_AUTOR;
+    String ID_LIDER;
     String DATA_HORA;
     String TEXTO;
 
-    public Comentario(String ID_AUTOR, String EMAIL_AUTOR, String DATA_HORA, String TEXTO) {
+    public Comentario(String ID_AUTOR, String ID_LIDER, String DATA_HORA, String TEXTO) {
         this.ID_AUTOR = ID_AUTOR;
-        this.EMAIL_AUTOR = EMAIL_AUTOR;
+        this.ID_LIDER = ID_LIDER;
         this.DATA_HORA = DATA_HORA;
         this.TEXTO = TEXTO;
     }
@@ -22,12 +22,12 @@ public class Comentario {
         this.ID_AUTOR = ID_AUTOR;
     }
 
-    public String getEMAIL_AUTOR() {
-        return EMAIL_AUTOR;
+    public String getID_LIDER() {
+        return ID_LIDER;
     }
 
-    public void setEMAIL_AUTOR(String EMAIL_AUTOR) {
-        this.EMAIL_AUTOR = EMAIL_AUTOR;
+    public void setID_LIDER(String ID_LIDER) {
+        this.ID_LIDER = ID_LIDER;
     }
 
     public String getDATA_HORA() {

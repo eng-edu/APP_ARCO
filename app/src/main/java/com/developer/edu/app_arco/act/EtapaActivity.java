@@ -99,7 +99,7 @@ public class EtapaActivity extends AppCompatActivity {
         }
 
         final ListView listView = findViewById(R.id.id_etapa_lista_opinioes);
-        final AdapterOpiniao arrayAdapter = new AdapterOpiniao(EtapaActivity.this, new ArrayList<Opiniao>());
+        final AdapterOpiniao arrayAdapter = new AdapterOpiniao(EtapaActivity.this, new ArrayList<Opiniao>(),MEUS_ARCOS);
 
         socket.emit("OPINIAO", ID_ETAPA);
         socket.on("OPINIAO".concat(ID_ETAPA), new Emitter.Listener() {

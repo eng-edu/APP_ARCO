@@ -30,7 +30,7 @@ public class AdapterEquipe extends ArrayAdapter<Equipe> {
 
 
     public AdapterEquipe(Context context, List<Equipe> equipes, String CODIGO_EQUIPE) {
-        super(context, R.layout.adapter_equipe, equipes);
+        super(context, R.layout.adapter_equipe2, equipes);
         this.context = context;
         this.equipes = equipes;
         this.CODIGO_EQUIPE = CODIGO_EQUIPE;
@@ -41,7 +41,7 @@ public class AdapterEquipe extends ArrayAdapter<Equipe> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.adapter_equipe, parent, false);
+        final View view = inflater.inflate(R.layout.adapter_equipe2, parent, false);
 
         final Equipe equipe = equipes.get(position);
 

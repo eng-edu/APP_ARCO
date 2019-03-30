@@ -218,9 +218,9 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent();
-                intent.putExtra("ID_OPINIAO", )
-                context.startActivity(new Intent(context, ComentarioActivity.class));
+                Intent intent = new Intent(context, ComentarioActivity.class);
+                intent.putExtra("ID_OPINIAO", opiniao.getID());
+                context.startActivity(intent);
             }
         });
 
@@ -336,7 +336,6 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         mensagem.show();
 
     }
-
 
 
 }

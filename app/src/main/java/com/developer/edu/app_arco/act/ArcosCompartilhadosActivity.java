@@ -19,7 +19,6 @@ public class ArcosCompartilhadosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arcos_compartilhados);
 
-
         final ListView listView = findViewById(R.id.id_lista_a_compartilhados);
         final AdapterOpiniao arrayAdapter = new AdapterOpiniao(ArcosCompartilhadosActivity.this, new ArrayList<Opiniao>(), "N");
         final LayoutInflater inflater = getLayoutInflater();

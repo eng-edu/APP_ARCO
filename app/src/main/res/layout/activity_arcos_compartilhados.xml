@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".act.ArcosCompartilhadosActivity">
 
+
+
     <ListView
         android:id="@+id/id_lista_a_compartilhados"
         android:layout_width="match_parent"

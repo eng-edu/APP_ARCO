@@ -115,11 +115,18 @@ public class ArcoActivity extends AppCompatActivity {
         status_e4 = findViewById(R.id.imageE4);
         status_e5 = findViewById(R.id.imageE5);
 
-        excuir = findViewById(R.id.id_arco_layout_excluir);
+//        excuir = findViewById(R.id.id_arco_layout_excluir);
         equipe = findViewById(R.id.id_arco_layout_equipe);
         solicitacoes = findViewById(R.id.id_arco_layout_solicitacoes);
-
         num_solicitacao = findViewById(R.id.id_arco_num_solicitacoes);
+
+
+//        excuir.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
         socket.emit("ETAPA", ID_ARCO);
@@ -202,11 +209,11 @@ public class ArcoActivity extends AppCompatActivity {
                             Picasso.get().load(URL_BASE + "/IMG/" + object.getString("ID_LIDER") + "_usuario.jpg").into(foto_lider);
 
                             if (ID_USUARIO.equals(object.getString("ID_LIDER"))) {
-                                excuir.setVisibility(View.VISIBLE);
+//                                excuir.setVisibility(View.VISIBLE);
                                 equipe.setVisibility(View.VISIBLE);
                                 solicitacoes.setVisibility(View.VISIBLE);
                             } else {
-                                excuir.setVisibility(View.GONE);
+//                                excuir.setVisibility(View.GONE);
                                 equipe.setVisibility(View.GONE);
                                 solicitacoes.setVisibility(View.GONE);
                             }

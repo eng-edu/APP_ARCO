@@ -72,7 +72,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         final ImageView denuncia = view.findViewById(R.id.id_adatper_opiniao_denuncia);
         final ImageView msg = view.findViewById(R.id.id_adatper_opiniao_msg);
 
-        if(MEUS_ARCOS.equals("N")){
+        if (MEUS_ARCOS.equals("N")) {
             msg.setVisibility(View.GONE);
         }
 
@@ -97,7 +97,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         id_usuario.setText("Menbro: " + opiniao.getID_USUARIO());
 
 
-        if (ID_USUARIO.equals(opiniao.getID_USUARIO())){
+        if (ID_USUARIO.equals(opiniao.getID_USUARIO())) {
             id_usuario.setText("Eu");
 
         }
@@ -126,7 +126,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(1, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(1), ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(1), ID_USUARIO, socket, opiniao.getID_USUARIO());
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -135,7 +135,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(2, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(2), ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(2), ID_USUARIO, socket, opiniao.getID_USUARIO());
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -144,7 +144,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(3, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(3), ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(3), ID_USUARIO, socket, opiniao.getID_USUARIO());
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -153,7 +153,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(4, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(4), ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(4), ID_USUARIO, socket, opiniao.getID_USUARIO());
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -162,7 +162,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
             @Override
             public void onClick(View v) {
                 definirIconPontos(5, e1, e2, e3, e4, e5);
-                emitEstrelas(opiniao, String.valueOf(5), ID_USUARIO, socket);
+                emitEstrelas(opiniao, String.valueOf(5), ID_USUARIO, socket, opiniao.getID_USUARIO());
                 socket.emit("QTD_CURTIDAS_ESTRELAS", opiniao.getID());
             }
         });
@@ -183,6 +183,42 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
                         } else {
                             curti(2, curtida);
                             curtiu = 1;
+                        }
+
+
+                        Socket socket = SocketStatic.getSocket();
+
+
+                        try {
+
+                            JSONObject object1 = new JSONObject();
+                            object1.put("ID_USUARIO", opiniao.getID_USUARIO());
+                            object1.put("CODIGO_ETAPA", "1");
+                            socket.emit("ESPECIALIDADE", object1);
+
+                            JSONObject object2 = new JSONObject();
+                            object2.put("ID_USUARIO", opiniao.getID_USUARIO());
+                            object2.put("CODIGO_ETAPA", "2");
+                            socket.emit("ESPECIALIDADE", object2);
+
+                            JSONObject object3 = new JSONObject();
+                            object3.put("ID_USUARIO", opiniao.getID_USUARIO());
+                            object3.put("CODIGO_ETAPA", "3");
+                            socket.emit("ESPECIALIDADE", object3);
+
+                            JSONObject object4 = new JSONObject();
+                            object4.put("ID_USUARIO", opiniao.getID_USUARIO());
+                            object4.put("CODIGO_ETAPA", "4");
+                            socket.emit("ESPECIALIDADE", object4);
+
+                            JSONObject object5 = new JSONObject();
+                            object5.put("ID_USUARIO", opiniao.getID_USUARIO());
+                            object5.put("CODIGO_ETAPA", "5");
+                            socket.emit("ESPECIALIDADE", object5);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
                     }
@@ -235,6 +271,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
                 context.startActivity(intent);
             }
         });
+
 
         return view;
     }
@@ -308,16 +345,51 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
     }
 
 
-    public static void emitEstrelas(Opiniao opiniao, String quantidade, String id_usuario, Socket socket) {
+    public static void emitEstrelas(Opiniao opiniao, String quantidade, String ID_USUARIO, Socket socket, String oID_USUARIO) {
         try {
             JSONObject object = new JSONObject();
-            object.put("ID_USUARIO", id_usuario);
+            object.put("ID_USUARIO", ID_USUARIO);
             object.put("ID_OPINIAO", opiniao.getID());
             object.put("QUANTIDADE", quantidade);
             socket.emit("ESTRELAS", object);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        try {
+
+            JSONObject object1 = new JSONObject();
+            object1.put("ID_USUARIO", oID_USUARIO);
+            object1.put("CODIGO_ETAPA", "1");
+            socket.emit("ESPECIALIDADE", object1);
+
+            JSONObject object2 = new JSONObject();
+            object2.put("ID_USUARIO", oID_USUARIO);
+            object2.put("CODIGO_ETAPA", "2");
+            socket.emit("ESPECIALIDADE", object2);
+
+            JSONObject object3 = new JSONObject();
+            object3.put("ID_USUARIO", oID_USUARIO);
+            object3.put("CODIGO_ETAPA", "3");
+            socket.emit("ESPECIALIDADE", object3);
+
+            JSONObject object4 = new JSONObject();
+            object4.put("ID_USUARIO", oID_USUARIO);
+            object4.put("CODIGO_ETAPA", "4");
+            socket.emit("ESPECIALIDADE", object4);
+
+            JSONObject object5 = new JSONObject();
+            object5.put("ID_USUARIO", oID_USUARIO);
+            object5.put("CODIGO_ETAPA", "5");
+            socket.emit("ESPECIALIDADE", object5);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

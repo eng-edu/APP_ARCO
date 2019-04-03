@@ -129,9 +129,9 @@ public class ControllerEtapa {
 
     }
 
-    public static void buscarOpiniao(final Context context, final LayoutInflater inflater, final String ID_USUSARIO, final String ID_ETAPA) {
+    public static void buscarOpiniao(final Context context, final LayoutInflater inflater, final String ID_USUARIO, final String ID_ETAPA) {
 
-        Call<String> stringCall = ConfigRetrofit.getService().buscarOpiniao(ID_USUSARIO, ID_ETAPA);
+        Call<String> stringCall = ConfigRetrofit.getService().buscarOpiniao(ID_USUARIO, ID_ETAPA);
         stringCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -140,7 +140,8 @@ public class ControllerEtapa {
                     try {
 
                         JSONObject object = new JSONObject(response.body());
-                        escreverOpiniao(context, inflater, object.getString("TEXTO"), ID_USUSARIO, ID_ETAPA);
+                        escreverOpiniao(context, inflater, object.getString("TEXTO"), ID_USUARIO, ID_ETAPA);
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -161,7 +162,7 @@ public class ControllerEtapa {
 
     }
 
-    public static void finalizarEtapa(final Context context, String ID_ETAPA, final String CODIGO_ETAPA, final String ID_ARCO, final String MEUS_ARCOS) {
+    public static void finalizarEtapa(final Context context, String ID_ETAPA, final String CODIGO_ETAPA, final String ID_ARCO, final String MEUS_ARCOS, final String ID_USUARIO) {
 
 
         Call<String> stringCall = ConfigRetrofit.getService().finalizarEtapa(ID_ETAPA, CODIGO_ETAPA);
@@ -172,6 +173,20 @@ public class ControllerEtapa {
 
                     context.startActivity(new Intent(context, ArcoActivity.class).putExtra("ID_ARCO", ID_ARCO).putExtra("MEUS_ARCOS", MEUS_ARCOS));
                     ((Activity) context).finish();
+
+                    Socket socket = SocketStatic.getSocket();
+
+                    try {
+
+                        JSONObject object1 = new JSONObject();
+                        object1.put("ID_USUARIO", ID_USUARIO);
+                        object1.put("CODIGO_ETAPA", CODIGO_ETAPA);
+                        socket.emit("ESPECIALIDADE", object1);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
 
                 } else if (response.code() == 203) {
                     Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();

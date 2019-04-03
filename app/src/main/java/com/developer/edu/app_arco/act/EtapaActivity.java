@@ -76,7 +76,7 @@ public class EtapaActivity extends AppCompatActivity {
         layout_finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ControllerEtapa.finalizarEtapa(EtapaActivity.this,ID_ETAPA, CODIGO_ETAPA, ID_ARCO, MEUS_ARCOS);
+                ControllerEtapa.finalizarEtapa(EtapaActivity.this,ID_ETAPA, CODIGO_ETAPA, ID_ARCO, MEUS_ARCOS, ID_USUARIO);
             }
         });
 

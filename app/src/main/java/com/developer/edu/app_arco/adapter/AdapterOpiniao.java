@@ -98,7 +98,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
 
 
         if (ID_USUARIO.equals(opiniao.getID_USUARIO())){
-            id_usuario.setText("Minha contribuição");
+            id_usuario.setText("Eu");
 
         }
 

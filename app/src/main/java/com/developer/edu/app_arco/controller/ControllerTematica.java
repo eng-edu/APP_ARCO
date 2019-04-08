@@ -96,7 +96,7 @@ public class ControllerTematica {
                 //  Toast.makeText(context, arrayAdapter.getItem(position) + " ", Toast.LENGTH_SHORT).show();
                 new AlertDialog.Builder(context)
                         .setTitle("TEM CERTEZA?")
-                        .setMessage("Deseja criar seu Arco com a tematica: " + arrayAdapter.getItem(position) + " ?")
+                        .setMessage("Deseja criar seu Arco com a tematica: " + arrayAdapter.getItem(position).getNome() + " ?")
                         .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

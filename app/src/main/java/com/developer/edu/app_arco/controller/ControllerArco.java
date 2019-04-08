@@ -7,24 +7,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.edu.app_arco.R;
 import com.developer.edu.app_arco.act.ArcoActivity;
 import com.developer.edu.app_arco.adapter.AdapterArco;
+import com.developer.edu.app_arco.adapter.AdapterRanking;
 import com.developer.edu.app_arco.conectionAPI.ConfigRetrofit;
 import com.developer.edu.app_arco.conectionAPI.SocketStatic;
 import com.developer.edu.app_arco.model.Arco;
-import com.squareup.picasso.Picasso;
+import com.developer.edu.app_arco.model.Ranking;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,12 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.developer.edu.app_arco.conectionAPI.ConfigRetrofit.URL_BASE;
 
 public class ControllerArco {
 
@@ -221,5 +214,68 @@ public class ControllerArco {
         });
 
     }
+
+    public static void bucarRanking(final Context context, final LayoutInflater inflater) {
+
+
+        final View view = inflater.inflate(R.layout.dialog_arco, null);
+
+        final ListView listView = view.findViewById(R.id.lista_arcos);
+        final AdapterRanking arrayAdapter = new AdapterRanking(context, new ArrayList<Ranking>());
+
+        Call<String> stringCall = ConfigRetrofit.getService().buscarRanking();
+        stringCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if (response.code() == 200) {
+
+                    try {
+                        JSONArray array = new JSONArray(response.body());
+                        int size = array.length();
+                        List<Ranking> rankings = new ArrayList<>();
+                        for (int i = 0; i < size; i++) {
+                            JSONObject object = array.getJSONObject(i);
+
+                            rankings.add(new Ranking(
+                                    object.getString("ID_USUARIO"),
+                                    object.getString("CURTIDAS"),
+                                    object.getString("ESTRELAS")));
+
+                        }
+
+                        arrayAdapter.clear();
+                        arrayAdapter.addAll(rankings);
+                        listView.setAdapter(arrayAdapter);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else if (response.code() == 405) {
+                    Toast.makeText(context, response.body(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Ranking");
+        builder.setView(view);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alert = builder.create();
+        alert.show();
+
+    }
+
 
 }

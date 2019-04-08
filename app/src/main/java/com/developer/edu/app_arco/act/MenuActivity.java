@@ -120,7 +120,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = getLayoutInflater();
-                //  ControllerArco.bucarRanking(MenuActivity.this, inflater);
+                  ControllerArco.bucarRanking(MenuActivity.this, inflater);
             }
         });
 

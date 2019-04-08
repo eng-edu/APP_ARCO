@@ -94,7 +94,7 @@ public class AdapterOpiniao extends ArrayAdapter<Opiniao> {
         data_hora.setText(opiniao.getDATA_HORA());
         nome_etapa.setText(opiniao.getNOME_ETAPA());
         texto.setText(opiniao.getTEXTO());
-        id_usuario.setText("Menbro: " + opiniao.getID_USUARIO());
+        id_usuario.setText("Membro: " + opiniao.getID_USUARIO());
 
 
         if (ID_USUARIO.equals(opiniao.getID_USUARIO())) {

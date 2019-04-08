@@ -142,4 +142,8 @@ public interface RetrofitService {
     @GET("arco/buscarTodosArcos/")
     Call<String> buscarTodosArcos();
 
+
+    @GET("usuario/buscarRanking/")
+    Call<String> buscarRanking();
+
 }
